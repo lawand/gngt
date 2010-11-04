@@ -1,0 +1,45 @@
+Introduction
+
+German Noun Gender Trainer (GNGT) is a small application which helps German 
+learners memorize genders of German nouns through memorizing their 
+corresponding definite articles (der, die or das).
+
+Usage
+
+You should add some nouns into the text file 'nouns.txt' each in a new line 
+composed of the singular form of the noun preceded by it's corresponding 
+definite article (i.e. 'das Buch' (without the quotes)). Note that erroneous 
+lines will be reported by the program and will be ignored.
+
+It's not recommended to add compound nouns because the GUI won't fit long 
+nouns, and memorizing the gender of the last part of a compound noun is 
+sufficient.
+
+You can then start the program and it will load the nouns and start testing you 
+by giving you some noun (i.e. Buch) and you should supply the correct 
+corresponding definite article (which is in this case 'das'). If you made a 
+mistake, you'll get a corrective feedback. Then you'll get another random noun 
+and so on.
+
+Developing
+
+This program is free software: you can redistribute it and/or modify it under 
+the terms of the GNU Lesser Public License as published by the Free Software 
+Foundation, either version 3 of the License, or (at your option) any later 
+version.
+
+GNGT is a Qt4 application, and is tested with Qt v4.7.0.
+
+Disclaimer
+
+GNGT is distributed in the hope that it will be useful, but WITHOUT ANY 
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A 
+PARTICULAR PURPOSE.
+
+For more information, check out the GNU General Public license found in the 
+COPYING file, the GNU Lesser Public license found in the COPYING.LESSER file 
+and the README file.
+
+Contact
+
+GNGT is made by Lawand <lawand87@gmail.com | http://lawand.wordpress.com>
