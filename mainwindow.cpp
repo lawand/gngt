@@ -220,3 +220,21 @@ void MainWindow::on_neuterPushButton_clicked()
 {
     giveFeedback(Noun::neuter);
 }
+
+void MainWindow::on_aboutPushButton_clicked()
+{
+    QMessageBox::information(this,
+                             "About GNGT",
+
+                             "German Noun Gender Trainer (GNGT) v0.2 \nCreated "
+                             "by Omar Lawand Dalatieh <lawand87@gmail.com>\n\n"
+
+                             "For help, check out the README file.\n\n"
+
+                             "GNGT is free software and is licensed under "
+                             "the GNU LGPLv3 license (or, at your option, any "
+                             "later version).\n\n"
+
+                             "http://lawand.github.com/gngt/"
+                             );
+}

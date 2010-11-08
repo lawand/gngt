@@ -62,6 +62,8 @@ private slots:
     void on_femininePushButton_clicked();
     void on_neuterPushButton_clicked();
 
+    void on_aboutPushButton_clicked();
+
 //data members
 private:
     Ui::MainWindow *ui;
