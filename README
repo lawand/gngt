@@ -26,9 +26,10 @@ and so on.
 
 Developing
 
+GNGT is released under GNU LGPL version 3 or (at your option) any later 
+version.
+
 GNGT is a Qt4 application, and is tested with Qt v4.7.0.
-<Qt is a trademark of Nokia Corporation and/or its subsidiaries in Finland and 
-other countries>
 
 GNGT source git repository can be found at: https://github.com/lawand/gngt
 
@@ -45,6 +46,9 @@ PARTICULAR PURPOSE.
 
 For more information, check out the GNU General Public license found in the 
 COPYING file and the GNU Lesser Public license found in the COPYING.LESSER file.
+
+Qt is a trademark of Nokia Corporation and/or its subsidiaries in Finland and 
+other countries
 
 Official Site
 
