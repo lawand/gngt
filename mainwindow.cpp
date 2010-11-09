@@ -127,8 +127,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
                 lineNumber++;
             }
+            nounsFile.close();
         }
-        nounsFile.close();
     }
 
     //seed the function qrand()
