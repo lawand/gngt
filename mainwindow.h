@@ -69,7 +69,6 @@ private:
     Ui::MainWindow *ui;
     QTimer *feedbackAndNounSwitchTimer;
     QList<Noun> *nouns;
-    QString *nounsFileName;
     int nounIndex;
     bool feedbackActive;
 };

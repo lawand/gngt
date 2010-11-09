@@ -44,7 +44,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow),
     feedbackAndNounSwitchTimer(new QTimer(this)),
     nouns(new QList<Noun>()),
-    nounsFileName(new QString("nouns.txt")),
     nounIndex(0),
     feedbackActive(false)
 {
@@ -62,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //create and initialize nounsFile which will be used for
     //reading nouns from the nouns file
-    QFile nounsFile(*nounsFileName);
+    QFile nounsFile("nouns.txt");
 
     //notify the user if the nouns file doesn't exist
     if(! nounsFile.exists())
@@ -71,7 +70,9 @@ MainWindow::MainWindow(QWidget *parent) :
                                  QString("There is no nouns file '%1', please "
                                          "create one and fill it with nouns. "
                                          "For more information, checkout the "
-                                         "README file.").arg(*nounsFileName)
+                                         "README file.").arg(
+                                                 nounsFile.fileName()
+                                                 )
                                  );
     }
     else
@@ -83,7 +84,7 @@ MainWindow::MainWindow(QWidget *parent) :
                                  QString("Cannot open the nouns file '%1' for "
                                          "reading, try again and if the "
                                          "problem persisted please report the "
-                                         "bug").arg(*nounsFileName)
+                                         "bug").arg(nounsFile.fileName())
                 );
         }
         else    //read all nouns from the nouns file
@@ -141,7 +142,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete nouns;
-    delete nounsFileName;
 }
 
 void MainWindow::updateGui()
