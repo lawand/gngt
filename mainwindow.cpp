@@ -79,12 +79,11 @@ MainWindow::MainWindow(QWidget *parent) :
         //notify the user if the nouns file can't be open for reading
         if(! nounsFile.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            QMessageBox::warning(
-                0,
-                "Nouns File Open Error",
-                QString("Cannot open the nouns file '%1' for reading, try "
-                        "again and if the problem persisted please report "
-                        "the bug").arg(*nounsFileName)
+            QMessageBox::warning(0, "Nouns File Open Error",
+                                 QString("Cannot open the nouns file '%1' for "
+                                         "reading, try again and if the "
+                                         "problem persisted please report the "
+                                         "bug").arg(*nounsFileName)
                 );
         }
         else    //read all nouns from the nouns file
