@@ -27,6 +27,8 @@ and so on.
 Developing
 
 GNGT is a Qt4 application, and is tested with Qt v4.7.0.
+<Qt is a trademark of Nokia Corporation and/or its subsidiaries in Finland and 
+other countries>
 
 GNGT source git repository can be found at: https://github.com/lawand/gngt
 
