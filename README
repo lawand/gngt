@@ -33,6 +33,8 @@ version.
 
 GNGT is a Qt4 application, and is tested with Qt v4.7.0.
 
+GNGT source git repository can be found at: https://github.com/lawand/gngt
+
 Disclaimer
 
 GNGT is distributed in the hope that it will be useful, but WITHOUT ANY 
@@ -41,6 +43,10 @@ PARTICULAR PURPOSE.
 
 For more information, check out the GNU General Public license found in the 
 COPYING file and the GNU Lesser Public license found in the COPYING.LESSER file.
+
+Official Site
+
+GNGT's official website is: http://lawand.github.com/gngt/
 
 Contact
 
