@@ -71,6 +71,7 @@ private:
     QList<Noun> *nouns;
     QString *nounsFileName;
     int nounIndex;
+    bool feedbackActive;
 };
 
 #endif // MAINWINDOW_H

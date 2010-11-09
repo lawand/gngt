@@ -45,7 +45,8 @@ MainWindow::MainWindow(QWidget *parent) :
     feedbackAndNounSwitchTimer(new QTimer(this)),
     nouns(new QList<Noun>()),
     nounsFileName(new QString("nouns.txt")),
-    nounIndex(0)
+    nounIndex(0),
+    feedbackActive(false)
 {
     //initialization
     ui->setupUi(this);
@@ -172,6 +173,8 @@ void MainWindow::giveFeedback(Noun::Gender chosenGender)
     //in case of a mistake, give feedback
     if(currentNoun.gender != chosenGender)
     {
+        feedbackActive = true;
+
         if(currentNoun.gender == Noun::masculine)
         {
             ui->masculinePushButton->setStyleSheet("color: rgb(0, 192, 0);");
@@ -204,21 +207,32 @@ void MainWindow::stopFeedback()
     ui->femininePushButton->setStyleSheet("");
     ui->neuterPushButton->setStyleSheet("");
     ui->nounLabel->setStyleSheet("");
+
+    feedbackActive = false;
 }
 
 void MainWindow::on_masculinePushButton_clicked()
 {
-    giveFeedback(Noun::masculine);
+    if(!feedbackActive)
+    {
+        giveFeedback(Noun::masculine);
+    }
 }
 
 void MainWindow::on_femininePushButton_clicked()
 {
-    giveFeedback(Noun::feminine);
+    if(!feedbackActive)
+    {
+        giveFeedback(Noun::feminine);
+    }
 }
 
 void MainWindow::on_neuterPushButton_clicked()
 {
-    giveFeedback(Noun::neuter);
+    if(!feedbackActive)
+    {
+        giveFeedback(Noun::neuter);
+    }
 }
 
 void MainWindow::on_aboutPushButton_clicked()
