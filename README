@@ -7,9 +7,14 @@ corresponding definite articles (der, die or das).
 Usage
 
 You should create a text file named 'noun.txt' and place it in the same 
-directory in which GNGT is.
+directory in which GNGT is, the character encoding of this text file should be 
+UTF-8. A UTF-8 file has been provided, so it is recommended for you to edit the 
+provided file instead of deleting it and creating a new one because the default 
+character encoding on some operating systems isn't UTF-8, which means that you 
+have to specify this character encoding when saving the file instead of just 
+saving it using default options.
 
-Then add some nouns into the text file each in a new line composed of the 
+The nouns file should contain some nouns each in a new line composed of the 
 singular form of the noun preceded by it's corresponding definite article 
 (i.e. 'das Buch' (without the quotes)). Note that erroneous lines will be 
 reported by the program at startup and will be ignored.
@@ -19,7 +24,7 @@ nouns, and memorizing the gender of the last part of a compound noun is
 sufficient.
 
 You can then start the program and it will load the nouns and start testing you 
-by giving you some noun (i.e. Buch) and you should supply the correct 
+by giving you some random noun (i.e. Buch) and you should supply the correct 
 corresponding definite article (which is in this case 'das'). If you made a 
 mistake, you'll get a corrective feedback. Then you'll get another random noun 
 and so on.
