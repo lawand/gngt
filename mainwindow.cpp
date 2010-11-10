@@ -258,9 +258,8 @@ void MainWindow::on_aboutPushButton_clicked()
 
                              "For help, check out the README file.\n\n"
 
-                             "GNGT is free software and is licensed under "
-                             "the GNU LGPLv3 license (or, at your option, any "
-                             "later version).\n\n"
+                             "GNGT is licensed under the GNU LGPLv3 license "
+                             "(or, at your option, any later version).\n\n"
 
                              "http://lawand.github.com/gngt/"
                              );
