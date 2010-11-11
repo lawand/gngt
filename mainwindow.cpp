@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //notify the user if the nouns file doesn't exist
     if(! nounsFile.exists())
     {
-        QMessageBox::information(0, "No Nouns File",
+        QMessageBox::information(this, "No Nouns File",
                                  QString("There is no nouns file '%1', please "
                                          "create one and fill it with nouns. "
                                          "For more information, checkout the "
@@ -80,7 +80,7 @@ MainWindow::MainWindow(QWidget *parent) :
         //notify the user if the nouns file can't be open for reading
         if(! nounsFile.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            QMessageBox::warning(0, "Nouns File Open Error",
+            QMessageBox::warning(this, "Nouns File Open Error",
                                  QString("Cannot open the nouns file '%1' for "
                                          "reading, try again and if the "
                                          "problem persisted please report the "
@@ -108,7 +108,7 @@ MainWindow::MainWindow(QWidget *parent) :
                     }
                     else
                     {
-                        QMessageBox::warning(0, "Line Read Error",
+                        QMessageBox::warning(this, "Line Read Error",
                                              QString("Cannot read line number: "
                                                      "%1 of the nouns file "
                                                      "'nouns.txt'. \nThe line "
@@ -251,7 +251,7 @@ void MainWindow::on_neuterPushButton_clicked()
 
 void MainWindow::on_aboutPushButton_clicked()
 {
-    QMessageBox::information(0, "About GNGT",
+    QMessageBox::information(this, "About GNGT",
 
                              "German Noun Gender Trainer (GNGT) v0.2 \nCreated "
                              "by Omar Lawand Dalatieh <lawand87@gmail.com>\n\n"
