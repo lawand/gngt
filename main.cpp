@@ -25,11 +25,13 @@
 ****************************************************************************/
 
 #include <QApplication>
+#include <QIcon>
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
     QApplication* qApplication = new QApplication(argc, argv);
+    qApplication->setWindowIcon(QIcon(":/icons/applicationIcon.png"));
 
     MainWindow* mainWindow = new MainWindow();
     mainWindow->show();
