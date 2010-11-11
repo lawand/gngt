@@ -113,12 +113,13 @@ MainWindow::MainWindow(QWidget *parent) :
                                                      "%1 of the nouns file "
                                                      "'nouns.txt'. \nThe line "
                                                      "contains: '%2', Whereas "
-                                                     "it should contain a "
-                                                     "definite article, a space"
-                                                     " and the singular form of"
-                                                     " the noun. \nExample: "
-                                                     "'das Buch' (without the "
-                                                     "quotes)").arg(
+                                                     "it should contain the "
+                                                     "singular form of the "
+                                                     "noun preceded by it's "
+                                                     "corresponding definite "
+                                                     "article (i.e. 'das Buch'"
+                                                     "(without the "
+                                                     "quotes)).").arg(
                                                              lineNumber).arg(
                                                                      line)
                                              );
