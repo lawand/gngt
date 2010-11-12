@@ -292,7 +292,7 @@ void MainWindow::on_aboutPushButton_clicked()
 {
     QMessageBox::information(this, "About GNGT",
 
-                             "German Noun Gender Trainer (GNGT) v0.2 \nCreated "
+                             "German Noun Gender Trainer (GNGT) v0.4 \nCreated "
                              "by Omar Lawand Dalatieh <lawand87@gmail.com>\n\n"
 
                              "For help, check out the README file.\n\n"
