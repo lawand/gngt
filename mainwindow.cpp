@@ -58,6 +58,10 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(timeout()),
             SLOT(displayNewNoun())
             );
+    //center widget in screen
+    move(QApplication::desktop()->availableGeometry().center() -
+         this->rect().center()
+         );
 
     //create and initialize nounsFile which will be used for
     //reading nouns from the nouns file
