@@ -20,6 +20,10 @@ singular form of the noun preceded by it's corresponding definite article
 reported by the program at startup and you'll be prompted to fix or ignore 
 each of them.
 
+When the program exits, all nouns but those that were ignored get written to 
+the nouns file. This means that ignoring nouns at startup leads to deleting 
+them.
+
 It's not recommended to add compound nouns because the GUI won't fit long 
 nouns, and memorizing the gender of the last part of a compound noun is 
 sufficient.
