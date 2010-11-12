@@ -3,12 +3,15 @@ TEMPLATE = app
 SOURCES += \
     noun.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    editnoundialog.cpp
 HEADERS += \
     noun.h \
-    mainwindow.h
+    mainwindow.h \
+    editnoundialog.h
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    editnoundialog.ui
 
 RESOURCES += \
     main.qrc
