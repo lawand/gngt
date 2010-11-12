@@ -43,8 +43,8 @@ ReadErrorDialog::ReadErrorDialog(int lineNumber,
     this->lineNumber = lineNumber;
     this->line = line;
 
-    ui->label->setText(QString("Cannot read line number: %1 which contains: "
-                               "'%2' \nDo you want to edit this line or ignore "
+    ui->label->setText(QString("Cannot read line: %1 \nWhich contains: "
+                               "'%2' \n\nDo you want to edit this line or ignore "
                                "it?").arg(lineNumber).arg(line)
                        );
 }
