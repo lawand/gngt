@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(timeout()),
             SLOT(displayNewNoun())
             );
+
     //center widget in screen
     move(QApplication::desktop()->availableGeometry().center() -
          this->rect().center()
