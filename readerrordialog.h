@@ -27,6 +27,7 @@
 #ifndef READERRORDIALOG_H
 #define READERRORDIALOG_H
 
+//base class(es)
 #include <QDialog>
 
 namespace Ui {

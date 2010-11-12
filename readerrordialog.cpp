@@ -24,6 +24,7 @@
 **
 ****************************************************************************/
 
+//corresponding header file(s)
 #include "readerrordialog.h"
 #include "ui_readerrordialog.h"
 
