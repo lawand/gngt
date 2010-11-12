@@ -42,6 +42,9 @@ public:
     explicit EditNounDialog(QWidget *parent = 0);
     ~EditNounDialog();
 
+    void setText(QString text);
+    QString getText();
+
 private:
     Ui::EditNounDialog *ui;
 

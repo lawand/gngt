@@ -44,6 +44,16 @@ EditNounDialog::~EditNounDialog()
     delete ui;
 }
 
+void EditNounDialog::setText(QString text)
+{
+    ui->definiteArticleAndSingularFormLineEdit->setText(text);
+}
+
+QString EditNounDialog::getText()
+{
+    return ui->definiteArticleAndSingularFormLineEdit->text();
+}
+
 void EditNounDialog::on_buttonBox_accepted()
 {
     if(Noun::isValid(ui->definiteArticleAndSingularFormLineEdit->text()))
