@@ -73,6 +73,7 @@ Noun ReadErrorDialog::getNoun()
 void ReadErrorDialog::on_fixPushButton_clicked()
 {
     EditNounDialog editNounDialog;
+    editNounDialog.setText(line);
     int result = editNounDialog.exec();
     if(result == QDialog::Accepted)
     {
