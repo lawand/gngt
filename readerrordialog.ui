@@ -39,21 +39,21 @@
      <item>
       <widget class="QPushButton" name="fixPushButton">
        <property name="text">
-        <string>Fix</string>
+        <string>&amp;Fix</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="ignorePushButton">
        <property name="text">
-        <string>Ignore</string>
+        <string>&amp;Ignore</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="ignoreAllPushButton">
        <property name="text">
-        <string>Ignore All</string>
+        <string>Ignore &amp;All</string>
        </property>
       </widget>
      </item>
