@@ -61,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
             );
 
     //center widget in screen
+    adjustSize();
     move(QApplication::desktop()->availableGeometry().center() -
          this->rect().center()
          );
