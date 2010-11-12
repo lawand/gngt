@@ -65,12 +65,18 @@ bool ReadErrorDialog::shouldIgnoreAll()
     return ignoreAll;
 }
 
+Noun ReadErrorDialog::getNoun()
+{
+    return noun;
+}
+
 void ReadErrorDialog::on_fixPushButton_clicked()
 {
     EditNounDialog editNounDialog;
     int result = editNounDialog.exec();
     if(result == QDialog::Accepted)
     {
+        noun = Noun(editNounDialog.getText());
         accept();
     }
 }

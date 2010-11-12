@@ -32,6 +32,7 @@
 
 //data member(s)
 #include <QString>
+#include "noun.h"
 
 namespace Ui {
     class ReadErrorDialog;
@@ -49,8 +50,9 @@ public:
                              QWidget *parent = 0);
     ~ReadErrorDialog();
 
-    //getter function for "bool ignoreAll" member
+    //public access functions
     bool shouldIgnoreAll();
+    Noun getNoun();
 
 //data members
 private:
@@ -59,6 +61,7 @@ private:
     QString line;
     int numberOfLines;
     bool ignoreAll;
+    Noun noun;
 
 private slots:
     void on_fixPushButton_clicked();
