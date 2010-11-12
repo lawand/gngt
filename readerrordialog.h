@@ -46,7 +46,6 @@ class ReadErrorDialog : public QDialog
 public:
     explicit ReadErrorDialog(int lineNumber,
                              QString line,
-                             int numberOfLines,
                              QWidget *parent = 0);
     ~ReadErrorDialog();
 
@@ -59,7 +58,6 @@ private:
     Ui::ReadErrorDialog *ui;
     int lineNumber;
     QString line;
-    int numberOfLines;
     bool ignoreAll;
     Noun noun;
 

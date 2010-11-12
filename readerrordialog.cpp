@@ -33,7 +33,6 @@
 
 ReadErrorDialog::ReadErrorDialog(int lineNumber,
                                  QString line,
-                                 int numberOfLines,
                                  QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ReadErrorDialog),
@@ -43,16 +42,11 @@ ReadErrorDialog::ReadErrorDialog(int lineNumber,
 
     this->lineNumber = lineNumber;
     this->line = line;
-    this->numberOfLines = numberOfLines;
 
     ui->label->setText(QString("Cannot read line number: %1 which contains: "
                                "'%2' \nDo you want to edit this line or ignore "
                                "it?").arg(lineNumber).arg(line)
                        );
-
-    ui->ignoreAllPushButton->setText(QString("Ignore All (%1)")
-                                     .arg(numberOfLines)
-                                     );
 }
 
 ReadErrorDialog::~ReadErrorDialog()
