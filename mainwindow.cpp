@@ -128,7 +128,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
                             if(result == QDialog::Accepted)
                             {
-                                nouns->append(readErrorDialog.getNoun());
+                                Noun noun = readErrorDialog.getNoun();
+
+                                if(nouns->indexOf(noun) == -1)
+                                    nouns->append(noun);
                             }
                             else
                             {
