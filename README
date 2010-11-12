@@ -17,7 +17,8 @@ saving it using default options.
 The nouns file should contain some nouns each in a new line composed of the 
 singular form of the noun preceded by it's corresponding definite article 
 (i.e. 'das Buch' (without the quotes)). Note that erroneous lines will be 
-reported by the program at startup and will be ignored.
+reported by the program at startup and you'll be prompted to fix or ignore 
+each of them.
 
 It's not recommended to add compound nouns because the GUI won't fit long 
 nouns, and memorizing the gender of the last part of a compound noun is 
