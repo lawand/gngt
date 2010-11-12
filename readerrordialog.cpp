@@ -24,18 +24,59 @@
 **
 ****************************************************************************/
 
+//implementation-specific data type(s)
+#include "editnoundialog.h"
+
 //corresponding header file(s)
 #include "readerrordialog.h"
 #include "ui_readerrordialog.h"
 
-ReadErrorDialog::ReadErrorDialog(QWidget *parent) :
+ReadErrorDialog::ReadErrorDialog(int lineNumber,
+                                 QString line,
+                                 int numberOfLines,
+                                 QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ReadErrorDialog)
+    ui(new Ui::ReadErrorDialog),
+    ignoreAll(false)
 {
     ui->setupUi(this);
+
+    this->lineNumber = lineNumber;
+    this->line = line;
+    this->numberOfLines = numberOfLines;
+
+    ui->label->setText(QString("Cannot read line number: %1 which contains: "
+                               "'%2' \nDo you want to edit this line or ignore "
+                               "it?").arg(lineNumber).arg(line)
+                       );
+
+    ui->ignoreAllPushButton->setText(QString("Ignore All (%1)")
+                                     .arg(numberOfLines)
+                                     );
 }
 
 ReadErrorDialog::~ReadErrorDialog()
 {
     delete ui;
+}
+
+void ReadErrorDialog::on_fixPushButton_clicked()
+{
+    EditNounDialog editNounDialog;
+    int result = editNounDialog.exec();
+    if(result == QDialog::Accepted)
+    {
+        accept();
+    }
+}
+
+void ReadErrorDialog::on_ignorePushButton_clicked()
+{
+    reject();
+}
+
+void ReadErrorDialog::on_ignoreAllPushButton_clicked()
+{
+    ignoreAll = true;
+    reject();
 }

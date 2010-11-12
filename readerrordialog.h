@@ -30,6 +30,9 @@
 //base class(es)
 #include <QDialog>
 
+//data member(s)
+#include <QString>
+
 namespace Ui {
     class ReadErrorDialog;
 }
@@ -38,12 +41,26 @@ class ReadErrorDialog : public QDialog
 {
     Q_OBJECT
 
+//member functions
 public:
-    explicit ReadErrorDialog(QWidget *parent = 0);
+    explicit ReadErrorDialog(int lineNumber,
+                             QString line,
+                             int numberOfLines,
+                             QWidget *parent = 0);
     ~ReadErrorDialog();
 
+//data members
 private:
     Ui::ReadErrorDialog *ui;
+    int lineNumber;
+    QString line;
+    int numberOfLines;
+    bool ignoreAll;
+
+private slots:
+    void on_fixPushButton_clicked();
+    void on_ignorePushButton_clicked();
+    void on_ignoreAllPushButton_clicked();
 };
 
 #endif // READERRORDIALOG_H
