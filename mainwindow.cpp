@@ -34,6 +34,7 @@
 #include <QTextCodec>
 #include <QMessageBox>
 #include <QTime>
+#include <QDesktopWidget>
 
 //corresponding header file(s)
 #include "mainwindow.h"
