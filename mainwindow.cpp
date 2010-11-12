@@ -35,6 +35,7 @@
 #include <QMessageBox>
 #include <QTime>
 #include <QDesktopWidget>
+#include "readerrordialog.h"
 
 //corresponding header file(s)
 #include "mainwindow.h"
@@ -100,6 +101,8 @@ MainWindow::MainWindow(QWidget *parent) :
             in.setCodec(QTextCodec::codecForName("UTF-8"));
             int lineNumber = 1;
 
+            bool ignoreAll = false;
+
             while(!in.atEnd())
             {
                 QString line = in.readLine();
@@ -115,21 +118,24 @@ MainWindow::MainWindow(QWidget *parent) :
                     }
                     else
                     {
-                        QMessageBox::warning(0, "Line Read Error",
-                                             QString("Cannot read line number: "
-                                                     "%1 of the nouns file "
-                                                     "'nouns.txt'. \nThe line "
-                                                     "contains: '%2', Whereas "
-                                                     "it should contain the "
-                                                     "singular form of the "
-                                                     "noun preceded by it's "
-                                                     "corresponding definite "
-                                                     "article (i.e. 'das Buch'"
-                                                     "(without the "
-                                                     "quotes)).").arg(
-                                                             lineNumber).arg(
-                                                                     line)
-                                             );
+                        if(ignoreAll == false)
+                        {
+                            ReadErrorDialog readErrorDialog(lineNumber,
+                                                            line,
+                                                            0);
+
+                            int result = readErrorDialog.exec();
+
+                            if(result == QDialog::Accepted)
+                            {
+                                nouns->append(readErrorDialog.getNoun());
+                            }
+                            else
+                            {
+                                if(readErrorDialog.shouldIgnoreAll())
+                                    ignoreAll = true;
+                            }
+                        }
                     }
                 }
 
