@@ -77,7 +77,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     else
     {
-        //notify the user if the nouns file can't be open for reading
+        //notify the user if the nouns file can't be opened for reading
         if(! nounsFile.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             QMessageBox::warning(0, "Nouns File Open Error",
