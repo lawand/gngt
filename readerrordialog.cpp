@@ -60,6 +60,11 @@ ReadErrorDialog::~ReadErrorDialog()
     delete ui;
 }
 
+bool ReadErrorDialog::shouldIgnoreAll()
+{
+    return ignoreAll;
+}
+
 void ReadErrorDialog::on_fixPushButton_clicked()
 {
     EditNounDialog editNounDialog;

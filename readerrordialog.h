@@ -49,6 +49,9 @@ public:
                              QWidget *parent = 0);
     ~ReadErrorDialog();
 
+    //getter function for "bool ignoreAll" member
+    bool shouldIgnoreAll();
+
 //data members
 private:
     Ui::ReadErrorDialog *ui;
