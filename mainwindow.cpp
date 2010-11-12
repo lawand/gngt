@@ -158,7 +158,7 @@ MainWindow::~MainWindow()
     //write nouns into the nouns file
     if(! nounsFile->open(QIODevice::WriteOnly | QIODevice::Text) )
     {
-        QMessageBox::warning(this,
+        QMessageBox::warning(0,
                              "Nouns File Write Error",
                              QString("Can't open the nouns file '%1' for "
                                      "writing, any modification to nouns will "
