@@ -1,7 +1,7 @@
 /****************************************************************************
 **
 ** Copyright 2010 Omar Lawand Dalatieh.
-** Contact: see the README file
+** Contact: see the README file.
 **
 ** This file is part of GNGT.
 **
