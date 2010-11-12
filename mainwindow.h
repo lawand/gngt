@@ -37,6 +37,7 @@
 //data member(s) forward declaration(s)
 class QTimer;
 class QString;
+class QFile;
 
 namespace Ui {
     class MainWindow;
@@ -71,6 +72,7 @@ private:
     QList<Noun> *nouns;
     int nounIndex;
     bool feedbackActive;
+    QFile *nounsFile;
 };
 
 #endif // MAINWINDOW_H

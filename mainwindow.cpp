@@ -27,9 +27,9 @@
 //data member(s)
 #include <QTimer>
 #include <QString>
+#include <QFile>
 
 //implementation-specific data type(s)
-#include <QFile>
 #include <QTextStream>
 #include <QTextCodec>
 #include <QMessageBox>
@@ -47,7 +47,8 @@ MainWindow::MainWindow(QWidget *parent) :
     feedbackAndNounSwitchTimer(new QTimer(this)),
     nouns(new QList<Noun>()),
     nounIndex(0),
-    feedbackActive(false)
+    feedbackActive(false),
+    nounsFile(new QFile())
 {
     //initialization
     ui->setupUi(this);
@@ -60,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(timeout()),
             SLOT(displayNewNoun())
             );
+    nounsFile->setFileName("nouns.txt");
 
     //center widget in screen
     adjustSize();
@@ -67,37 +69,33 @@ MainWindow::MainWindow(QWidget *parent) :
          this->rect().center()
          );
 
-    //create and initialize nounsFile which will be used for
-    //reading nouns from the nouns file
-    QFile nounsFile("nouns.txt");
-
     //notify the user if the nouns file doesn't exist
-    if(! nounsFile.exists())
+    if(! nounsFile->exists())
     {
         QMessageBox::information(0, "No Nouns File",
                                  QString("There is no nouns file '%1', please "
                                          "create one and fill it with nouns. "
                                          "For more information, checkout the "
                                          "README file.").arg(
-                                                 nounsFile.fileName()
+                                                 nounsFile->fileName()
                                                  )
                                  );
     }
     else
     {
         //notify the user if the nouns file can't be opened for reading
-        if(! nounsFile.open(QIODevice::ReadOnly | QIODevice::Text))
+        if(! nounsFile->open(QIODevice::ReadOnly | QIODevice::Text))
         {
             QMessageBox::warning(0, "Nouns File Open Error",
                                  QString("Cannot open the nouns file '%1' for "
                                          "reading, try again and if the "
                                          "problem persisted please report the "
-                                         "bug").arg(nounsFile.fileName())
+                                         "bug").arg(nounsFile->fileName())
                 );
         }
         else    //read all nouns from the nouns file
         {
-            QTextStream in(&nounsFile);
+            QTextStream in(nounsFile);
             in.setCodec(QTextCodec::codecForName("UTF-8"));
             int lineNumber = 1;
 
@@ -144,7 +142,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
                 lineNumber++;
             }
-            nounsFile.close();
+            nounsFile->close();
         }
     }
 
@@ -157,6 +155,30 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    //write nouns into the nouns file
+    if(! nounsFile->open(QIODevice::WriteOnly | QIODevice::Text) )
+    {
+        QMessageBox::warning(this,
+                             "Nouns File Write Error",
+                             QString("Can't open the nouns file '%1' for "
+                                     "writing, any modification to nouns will "
+                                     "be lost. If the problem persisted please "
+                                     "report the bug").arg(
+                                             nounsFile->fileName()
+                                             )
+                             );
+    }
+    else
+    {
+        QTextStream out(nounsFile);
+        out.setCodec(QTextCodec::codecForName("UTF-8"));
+
+        foreach(Noun noun, *nouns)
+            out << noun.toDefiniteArticleAndSingularForm() << "\n";
+
+        nounsFile->close();
+    }
+
     delete ui;
     delete nouns;
 }
