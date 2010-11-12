@@ -26,7 +26,7 @@
 
 //implementation-specific data type(s)
 #include <QMessageBox>
-#include <noun.h>
+#include "noun.h"
 
 //corresponding header file(s)
 #include "editnoundialog.h"
