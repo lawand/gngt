@@ -18,3 +18,5 @@ FORMS += \
 
 RESOURCES += \
     main.qrc
+
+RC_FILE = main.rc
