@@ -288,7 +288,7 @@ void MainWindow::on_neuterPushButton_clicked()
     }
 }
 
-void MainWindow::on_aboutPushButton_clicked()
+void MainWindow::on_aboutToolButton_clicked()
 {
     QMessageBox::information(this, "About GNGT",
 
