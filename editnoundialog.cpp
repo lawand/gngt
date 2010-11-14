@@ -75,49 +75,35 @@ void EditNounDialog::on_buttonBox_accepted()
 
 void EditNounDialog::on_capitalAWithDiaeresisToolButton_clicked()
 {
-    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
-    newText += QChar(0xC4);
-    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xC4));
 }
 
 void EditNounDialog::on_capitalOWithDiaeresisToolButton_clicked()
 {
-    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
-    newText += QChar(0xD6);
-    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xD6));
 }
 
 void EditNounDialog::on_capitalUWithDiaeresisToolButton_clicked()
 {
-    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
-    newText += QChar(0xDC);
-    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xDC));
 }
 
 void EditNounDialog::on_smallSharpSToolButton_clicked()
 {
-    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
-    newText += QChar(0xDF);
-    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xDF));
 }
 
 void EditNounDialog::on_smallAWithDiaeresisToolButton_clicked()
 {
-    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
-    newText += QChar(0xE4);
-    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xE4));
 }
 
 void EditNounDialog::on_smallOWithDiaeresisToolButton_clicked()
 {
-    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
-    newText += QChar(0xF6);
-    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xF6));
 }
 
 void EditNounDialog::on_smallUWithDiaeresisToolButton_clicked()
 {
-    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
-    newText += QChar(0xFC);
-    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xFC));
 }
