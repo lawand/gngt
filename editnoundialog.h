@@ -50,6 +50,14 @@ private:
 
 private slots:
     void on_buttonBox_accepted();
+
+    void on_capitalAWithDiaeresisToolButton_clicked();
+    void on_capitalOWithDiaeresisToolButton_clicked();
+    void on_capitalUWithDiaeresisToolButton_clicked();
+    void on_smallSharpSToolButton_clicked();
+    void on_smallAWithDiaeresisToolButton_clicked();
+    void on_smallOWithDiaeresisToolButton_clicked();
+    void on_smallUWithDiaeresisToolButton_clicked();
 };
 
 #endif // EDITNOUNDIALOG_H

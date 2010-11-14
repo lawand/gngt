@@ -26,6 +26,7 @@
 
 //implementation-specific data type(s)
 #include <QMessageBox>
+#include <QChar>
 #include "noun.h"
 
 //corresponding header file(s)
@@ -70,4 +71,53 @@ void EditNounDialog::on_buttonBox_accepted()
                                  "quotes))."
                                  );
     }
+}
+
+void EditNounDialog::on_capitalAWithDiaeresisToolButton_clicked()
+{
+    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
+    newText += QChar(0xC4);
+    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+}
+
+void EditNounDialog::on_capitalOWithDiaeresisToolButton_clicked()
+{
+    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
+    newText += QChar(0xD6);
+    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+}
+
+void EditNounDialog::on_capitalUWithDiaeresisToolButton_clicked()
+{
+    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
+    newText += QChar(0xDC);
+    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+}
+
+void EditNounDialog::on_smallSharpSToolButton_clicked()
+{
+    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
+    newText += QChar(0xDF);
+    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+}
+
+void EditNounDialog::on_smallAWithDiaeresisToolButton_clicked()
+{
+    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
+    newText += QChar(0xE4);
+    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+}
+
+void EditNounDialog::on_smallOWithDiaeresisToolButton_clicked()
+{
+    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
+    newText += QChar(0xF6);
+    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
+}
+
+void EditNounDialog::on_smallUWithDiaeresisToolButton_clicked()
+{
+    QString newText = ui->definiteArticleAndSingularFormLineEdit->text();
+    newText += QChar(0xFC);
+    ui->definiteArticleAndSingularFormLineEdit->setText(newText);
 }
