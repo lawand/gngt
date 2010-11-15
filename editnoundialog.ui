@@ -82,6 +82,17 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>definiteArticleAndSingularFormLineEdit</tabstop>
+  <tabstop>capitalAWithDiaeresisToolButton</tabstop>
+  <tabstop>capitalOWithDiaeresisToolButton</tabstop>
+  <tabstop>capitalUWithDiaeresisToolButton</tabstop>
+  <tabstop>smallSharpSToolButton</tabstop>
+  <tabstop>smallAWithDiaeresisToolButton</tabstop>
+  <tabstop>smallOWithDiaeresisToolButton</tabstop>
+  <tabstop>smallUWithDiaeresisToolButton</tabstop>
+  <tabstop>buttonBox</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

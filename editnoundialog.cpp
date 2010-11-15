@@ -38,6 +38,8 @@ EditNounDialog::EditNounDialog(QWidget *parent) :
     ui(new Ui::EditNounDialog)
 {
     ui->setupUi(this);
+
+    ui->definiteArticleAndSingularFormLineEdit->focusWidget();
 }
 
 EditNounDialog::~EditNounDialog()
