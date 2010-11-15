@@ -51,6 +51,7 @@ public:
     //conversion
     Noun(QString definiteArticleAndSingularForm);
     QString toDefiniteArticleAndSingularForm();
+    QString toSortingFriendlyDefiniteArticleAndSingularForm();
 
     //validation
     static bool isValid(QString genderToDefiniteArticleString);

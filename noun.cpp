@@ -70,6 +70,19 @@ QString Noun::toDefiniteArticleAndSingularForm()
     return QString("%1 %2").arg(defeniteArticle).arg(singularForm);
 }
 
+QString Noun::toSortingFriendlyDefiniteArticleAndSingularForm()
+{
+    QString defeniteArticle;
+    if(gender == Noun::masculine)
+        defeniteArticle = "der";
+    if(gender == Noun::feminine)
+        defeniteArticle = "die";
+    if(gender == Noun::neuter)
+        defeniteArticle = "das";
+
+    return QString("%1, %2").arg(singularForm).arg(defeniteArticle);
+}
+
 bool Noun::isValid(QString definiteArticleAndSingularForm)
 {
     QStringList parts = definiteArticleAndSingularForm.split(QRegExp("\\s+"));
