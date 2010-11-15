@@ -75,11 +75,13 @@ void EditNounsDialog::updateGui()
 
         ui->nounsListWidget->addItems(nounStrings);
 
+        ui->editPushButton->setEnabled(true);
         ui->removePushButton->setEnabled(true);
         ui->removeAllPushButton->setEnabled(true);
     }
     else
     {
+        ui->editPushButton->setEnabled(false);
         ui->removePushButton->setEnabled(false);
         ui->removeAllPushButton->setEnabled(false);
     }
@@ -94,6 +96,33 @@ void EditNounsDialog::on_addPushButton_clicked()
         Noun noun(editNounDialog.getText());
 
         nouns->append(noun);
+
+        updateGui();
+    }
+}
+
+void EditNounsDialog::on_editPushButton_clicked()
+{
+    //if no noun is selected
+    if(ui->nounsListWidget->currentRow() == -1)
+    {
+        QMessageBox::information(this,
+                                 "Select A Noun",
+                                 "A noun must be selected");
+    }
+    else
+    {
+        EditNounDialog editNounDialog(nouns);
+        editNounDialog.setText(ui->nounsListWidget->currentItem()->text());
+
+        if(editNounDialog.exec() == QDialog::Accepted)
+        {
+            Noun nounToRemove(ui->nounsListWidget->currentItem()->text());
+            nouns->removeAt(nouns->indexOf(nounToRemove));
+
+            Noun nounToAdd(editNounDialog.getText());
+            nouns->append(nounToAdd);
+        }
 
         updateGui();
     }

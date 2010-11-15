@@ -54,6 +54,7 @@ private:
 
 private slots:
     void on_addPushButton_clicked();
+    void on_editPushButton_clicked();
     void on_removePushButton_clicked();
     void on_removeAllPushButton_clicked();
 };
