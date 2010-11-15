@@ -26,6 +26,7 @@
 
 //implementation-specific data type(s)
 #include <QMessageBox>
+#include <QStringList>
 #include "editnoundialog.h"
 #include "noun.h"
 
@@ -64,10 +65,16 @@ void EditNounsDialog::updateGui()
 
     if(!nouns->isEmpty())
     {
+        QStringList nounStrings;
+
         foreach(Noun noun, *nouns)
-            ui->nounsListWidget->addItem(
-                    noun.toDefiniteArticleAndSingularForm()
+            nounStrings.append(
+                    noun.toSortingFriendlyDefiniteArticleAndSingularForm()
                     );
+
+        nounStrings.sort();
+
+        ui->nounsListWidget->addItems(nounStrings);
 
         ui->removePushButton->setEnabled(true);
         ui->removeAllPushButton->setEnabled(true);
