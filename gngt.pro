@@ -5,16 +5,19 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     editnoundialog.cpp \
-    readerrordialog.cpp
+    readerrordialog.cpp \
+    editnounsdialog.cpp
 HEADERS += \
     noun.h \
     mainwindow.h \
     editnoundialog.h \
-    readerrordialog.h
+    readerrordialog.h \
+    editnounsdialog.h
 FORMS += \
     mainwindow.ui \
     editnoundialog.ui \
-    readerrordialog.ui
+    readerrordialog.ui \
+    editnounsdialog.ui
 
 RESOURCES += \
     main.qrc
