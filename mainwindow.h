@@ -63,7 +63,7 @@ private slots:
     void on_femininePushButton_clicked();
     void on_neuterPushButton_clicked();
 
-    void on_aboutToolButton_clicked();
+    void about();
 
 //data members
 private:
