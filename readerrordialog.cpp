@@ -44,8 +44,7 @@ ReadErrorDialog::ReadErrorDialog(int lineNumber,
     this->nouns = nouns;
 
     //fix window size
-    setFixedHeight(size().height());
-    setFixedWidth(size().width());
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
 
     this->lineNumber = lineNumber;
     this->line = line;
