@@ -73,19 +73,8 @@ MainWindow::MainWindow(QWidget *parent) :
          this->rect().center()
          );
 
-    //notify the user if the nouns file doesn't exist
-    if(! nounsFile->exists())
-    {
-        QMessageBox::information(0, "No Nouns File",
-                                 QString("There is no nouns file '%1', please "
-                                         "create one and fill it with nouns. "
-                                         "For more information, checkout the "
-                                         "README file.").arg(
-                                                 nounsFile->fileName()
-                                                 )
-                                 );
-    }
-    else
+    //start the process of reading nouns from the nouns file if it existed
+    if(nounsFile->exists())
     {
         //notify the user if the nouns file can't be opened for reading
         if(! nounsFile->open(QIODevice::ReadOnly | QIODevice::Text))
