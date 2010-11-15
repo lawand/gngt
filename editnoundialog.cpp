@@ -40,6 +40,9 @@ EditNounDialog::EditNounDialog(QList<Noun>* nouns, QWidget *parent) :
     //initialization
     ui->setupUi(this);
     this->nouns = nouns;
+
+    //fix window size
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
 }
 
 EditNounDialog::~EditNounDialog()

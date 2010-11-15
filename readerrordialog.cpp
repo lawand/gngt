@@ -43,6 +43,9 @@ ReadErrorDialog::ReadErrorDialog(int lineNumber,
     ui->setupUi(this);
     this->nouns = nouns;
 
+    //fix window size
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
+
     this->lineNumber = lineNumber;
     this->line = line;
 

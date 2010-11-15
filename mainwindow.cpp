@@ -73,6 +73,9 @@ MainWindow::MainWindow(QWidget *parent) :
          this->rect().center()
          );
 
+    //fix window size
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
+
     //start the process of reading nouns from the nouns file if it existed
     if(nounsFile->exists())
     {
