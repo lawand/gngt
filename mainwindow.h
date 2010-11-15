@@ -64,6 +64,7 @@ private slots:
     void on_neuterPushButton_clicked();
 
     void about();
+    void editNouns();
 
 //data members
 private:

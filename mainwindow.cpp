@@ -36,6 +36,7 @@
 #include <QTime>
 #include <QDesktopWidget>
 #include "readerrordialog.h"
+#include "editnounsdialog.h"
 
 //corresponding header file(s)
 #include "mainwindow.h"
@@ -61,6 +62,7 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(timeout()),
             SLOT(displayNewNoun())
             );
+    connect(ui->actionEdit_Nouns, SIGNAL(triggered()), SLOT(editNouns()));
     connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
     connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
 
@@ -305,4 +307,13 @@ void MainWindow::about()
 
                              "http://lawand.github.com/gngt/"
                              );
+}
+
+void MainWindow::editNouns()
+{
+    EditNounsDialog editNounsDialog(nouns);
+
+    editNounsDialog.exec();
+
+    updateGui();
 }
