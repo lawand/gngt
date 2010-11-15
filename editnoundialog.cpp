@@ -40,8 +40,6 @@ EditNounDialog::EditNounDialog(QList<Noun>* nouns, QWidget *parent) :
     //initialization
     ui->setupUi(this);
     this->nouns = nouns;
-
-    ui->definiteArticleAndSingularFormLineEdit->focusWidget();
 }
 
 EditNounDialog::~EditNounDialog()
