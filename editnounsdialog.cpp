@@ -35,9 +35,37 @@ EditNounsDialog::EditNounsDialog(QList<Noun>* nouns, QWidget *parent) :
     //initialization
     ui->setupUi(this);
     this->nouns = nouns;
+
+    //initial update
+    updateGui();
 }
 
 EditNounsDialog::~EditNounsDialog()
 {
     delete ui;
+}
+
+void EditNounsDialog::updateGui()
+{
+    ui->numberOfNounsLabel->setText(
+            QString("Number Of Nouns: %2").arg(nouns->length())
+            );
+
+    ui->nounsListWidget->clear();
+
+    if(!nouns->isEmpty())
+    {
+        foreach(Noun noun, *nouns)
+            ui->nounsListWidget->addItem(
+                    noun.toDefiniteArticleAndSingularForm()
+                    );
+
+        ui->removePushButton->setEnabled(true);
+        ui->removeAllPushButton->setEnabled(true);
+    }
+    else
+    {
+        ui->removePushButton->setEnabled(false);
+        ui->removeAllPushButton->setEnabled(false);
+    }
 }
