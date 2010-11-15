@@ -33,12 +33,15 @@
 
 ReadErrorDialog::ReadErrorDialog(int lineNumber,
                                  QString line,
+                                 QList<Noun>* nouns,
                                  QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ReadErrorDialog),
     ignoreAll(false)
 {
+    //initialization
     ui->setupUi(this);
+    this->nouns = nouns;
 
     this->lineNumber = lineNumber;
     this->line = line;
@@ -67,7 +70,7 @@ Noun ReadErrorDialog::getNoun()
 
 void ReadErrorDialog::on_fixPushButton_clicked()
 {
-    EditNounDialog editNounDialog;
+    EditNounDialog editNounDialog(nouns);
     editNounDialog.setText(line);
     int result = editNounDialog.exec();
     if(result == QDialog::Accepted)

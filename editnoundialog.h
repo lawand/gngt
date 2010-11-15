@@ -30,6 +30,10 @@
 //base class(es)
 #include <QDialog>
 
+//template data member(s)
+#include <QList>
+#include "noun.h"
+
 namespace Ui {
     class EditNounDialog;
 }
@@ -39,7 +43,7 @@ class EditNounDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditNounDialog(QWidget *parent = 0);
+    explicit EditNounDialog(QList<Noun>* nouns, QWidget *parent = 0);
     ~EditNounDialog();
 
     void setText(QString text);
@@ -47,6 +51,7 @@ public:
 
 private:
     Ui::EditNounDialog *ui;
+    QList<Noun>* nouns;
 
 private slots:
     void on_buttonBox_accepted();

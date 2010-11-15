@@ -33,11 +33,13 @@
 #include "editnoundialog.h"
 #include "ui_editnoundialog.h"
 
-EditNounDialog::EditNounDialog(QWidget *parent) :
+EditNounDialog::EditNounDialog(QList<Noun>* nouns, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditNounDialog)
 {
+    //initialization
     ui->setupUi(this);
+    this->nouns = nouns;
 
     ui->definiteArticleAndSingularFormLineEdit->focusWidget();
 }
@@ -59,11 +61,8 @@ QString EditNounDialog::getText()
 
 void EditNounDialog::on_buttonBox_accepted()
 {
-    if(Noun::isValid(ui->definiteArticleAndSingularFormLineEdit->text()))
-    {
-        accept();
-    }
-    else
+    //handle the case of an invalid noun string
+    if(! Noun::isValid(ui->definiteArticleAndSingularFormLineEdit->text()))
     {
         QMessageBox::information(this, "Noun Format Error",
                                  "Incorrect format. The correct format is "
@@ -72,7 +71,23 @@ void EditNounDialog::on_buttonBox_accepted()
                                  "article (i.e. 'das Buch' (without the "
                                  "quotes))."
                                  );
+
+        return;
     }
+
+    //handle the case of a duplicate noun
+    Noun noun(ui->definiteArticleAndSingularFormLineEdit->text());
+    if(nouns->indexOf(noun) != -1)
+    {
+        QMessageBox::information(this,
+                                 "Noun Duplicate",
+                                 "This noun already exists");
+
+        return;
+    }
+
+    //at this point we, accept can be called
+    accept();
 }
 
 void EditNounDialog::on_capitalAWithDiaeresisToolButton_clicked()

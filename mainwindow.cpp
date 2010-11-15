@@ -124,6 +124,7 @@ MainWindow::MainWindow(QWidget *parent) :
                         {
                             ReadErrorDialog readErrorDialog(lineNumber,
                                                             line,
+                                                            nouns,
                                                             0);
 
                             int result = readErrorDialog.exec();

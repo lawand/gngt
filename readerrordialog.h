@@ -30,6 +30,10 @@
 //base class(es)
 #include <QDialog>
 
+//template data member(s)
+#include <QList>
+#include "noun.h"
+
 //data member(s)
 #include <QString>
 #include "noun.h"
@@ -46,6 +50,7 @@ class ReadErrorDialog : public QDialog
 public:
     explicit ReadErrorDialog(int lineNumber,
                              QString line,
+                             QList<Noun>* nouns,
                              QWidget *parent = 0);
     ~ReadErrorDialog();
 
@@ -60,6 +65,7 @@ private:
     QString line;
     bool ignoreAll;
     Noun noun;
+    QList<Noun> *nouns;
 
 private slots:
     void on_fixPushButton_clicked();
