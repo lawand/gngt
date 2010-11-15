@@ -93,7 +93,8 @@ void EditNounsDialog::on_addPushButton_clicked()
 
     if(editNounDialog.exec() == QDialog::Accepted)
     {
-        Noun noun(editNounDialog.getText());
+        Noun noun;
+        noun.fromDefiniteArticleAndSingularForm(editNounDialog.getText());
 
         nouns->append(noun);
 
@@ -120,7 +121,10 @@ void EditNounsDialog::on_editPushButton_clicked()
             Noun nounToRemove(ui->nounsListWidget->currentItem()->text());
             nouns->removeAt(nouns->indexOf(nounToRemove));
 
-            Noun nounToAdd(editNounDialog.getText());
+            Noun nounToAdd;
+            nounToAdd.fromDefiniteArticleAndSingularForm(
+                    editNounDialog.getText()
+                    );
             nouns->append(nounToAdd);
         }
 

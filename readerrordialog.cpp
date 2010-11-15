@@ -78,7 +78,7 @@ void ReadErrorDialog::on_fixPushButton_clicked()
     int result = editNounDialog.exec();
     if(result == QDialog::Accepted)
     {
-        noun = Noun(editNounDialog.getText());
+        noun.fromDefiniteArticleAndSingularForm(editNounDialog.getText());
         accept();
     }
 }

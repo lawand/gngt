@@ -106,7 +106,8 @@ MainWindow::MainWindow(QWidget *parent) :
                 {
                     if( Noun::isValid(line) )
                     {
-                        Noun noun(line);
+                        Noun noun;
+                        noun.fromDefiniteArticleAndSingularForm(line);
                         if(nouns->indexOf(noun) == -1)   //if the noun doesn't
                             //already exist in the list
                             nouns->append(noun);     //add it to the list
