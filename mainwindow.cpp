@@ -42,7 +42,7 @@
 #include "ui_mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent) :
-    QWidget(parent),
+    QMainWindow(parent),
     ui(new Ui::MainWindow),
     feedbackAndNounSwitchTimer(new QTimer(this)),
     nouns(new QList<Noun>()),

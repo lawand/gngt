@@ -28,7 +28,7 @@
 #define MAINWINDOW_H
 
 //base class(es)
-#include <QWidget>
+#include <QMainWindow>
 
 //template data member(s)
 #include <QList>
@@ -43,7 +43,7 @@ namespace Ui {
     class MainWindow;
 }
 
-class MainWindow : public QWidget
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
