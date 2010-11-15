@@ -42,6 +42,8 @@ When the program exits, all nouns but those that were ignored get written to
 the nouns file. This means that ignoring nouns at startup leads to deleting 
 them.
 
+Duplicates get ignored when reading nouns at startup.
+
 Developing
 
 GNGT is released under GNU LGPL version 3 or (at your option) any later version.
