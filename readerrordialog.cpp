@@ -70,7 +70,7 @@ Noun ReadErrorDialog::getNoun()
 
 void ReadErrorDialog::on_fixPushButton_clicked()
 {
-    EditNounDialog editNounDialog(nouns);
+    EditNounDialog editNounDialog(nouns, this);
     editNounDialog.setText(line);
     int result = editNounDialog.exec();
     if(result == QDialog::Accepted)

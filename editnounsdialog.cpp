@@ -77,7 +77,7 @@ void EditNounsDialog::updateGui()
 
 void EditNounsDialog::on_addPushButton_clicked()
 {
-    EditNounDialog editNounDialog(nouns);
+    EditNounDialog editNounDialog(nouns, this);
 
     if(editNounDialog.exec() == QDialog::Accepted)
     {

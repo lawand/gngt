@@ -311,7 +311,7 @@ void MainWindow::about()
 
 void MainWindow::editNouns()
 {
-    EditNounsDialog editNounsDialog(nouns);
+    EditNounsDialog editNounsDialog(nouns, this);
 
     editNounsDialog.exec();
 
