@@ -61,6 +61,9 @@ MainWindow::MainWindow(QWidget *parent) :
             SIGNAL(timeout()),
             SLOT(displayNewNoun())
             );
+    connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
+    connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
+
     nounsFile->setFileName("nouns.txt");
 
     //center widget in screen
