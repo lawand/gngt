@@ -42,7 +42,10 @@ Noun::~Noun()
 {
 }
 
-Noun::Noun(QString definiteArticleAndSingularForm)
+
+void Noun::fromDefiniteArticleAndSingularForm(
+        QString definiteArticleAndSingularForm
+        )
 {
     if(definiteArticleAndSingularForm[2] == 'r')
         gender = Noun::masculine;

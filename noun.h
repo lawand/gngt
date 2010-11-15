@@ -49,7 +49,9 @@ public:
     ~Noun();
 
     //conversion
-    Noun(QString definiteArticleAndSingularForm);
+    void fromDefiniteArticleAndSingularForm(
+            QString definiteArticleAndSingularForm
+            );
     QString toDefiniteArticleAndSingularForm();
     QString toSortingFriendlyDefiniteArticleAndSingularForm();
 
