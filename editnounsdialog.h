@@ -51,6 +51,11 @@ public:
 private:
     Ui::EditNounsDialog *ui;
     QList<Noun>* nouns;
+
+private slots:
+    void on_addPushButton_clicked();
+    void on_removePushButton_clicked();
+    void on_removeAllPushButton_clicked();
 };
 
 #endif // EDITNOUNSDIALOG_H

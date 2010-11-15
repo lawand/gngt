@@ -24,6 +24,11 @@
 **
 ****************************************************************************/
 
+//implementation-specific data type(s)
+#include <QMessageBox>
+#include "editnoundialog.h"
+#include "noun.h"
+
 //corresponding header file(s)
 #include "editnounsdialog.h"
 #include "ui_editnounsdialog.h"
@@ -68,4 +73,43 @@ void EditNounsDialog::updateGui()
         ui->removePushButton->setEnabled(false);
         ui->removeAllPushButton->setEnabled(false);
     }
+}
+
+void EditNounsDialog::on_addPushButton_clicked()
+{
+    EditNounDialog editNounDialog;
+
+    if(editNounDialog.exec() == QDialog::Accepted)
+    {
+        Noun noun(editNounDialog.getText());
+
+        nouns->append(noun);
+
+        updateGui();
+    }
+}
+
+void EditNounsDialog::on_removePushButton_clicked()
+{
+    //if no noun is selected
+    if(ui->nounsListWidget->currentRow() == -1)
+    {
+        QMessageBox::information(this,
+                                 "Select A Noun",
+                                 "A noun must be selected");
+    }
+    else
+    {
+        Noun nounToRemove(ui->nounsListWidget->currentItem()->text());
+        nouns->removeAt(nouns->indexOf(nounToRemove));
+
+        updateGui();
+    }
+}
+
+void EditNounsDialog::on_removeAllPushButton_clicked()
+{
+    nouns->clear();
+
+    updateGui();
 }
