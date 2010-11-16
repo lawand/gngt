@@ -60,6 +60,29 @@ void Noun::fromDefiniteArticleAndSingularForm(
     singularForm.remove(0, 4);
 }
 
+void Noun::fromSortingFriendlyDefiniteArticleAndSingularForm(
+        QString sortingFriendlyDefiniteArticleAndSingularForm
+        )
+{
+    QChar lastChar = sortingFriendlyDefiniteArticleAndSingularForm.at(
+            sortingFriendlyDefiniteArticleAndSingularForm.length() - 1
+            );
+    if(lastChar == 'r')
+        gender = Noun::masculine;
+    if(lastChar == 'e')
+        gender = Noun::feminine;
+    if(lastChar == 's')
+        gender = Noun::neuter;
+
+    singularForm = sortingFriendlyDefiniteArticleAndSingularForm;
+
+    //remove definite article part
+    singularForm.remove(
+            sortingFriendlyDefiniteArticleAndSingularForm.length() - 5,
+            5
+            );
+}
+
 QString Noun::toDefiniteArticleAndSingularForm()
 {
     QString defeniteArticle;

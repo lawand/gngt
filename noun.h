@@ -52,6 +52,9 @@ public:
     void fromDefiniteArticleAndSingularForm(
             QString definiteArticleAndSingularForm
             );
+    void fromSortingFriendlyDefiniteArticleAndSingularForm(
+            QString sortingFriendlyDefiniteArticleAndSingularForm
+            );
     QString toDefiniteArticleAndSingularForm();
     QString toSortingFriendlyDefiniteArticleAndSingularForm();
 
