@@ -114,16 +114,12 @@ void EditNounsDialog::on_editPushButton_clicked()
     else
     {
         EditNounDialog editNounDialog(nouns);
-        Noun nounToEdit;
-        nounToEdit.fromSortingFriendlyDefiniteArticleAndSingularForm(
-                ui->nounsListWidget->currentItem()->text()
-                );
-        editNounDialog.setText(nounToEdit.toDefiniteArticleAndSingularForm());
+        editNounDialog.setText(ui->nounsListWidget->currentItem()->text());
 
         if(editNounDialog.exec() == QDialog::Accepted)
         {
             Noun nounToRemove;
-            nounToRemove.fromSortingFriendlyDefiniteArticleAndSingularForm(
+            nounToRemove.fromDefiniteArticleAndSingularForm(
                     ui->nounsListWidget->currentItem()->text()
                     );
             nouns->removeAt(nouns->indexOf(nounToRemove));
@@ -151,7 +147,7 @@ void EditNounsDialog::on_removePushButton_clicked()
     else
     {
         Noun nounToRemove;
-        nounToRemove.fromSortingFriendlyDefiniteArticleAndSingularForm(
+        nounToRemove.fromDefiniteArticleAndSingularForm(
                 ui->nounsListWidget->currentItem()->text()
                 );
         nouns->removeAt(nouns->indexOf(nounToRemove));
