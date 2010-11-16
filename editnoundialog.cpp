@@ -27,6 +27,7 @@
 //implementation-specific data type(s)
 #include <QMessageBox>
 #include <QChar>
+#include <QPushButton>
 #include "noun.h"
 
 //corresponding header file(s)
@@ -40,6 +41,7 @@ EditNounDialog::EditNounDialog(QList<Noun>* nouns, QWidget *parent) :
     //initialization
     ui->setupUi(this);
     this->nouns = nouns;
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
     //fix window size
     layout()->setSizeConstraint(QLayout::SetFixedSize);
@@ -89,6 +91,15 @@ void EditNounDialog::on_buttonBox_accepted()
 
     //at this point we, accept can be called
     accept();
+}
+
+void EditNounDialog::on_definiteArticleAndSingularFormLineEdit_textChanged(
+        QString
+        )
+{
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(
+            ! ui->definiteArticleAndSingularFormLineEdit->text().isEmpty()
+            );
 }
 
 void EditNounDialog::on_capitalAWithDiaeresisToolButton_clicked()

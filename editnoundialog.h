@@ -56,6 +56,8 @@ private:
 private slots:
     void on_buttonBox_accepted();
 
+    void on_definiteArticleAndSingularFormLineEdit_textChanged(QString );
+
     void on_capitalAWithDiaeresisToolButton_clicked();
     void on_capitalOWithDiaeresisToolButton_clicked();
     void on_capitalUWithDiaeresisToolButton_clicked();
