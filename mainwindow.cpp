@@ -176,15 +176,10 @@ MainWindow::~MainWindow()
         QTextStream out(nounsFile);
         out.setCodec(QTextCodec::codecForName("UTF-8"));
 
-        QStringList nounStrings;
+        qSort(*nouns);
 
         foreach(Noun noun, *nouns)
-            nounStrings.append(noun.toDefiniteArticleAndSingularForm());
-
-        nounStrings.sort();
-
-        foreach(QString qString, nounStrings)
-            out << qString  << "\n";
+            out << noun.toDefiniteArticleAndSingularForm()  << "\n";
 
         nounsFile->close();
     }
