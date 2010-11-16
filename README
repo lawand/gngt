@@ -39,8 +39,8 @@ reported by the program at startup and you'll be prompted to fix or ignore each
 of them.
 
 When the program exits, all nouns but those that were ignored get written to 
-the nouns file. This means that ignoring nouns at startup leads to deleting 
-them.
+the nouns file (after getting sorted). This means that ignoring nouns at startup
+leads to deleting them.
 
 Duplicates get ignored when reading nouns at startup.
 
