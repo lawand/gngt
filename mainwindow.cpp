@@ -35,6 +35,7 @@
 #include <QMessageBox>
 #include <QTime>
 #include <QDesktopWidget>
+#include <QStringList>
 #include "readerrordialog.h"
 #include "editnounsdialog.h"
 
@@ -175,8 +176,15 @@ MainWindow::~MainWindow()
         QTextStream out(nounsFile);
         out.setCodec(QTextCodec::codecForName("UTF-8"));
 
+        QStringList nounStrings;
+
         foreach(Noun noun, *nouns)
-            out << noun.toDefiniteArticleAndSingularForm() << "\n";
+            nounStrings.append(noun.toDefiniteArticleAndSingularForm());
+
+        nounStrings.sort();
+
+        foreach(QString qString, nounStrings)
+            out << qString  << "\n";
 
         nounsFile->close();
     }
