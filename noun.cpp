@@ -114,11 +114,14 @@ bool Noun::isValid(QString definiteArticleAndSingularForm)
     QStringList parts = definiteArticleAndSingularForm.split(QRegExp("\\s+"));
 
     if( QRegExp("^der|die|das$").exactMatch(parts.at(0).toLower())
-        && parts.size() == 2
-                )
+            && parts.size() == 2)
+    {
         return true;
+    }
     else
+    {
         return false;
+    }
 }
 
 bool Noun::operator== (Noun otherNoun)
