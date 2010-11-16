@@ -46,7 +46,7 @@ public:
     explicit EditNounsDialog(QList<Noun>* nouns, QWidget *parent = 0);
     ~EditNounsDialog();
 
-    void updateGui();
+    void updateGuiAndSortNouns();
 
 private:
     Ui::EditNounsDialog *ui;

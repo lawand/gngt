@@ -46,7 +46,7 @@ EditNounsDialog::EditNounsDialog(QList<Noun>* nouns, QWidget *parent) :
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 
     //initial update
-    updateGui();
+    updateGuiAndSortNouns();
 }
 
 EditNounsDialog::~EditNounsDialog()
@@ -54,7 +54,7 @@ EditNounsDialog::~EditNounsDialog()
     delete ui;
 }
 
-void EditNounsDialog::updateGui()
+void EditNounsDialog::updateGuiAndSortNouns()
 {
     ui->numberOfNounsLabel->setText(
             QString("Number Of Nouns: %2").arg(nouns->length())
@@ -94,7 +94,7 @@ void EditNounsDialog::on_addPushButton_clicked()
 
         nouns->append(noun);
 
-        updateGui();
+        updateGuiAndSortNouns();
     }
 }
 
@@ -127,7 +127,7 @@ void EditNounsDialog::on_editPushButton_clicked()
             nouns->append(nounToAppend);
         }
 
-        updateGui();
+        updateGuiAndSortNouns();
     }
 }
 
@@ -148,7 +148,7 @@ void EditNounsDialog::on_removePushButton_clicked()
                 );
         nouns->removeAt(nouns->indexOf(nounToRemove));
 
-        updateGui();
+        updateGuiAndSortNouns();
     }
 }
 
@@ -156,5 +156,5 @@ void EditNounsDialog::on_removeAllPushButton_clicked()
 {
     nouns->clear();
 
-    updateGui();
+    updateGuiAndSortNouns();
 }
