@@ -77,10 +77,7 @@ void EditNounDialog::on_buttonBox_accepted()
     }
 
     //handle the case of a duplicate noun
-    Noun noun;
-    noun.fromDefiniteArticleAndSingularForm(
-            ui->definiteArticleAndSingularFormLineEdit->text()
-            );
+    Noun noun(ui->definiteArticleAndSingularFormLineEdit->text());
     if(nouns->indexOf(noun) != -1)
     {
         QMessageBox::information(this,

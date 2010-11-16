@@ -67,9 +67,7 @@ void EditNounsDialog::updateGuiAndSortNouns()
         qSort(*nouns);
 
         foreach(Noun noun, *nouns)
-            ui->nounsListWidget->addItem(
-                noun.toDefiniteArticleAndSingularForm()
-                );
+            ui->nounsListWidget->addItem(noun.toString());
 
         ui->editPushButton->setEnabled(true);
         ui->removePushButton->setEnabled(true);
@@ -89,8 +87,7 @@ void EditNounsDialog::on_addPushButton_clicked()
 
     if(editNounDialog.exec() == QDialog::Accepted)
     {
-        Noun noun;
-        noun.fromDefiniteArticleAndSingularForm(editNounDialog.getText());
+        Noun noun(editNounDialog.getText());
 
         nouns->append(noun);
 
@@ -114,16 +111,10 @@ void EditNounsDialog::on_editPushButton_clicked()
 
         if(editNounDialog.exec() == QDialog::Accepted)
         {
-            Noun nounToRemove;
-            nounToRemove.fromDefiniteArticleAndSingularForm(
-                    ui->nounsListWidget->currentItem()->text()
-                    );
+            Noun nounToRemove(ui->nounsListWidget->currentItem()->text());
             nouns->removeAt(nouns->indexOf(nounToRemove));
 
-            Noun nounToAppend;
-            nounToAppend.fromDefiniteArticleAndSingularForm(
-                    editNounDialog.getText()
-                    );
+            Noun nounToAppend(editNounDialog.getText());
             nouns->append(nounToAppend);
         }
 
@@ -142,10 +133,7 @@ void EditNounsDialog::on_removePushButton_clicked()
     }
     else
     {
-        Noun nounToRemove;
-        nounToRemove.fromDefiniteArticleAndSingularForm(
-                ui->nounsListWidget->currentItem()->text()
-                );
+        Noun nounToRemove(ui->nounsListWidget->currentItem()->text());
         nouns->removeAt(nouns->indexOf(nounToRemove));
 
         updateGuiAndSortNouns();

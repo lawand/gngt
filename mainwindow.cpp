@@ -107,8 +107,7 @@ MainWindow::MainWindow(QWidget *parent) :
                 {
                     if( Noun::isValid(line) )
                     {
-                        Noun noun;
-                        noun.fromDefiniteArticleAndSingularForm(line);
+                        Noun noun(line);
                         if(nouns->indexOf(noun) == -1)   //if the noun doesn't
                             //already exist in the list
                             nouns->append(noun);     //add it to the list
@@ -126,10 +125,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
                             if(result == QDialog::Accepted)
                             {
-                                Noun noun;
-                                noun.fromDefiniteArticleAndSingularForm(
-                                        readErrorDialog.getLine()
-                                        );
+                                Noun noun(readErrorDialog.getLine());
 
                                 if(nouns->indexOf(noun) == -1)
                                     nouns->append(noun);
@@ -179,7 +175,7 @@ MainWindow::~MainWindow()
         qSort(*nouns);
 
         foreach(Noun noun, *nouns)
-            out << noun.toDefiniteArticleAndSingularForm()  << "\n";
+            out << noun.toString()  << "\n";
 
         nounsFile->close();
     }
