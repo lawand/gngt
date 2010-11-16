@@ -53,7 +53,7 @@ public:
     QString toString();
 
     //validation
-    static bool isValid(QString genderToDefiniteArticleString);
+    static bool isValid(QString definiteArticleAndSingularForm);
 
     //operators
     bool operator== (Noun otherNoun);
