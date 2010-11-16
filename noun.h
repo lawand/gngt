@@ -52,11 +52,7 @@ public:
     void fromDefiniteArticleAndSingularForm(
             QString definiteArticleAndSingularForm
             );
-    void fromSortingFriendlyDefiniteArticleAndSingularForm(
-            QString sortingFriendlyDefiniteArticleAndSingularForm
-            );
     QString toDefiniteArticleAndSingularForm();
-    QString toSortingFriendlyDefiniteArticleAndSingularForm();
 
     //validation
     static bool isValid(QString genderToDefiniteArticleString);

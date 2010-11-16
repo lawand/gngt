@@ -60,29 +60,6 @@ void Noun::fromDefiniteArticleAndSingularForm(
     singularForm.remove(0, 4);
 }
 
-void Noun::fromSortingFriendlyDefiniteArticleAndSingularForm(
-        QString sortingFriendlyDefiniteArticleAndSingularForm
-        )
-{
-    QChar lastChar = sortingFriendlyDefiniteArticleAndSingularForm.at(
-            sortingFriendlyDefiniteArticleAndSingularForm.length() - 1
-            );
-    if(lastChar == 'r')
-        gender = Noun::masculine;
-    if(lastChar == 'e')
-        gender = Noun::feminine;
-    if(lastChar == 's')
-        gender = Noun::neuter;
-
-    singularForm = sortingFriendlyDefiniteArticleAndSingularForm;
-
-    //remove definite article part
-    singularForm.remove(
-            sortingFriendlyDefiniteArticleAndSingularForm.length() - 5,
-            5
-            );
-}
-
 QString Noun::toDefiniteArticleAndSingularForm()
 {
     QString defeniteArticle;
@@ -94,19 +71,6 @@ QString Noun::toDefiniteArticleAndSingularForm()
         defeniteArticle = "das";
 
     return QString("%1 %2").arg(defeniteArticle).arg(singularForm);
-}
-
-QString Noun::toSortingFriendlyDefiniteArticleAndSingularForm()
-{
-    QString defeniteArticle;
-    if(gender == Noun::masculine)
-        defeniteArticle = "der";
-    if(gender == Noun::feminine)
-        defeniteArticle = "die";
-    if(gender == Noun::neuter)
-        defeniteArticle = "das";
-
-    return QString("%1, %2").arg(singularForm).arg(defeniteArticle);
 }
 
 bool Noun::isValid(QString definiteArticleAndSingularForm)
