@@ -45,17 +45,19 @@ Noun::~Noun()
 
 Noun::Noun(QString definiteArticleAndSingularForm)
 {
-    if(definiteArticleAndSingularForm[2] == 'r')
+    QStringList parts = definiteArticleAndSingularForm.split(
+            QRegExp("\\s+"),
+            QString::SkipEmptyParts
+            );
+
+    if(parts.at(0)[2] == 'r')
         gender = Noun::masculine;
-    if(definiteArticleAndSingularForm[2] == 'e')
+    if(parts.at(0)[2] == 'e')
         gender = Noun::feminine;
-    if(definiteArticleAndSingularForm[2] == 's')
+    if(parts.at(0)[2] == 's')
         gender = Noun::neuter;
 
-    singularForm = definiteArticleAndSingularForm;
-
-    //remove definite article part
-    singularForm.remove(0, 4);
+    singularForm = parts.at(1);
 }
 
 QString Noun::toString()
