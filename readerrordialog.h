@@ -36,7 +36,6 @@
 
 //data member(s)
 #include <QString>
-#include "noun.h"
 
 namespace Ui {
     class ReadErrorDialog;
@@ -56,7 +55,7 @@ public:
 
     //public access functions
     bool shouldIgnoreAll();
-    Noun getNoun();
+    QString getLine();
 
 //data members
 private:
@@ -64,7 +63,6 @@ private:
     int lineNumber;
     QString line;
     bool ignoreAll;
-    Noun noun;
     QList<Noun> *nouns;
 
 private slots:

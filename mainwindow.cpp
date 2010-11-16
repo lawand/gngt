@@ -125,7 +125,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
                             if(result == QDialog::Accepted)
                             {
-                                Noun noun = readErrorDialog.getNoun();
+                                Noun noun;
+                                noun.fromDefiniteArticleAndSingularForm(
+                                        readErrorDialog.getLine()
+                                        );
 
                                 if(nouns->indexOf(noun) == -1)
                                     nouns->append(noun);

@@ -66,9 +66,9 @@ bool ReadErrorDialog::shouldIgnoreAll()
     return ignoreAll;
 }
 
-Noun ReadErrorDialog::getNoun()
+QString ReadErrorDialog::getLine()
 {
-    return noun;
+    return line;
 }
 
 void ReadErrorDialog::on_fixPushButton_clicked()
@@ -78,7 +78,7 @@ void ReadErrorDialog::on_fixPushButton_clicked()
     int result = editNounDialog.exec();
     if(result == QDialog::Accepted)
     {
-        noun.fromDefiniteArticleAndSingularForm(editNounDialog.getText());
+        line = editNounDialog.getText();
         accept();
     }
 }
