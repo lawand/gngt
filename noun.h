@@ -49,10 +49,8 @@ public:
     ~Noun();
 
     //conversion
-    void fromDefiniteArticleAndSingularForm(
-            QString definiteArticleAndSingularForm
-            );
-    QString toDefiniteArticleAndSingularForm();
+    Noun(QString definiteArticleAndSingularForm);
+    QString toString();
 
     //validation
     static bool isValid(QString genderToDefiniteArticleString);
