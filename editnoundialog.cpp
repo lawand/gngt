@@ -84,7 +84,7 @@ void EditNounDialog::on_buttonBox_accepted()
     if(nouns->indexOf(noun) != -1)
     {
         QMessageBox::information(this,
-                                 "Noun Duplicate",
+                                 "Duplicate Noun",
                                  "This noun already exists");
 
         return;
