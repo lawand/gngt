@@ -87,10 +87,10 @@ bool Noun::isValid(QString definiteArticleAndSingularForm)
             QString::SkipEmptyParts
             );
 
-    if(! QRegExp("^der|die|das$").exactMatch(parts.at(0).toLower()))
+    if(parts.size() != 2)
         return false;
 
-    if(parts.size() != 2)
+    if(! QRegExp("^der|die|das$").exactMatch(parts.at(0).toLower()))
         return false;
 
     QRegExp anyNumberOfEnglishOrGermanLetters(
