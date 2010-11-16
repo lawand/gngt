@@ -134,3 +134,8 @@ bool Noun::operator== (Noun otherNoun)
                             Qt::CaseInsensitive
                             ) == 0;
 }
+
+bool Noun::operator<  (Noun otherNoun) const
+{
+    return this->singularForm < otherNoun.singularForm;
+}

@@ -61,8 +61,9 @@ public:
     //validation
     static bool isValid(QString genderToDefiniteArticleString);
 
-    //others
+    //operators
     bool operator== (Noun otherNoun);
+    bool operator<  (Noun otherNoun) const;
 
 //data members
 public:
