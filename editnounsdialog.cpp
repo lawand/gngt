@@ -64,16 +64,12 @@ void EditNounsDialog::updateGui()
 
     if(!nouns->isEmpty())
     {
-        QStringList nounStrings;
+        qSort(*nouns);
 
         foreach(Noun noun, *nouns)
-            nounStrings.append(
-                    noun.toSortingFriendlyDefiniteArticleAndSingularForm()
-                    );
-
-        nounStrings.sort();
-
-        ui->nounsListWidget->addItems(nounStrings);
+            ui->nounsListWidget->addItem(
+                noun.toDefiniteArticleAndSingularForm()
+                );
 
         ui->editPushButton->setEnabled(true);
         ui->removePushButton->setEnabled(true);
