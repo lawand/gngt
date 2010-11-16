@@ -89,7 +89,7 @@ void EditNounDialog::on_buttonBox_accepted()
         return;
     }
 
-    //at this point we, accept can be called
+    //at this point, accept can be called
     accept();
 }
 
