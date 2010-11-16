@@ -50,14 +50,21 @@ Noun::Noun(QString definiteArticleAndSingularForm)
             QString::SkipEmptyParts
             );
 
-    if(parts.at(0)[2] == 'r')
+    QString article = parts.value(0);
+    QString singularForm = parts.value(1);
+
+    article = article.toLower();
+    singularForm = singularForm.toLower();
+    singularForm[0] = singularForm[0].toUpper();
+
+    if(article[2] == 'r')
         gender = Noun::masculine;
-    if(parts.at(0)[2] == 'e')
+    if(article[2] == 'e')
         gender = Noun::feminine;
-    if(parts.at(0)[2] == 's')
+    if(article[2] == 's')
         gender = Noun::neuter;
 
-    singularForm = parts.at(1);
+    this->singularForm = singularForm;
 }
 
 QString Noun::toString()
