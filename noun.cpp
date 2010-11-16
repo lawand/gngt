@@ -111,7 +111,10 @@ QString Noun::toSortingFriendlyDefiniteArticleAndSingularForm()
 
 bool Noun::isValid(QString definiteArticleAndSingularForm)
 {
-    QStringList parts = definiteArticleAndSingularForm.split(QRegExp("\\s+"));
+    QStringList parts = definiteArticleAndSingularForm.split(
+            QRegExp("\\s+"),
+            QString::SkipEmptyParts
+            );
 
     if( QRegExp("^der|die|das$").exactMatch(parts.at(0).toLower())
             && parts.size() == 2)
