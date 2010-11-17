@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>184</width>
-    <height>262</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>GNGT</string>
   </property>
@@ -24,7 +16,7 @@
        </font>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string>Unkameradschaftlichkeit</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -82,7 +74,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>184</width>
+     <width>209</width>
      <height>27</height>
     </rect>
    </property>
