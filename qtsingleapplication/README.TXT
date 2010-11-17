@@ -1,0 +1,5 @@
+Qt Solutions Component: Single Application
+
+The QtSingleApplication component provides support for
+applications that can be only started once per user.
+
