@@ -1,3 +1,5 @@
+include(qtsingleapplication/qtsingleapplication.pri)
+
 TARGET = GNGT
 TEMPLATE = app
 SOURCES += \

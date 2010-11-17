@@ -24,17 +24,25 @@
 **
 ****************************************************************************/
 
-#include <QApplication>
+#include <QtSingleApplication>
 #include <QIcon>
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
-    QApplication* qApplication = new QApplication(argc, argv);
-    qApplication->setWindowIcon(QIcon(":/icons/applicationIcon.png"));
+    QtSingleApplication qtSingleApplication(argc, argv);
+
+    if (qtSingleApplication.isRunning())
+    {
+        return !qtSingleApplication.sendMessage("Are you running?");
+    }
+
+    qtSingleApplication.setWindowIcon(QIcon(":/icons/applicationIcon.png"));
 
     MainWindow mainWindow;
     mainWindow.show();
 
-    return qApplication->exec();
+    qtSingleApplication.setActivationWindow(&mainWindow);
+
+    return qtSingleApplication.exec();
 }
