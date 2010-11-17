@@ -90,6 +90,9 @@ bool Noun::isValid(QString definiteArticleAndSingularForm)
     if(parts.size() != 2)
         return false;
 
+    if(parts.at(1).length() > 23)
+        return false;
+
     if(! QRegExp("^der|die|das$").exactMatch(parts.at(0).toLower()))
         return false;
 

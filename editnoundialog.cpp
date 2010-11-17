@@ -72,7 +72,9 @@ void EditNounDialog::on_buttonBox_accepted()
                                  "composed of the singular form of the noun "
                                  "preceded by it's corresponding definite "
                                  "article (i.e. 'das Buch' (without the "
-                                 "quotes))."
+                                 "quotes)). \n"
+                                 "Note that the maximum number of characters "
+                                 "of the singular form is 23."
                                  );
 
         return;
