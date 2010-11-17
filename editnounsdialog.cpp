@@ -136,7 +136,14 @@ void EditNounsDialog::on_removePushButton_clicked()
         Noun nounToRemove(ui->nounsListWidget->currentItem()->text());
         nouns->removeAt(nouns->indexOf(nounToRemove));
 
+        int tempRow = ui->nounsListWidget->currentRow();
+
         updateGuiAndSortNouns();
+
+        if(tempRow != ui->nounsListWidget->count())
+            ui->nounsListWidget->setCurrentRow(tempRow);
+        else
+            ui->nounsListWidget->setCurrentRow(tempRow - 1);
     }
 }
 
