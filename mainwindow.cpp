@@ -268,8 +268,6 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
         }
 
         nouns->replace(nouns->indexOf(currentNoun), currentNoun);
-
-        feedbackAndNounSwitchTimer->start();
     }
     else
     {
@@ -297,9 +295,9 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
         {
             nouns->replace(nouns->indexOf(currentNoun), currentNoun);
         }
-
-        feedbackAndNounSwitchTimer->start();
     }
+
+    feedbackAndNounSwitchTimer->start();
 }
 
 void MainWindow::stopFeedback()
