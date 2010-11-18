@@ -113,8 +113,7 @@ void EditNounsDialog::on_editPushButton_clicked()
 
         if(editNounDialog.exec() == QDialog::Accepted)
         {
-            Noun nounToRemove(ui->nounsListWidget->currentItem()->text());
-            nouns->removeAt(nouns->indexOf(nounToRemove));
+            nouns->removeAt(ui->nounsListWidget->currentRow());
 
             Noun nounToAppend(editNounDialog.getText());
             nouns->append(nounToAppend);
@@ -137,10 +136,8 @@ void EditNounsDialog::on_removePushButton_clicked()
     }
     else
     {
-        Noun nounToRemove(ui->nounsListWidget->currentItem()->text());
-        nouns->removeAt(nouns->indexOf(nounToRemove));
-
         int tempRow = ui->nounsListWidget->currentRow();
+        nouns->removeAt(tempRow);
 
         updateGuiAndSortNouns();
 
