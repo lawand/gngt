@@ -240,8 +240,6 @@ void MainWindow::giveFeedbackAndUpdateMemorizationStreak(Noun::Gender chosenGend
     //in case of a mistake, give feedback
     if(currentNoun.gender != chosenGender)
     {
-        currentNoun.setMemorizationStreak(0);
-
         feedbackActive = true;
 
         if(currentNoun.gender == Noun::masculine)
@@ -262,6 +260,7 @@ void MainWindow::giveFeedbackAndUpdateMemorizationStreak(Noun::Gender chosenGend
 
         if(currentNoun.memorizationStreak != 0)
         {
+            currentNoun.setMemorizationStreak(0);
             ui->memorizationStreakLabel->setText("Streak: 0");
             ui->memorizationStreakLabel->setStyleSheet(
                     "color: rgb(192, 0, 0);"
