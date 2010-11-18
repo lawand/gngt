@@ -172,8 +172,6 @@ MainWindow::~MainWindow()
         QTextStream out(nounsFile);
         out.setCodec(QTextCodec::codecForName("UTF-8"));
 
-        qSort(*nouns);
-
         foreach(Noun noun, *nouns)
             out << noun.toString()  << "\n";
 
