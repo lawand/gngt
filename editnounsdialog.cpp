@@ -116,9 +116,9 @@ void EditNounsDialog::on_editPushButton_clicked()
 
             Noun nounToAppend(editNounDialog.getText());
             nouns->append(nounToAppend);
-        }
 
-        updateGuiAndSortNouns();
+            updateGuiAndSortNouns();
+        }
     }
 }
 
