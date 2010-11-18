@@ -56,7 +56,7 @@ public:
 
 private slots:
     void displayNewNoun();
-    void giveFeedbackAndUpdateMemorizationStreak(Noun::Gender chosenGender);
+    void giveFeedbackAndUpdateNouns(Noun::Gender chosenGender);
     void stopFeedback();
 
     void on_masculinePushButton_clicked();

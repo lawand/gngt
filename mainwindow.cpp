@@ -233,9 +233,7 @@ void MainWindow::displayNewNoun()
     }
 }
 
-void MainWindow::giveFeedbackAndUpdateMemorizationStreak(
-        Noun::Gender chosenGender
-        )
+void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
 {
     Noun currentNoun = nouns->at(nounIndex);
 
@@ -269,6 +267,8 @@ void MainWindow::giveFeedbackAndUpdateMemorizationStreak(
                     );
         }
 
+        nouns->replace(nouns->indexOf(currentNoun), currentNoun);
+
         feedbackAndNounSwitchTimer->start();
     }
     else
@@ -284,10 +284,22 @@ void MainWindow::giveFeedbackAndUpdateMemorizationStreak(
                 currentNoun.getMemorizationStreak() + 1
                 );
 
+        if(currentNoun.memorizationStreak == 10)
+        {
+            ui->memorizationStreakLabel->setText(
+                    "Noun memorized! \n" +
+                    ui->memorizationStreakLabel->text()
+                    );
+
+            nouns->removeAt(nouns->indexOf(currentNoun));
+        }
+        else
+        {
+            nouns->replace(nouns->indexOf(currentNoun), currentNoun);
+        }
+
         feedbackAndNounSwitchTimer->start();
     }
-
-    nouns->replace(nouns->indexOf(currentNoun), currentNoun);
 }
 
 void MainWindow::stopFeedback()
@@ -307,7 +319,7 @@ void MainWindow::on_masculinePushButton_clicked()
 {
     if(!feedbackActive)
     {
-        giveFeedbackAndUpdateMemorizationStreak(Noun::masculine);
+        giveFeedbackAndUpdateNouns(Noun::masculine);
     }
 }
 
@@ -315,7 +327,7 @@ void MainWindow::on_femininePushButton_clicked()
 {
     if(!feedbackActive)
     {
-        giveFeedbackAndUpdateMemorizationStreak(Noun::feminine);
+        giveFeedbackAndUpdateNouns(Noun::feminine);
     }
 }
 
@@ -323,7 +335,7 @@ void MainWindow::on_neuterPushButton_clicked()
 {
     if(!feedbackActive)
     {
-        giveFeedbackAndUpdateMemorizationStreak(Noun::neuter);
+        giveFeedbackAndUpdateNouns(Noun::neuter);
     }
 }
 
