@@ -32,8 +32,7 @@
 #include "noun.h"
 
 Noun::Noun() :
-        gender(Noun::masculine),
-        enabled(true)
+        gender(Noun::masculine)
 {
 
 }

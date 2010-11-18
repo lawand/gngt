@@ -63,7 +63,6 @@ public:
 public:
     Gender gender;
     QString singularForm;
-    bool enabled;
 };
 
 #endif // Noun_H
