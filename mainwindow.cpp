@@ -111,10 +111,29 @@ MainWindow::MainWindow(QWidget *parent) :
                                                    QString::SkipEmptyParts
                                                    );
 
-                    if(! QRegExp("^[0-9]*$").exactMatch(parts.last()))
+                    if(! QRegExp("^[0-9]$").exactMatch(parts.last()))
+                    {
+                        QMessageBox::warning(0,
+                                             "Read Error",
+                                             QString("Error reading the "
+                                                     "memorization streak for "
+                                                     "the noun found at line "
+                                                     "number: %1. \n"
+                                                     "The line contains: '%2'."
+                                                     "\n\n"
+                                                     "The memorization streak "
+                                                     "for this noun is now set "
+                                                     "to 0."
+                                                     ).arg(lineNumber).arg(
+                                                             line
+                                                             )
+                                             );
                         memorizationStreak = 0;
+                    }
                     else
+                    {
                         memorizationStreak = parts.last().toInt();
+                    }
 
                     parts.removeLast();
 
@@ -140,7 +159,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
                             if(result == QDialog::Accepted)
                             {
-                                Noun noun(readErrorDialog.getLine());
+                                Noun noun(readErrorDialog.getLine(),
+                                          memorizationStreak
+                                          );
 
                                 if(nouns->indexOf(noun) == -1)
                                     nouns->append(noun);
