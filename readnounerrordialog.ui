@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ReadErrorDialog</class>
- <widget class="QDialog" name="ReadErrorDialog">
+ <class>ReadNounErrorDialog</class>
+ <widget class="QDialog" name="ReadNounErrorDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Read Error</string>
+   <string>Read Noun Error</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

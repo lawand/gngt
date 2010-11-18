@@ -28,15 +28,15 @@
 #include "editnoundialog.h"
 
 //corresponding header file(s)
-#include "readerrordialog.h"
-#include "ui_readerrordialog.h"
+#include "readnounerrordialog.h"
+#include "ui_readnounerrordialog.h"
 
-ReadErrorDialog::ReadErrorDialog(int lineNumber,
+ReadNounErrorDialog::ReadNounErrorDialog(int lineNumber,
                                  QString line,
                                  QList<Noun>* nouns,
                                  QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::ReadErrorDialog),
+    ui(new Ui::ReadNounErrorDialog),
     ignoreAll(false)
 {
     //initialization
@@ -49,29 +49,30 @@ ReadErrorDialog::ReadErrorDialog(int lineNumber,
     this->lineNumber = lineNumber;
     this->line = line;
 
-    ui->label->setText(QString("Cannot read line: %1 \nWhich contains: "
-                               "'%2' \n\nDo you want to edit this line or "
-                               "ignore it? \nNote that ignoring lines leads to "
-                               "deleting them.").arg(lineNumber).arg(line)
+    ui->label->setText(QString("Cannot read the noun in line: %1 \nWhich "
+                               "contains: '%2' \n\nDo you want to edit this "
+                               "line or ignore it? \nNote that ignoring lines "
+                               "leads to deleting them.").arg(
+                                       lineNumber).arg(line)
                        );
 }
 
-ReadErrorDialog::~ReadErrorDialog()
+ReadNounErrorDialog::~ReadNounErrorDialog()
 {
     delete ui;
 }
 
-bool ReadErrorDialog::shouldIgnoreAll()
+bool ReadNounErrorDialog::shouldIgnoreAll()
 {
     return ignoreAll;
 }
 
-QString ReadErrorDialog::getLine()
+QString ReadNounErrorDialog::getLine()
 {
     return line;
 }
 
-void ReadErrorDialog::on_fixPushButton_clicked()
+void ReadNounErrorDialog::on_fixPushButton_clicked()
 {
     EditNounDialog editNounDialog(nouns, this);
     editNounDialog.setText(line);
@@ -83,12 +84,12 @@ void ReadErrorDialog::on_fixPushButton_clicked()
     }
 }
 
-void ReadErrorDialog::on_ignorePushButton_clicked()
+void ReadNounErrorDialog::on_ignorePushButton_clicked()
 {
     reject();
 }
 
-void ReadErrorDialog::on_ignoreAllPushButton_clicked()
+void ReadNounErrorDialog::on_ignoreAllPushButton_clicked()
 {
     ignoreAll = true;
     reject();

@@ -36,7 +36,7 @@
 #include <QTime>
 #include <QDesktopWidget>
 #include <QStringList>
-#include "readerrordialog.h"
+#include "readnounerrordialog.h"
 #include "editnounsdialog.h"
 
 //corresponding header file(s)
@@ -150,16 +150,16 @@ MainWindow::MainWindow(QWidget *parent) :
                     {
                         if(ignoreAll == false)
                         {
-                            ReadErrorDialog readErrorDialog(lineNumber,
+                            ReadNounErrorDialog readNounErrorDialog(lineNumber,
                                                             line,
                                                             nouns,
                                                             0);
 
-                            int result = readErrorDialog.exec();
+                            int result = readNounErrorDialog.exec();
 
                             if(result == QDialog::Accepted)
                             {
-                                Noun noun(readErrorDialog.getLine(),
+                                Noun noun(readNounErrorDialog.getLine(),
                                           memorizationStreak
                                           );
 
@@ -168,7 +168,7 @@ MainWindow::MainWindow(QWidget *parent) :
                             }
                             else
                             {
-                                if(readErrorDialog.shouldIgnoreAll())
+                                if(readNounErrorDialog.shouldIgnoreAll())
                                     ignoreAll = true;
                             }
                         }

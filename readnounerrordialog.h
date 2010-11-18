@@ -24,8 +24,8 @@
 **
 ****************************************************************************/
 
-#ifndef READERRORDIALOG_H
-#define READERRORDIALOG_H
+#ifndef READNOUNERRORDIALOG_H
+#define READNOUNERRORDIALOG_H
 
 //base class(es)
 #include <QDialog>
@@ -38,20 +38,20 @@
 #include <QString>
 
 namespace Ui {
-    class ReadErrorDialog;
+    class ReadNounErrorDialog;
 }
 
-class ReadErrorDialog : public QDialog
+class ReadNounErrorDialog : public QDialog
 {
     Q_OBJECT
 
 //member functions
 public:
-    explicit ReadErrorDialog(int lineNumber,
+    explicit ReadNounErrorDialog(int lineNumber,
                              QString line,
                              QList<Noun>* nouns,
                              QWidget *parent = 0);
-    ~ReadErrorDialog();
+    ~ReadNounErrorDialog();
 
     //public access functions
     bool shouldIgnoreAll();
@@ -59,7 +59,7 @@ public:
 
 //data members
 private:
-    Ui::ReadErrorDialog *ui;
+    Ui::ReadNounErrorDialog *ui;
     int lineNumber;
     QString line;
     bool ignoreAll;
@@ -71,4 +71,4 @@ private slots:
     void on_ignoreAllPushButton_clicked();
 };
 
-#endif // READERRORDIALOG_H
+#endif // READNOUNERRORDIALOG_H
