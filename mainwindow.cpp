@@ -102,12 +102,27 @@ MainWindow::MainWindow(QWidget *parent) :
             while(!in.atEnd())
             {
                 QString line = in.readLine();
+                int memorizationStreak;
+
                 if(!line.isEmpty())     //empty lines neither cause errors
                     //nor should be parsed and added
                 {
-                    if( Noun::isValid(line) )
+                    QStringList parts = line.split(QRegExp("\\s+"),
+                                                   QString::SkipEmptyParts
+                                                   );
+
+                    if(! QRegExp("^[0-9]*$").exactMatch(parts.last()))
+                        memorizationStreak = 0;
+                    else
+                        memorizationStreak = parts.last().toInt();
+
+                    parts.removeLast();
+
+                    QString nounPartOfTheLine = parts.join(" ");
+
+                    if( Noun::isValid(nounPartOfTheLine) )
                     {
-                        Noun noun(line);
+                        Noun noun(nounPartOfTheLine, memorizationStreak);
                         if(nouns->indexOf(noun) == -1)   //if the noun doesn't
                             //already exist in the list
                             nouns->append(noun);     //add it to the list
@@ -173,7 +188,7 @@ MainWindow::~MainWindow()
         out.setCodec(QTextCodec::codecForName("UTF-8"));
 
         foreach(Noun noun, *nouns)
-            out << noun.toString()  << "\n";
+            out << noun.toString() << " " << noun.memorizationStreak << "\n";
 
         nounsFile->close();
     }
@@ -191,8 +206,6 @@ void MainWindow::updateGui()
         ui->masculinePushButton->setEnabled(false);
         ui->femininePushButton->setEnabled(false);
         ui->neuterPushButton->setEnabled(false);
-
-        ui->numberOfNounsLabel->setText(QString("Number Of Nouns: 0"));
     }
     else
     {
@@ -201,11 +214,6 @@ void MainWindow::updateGui()
         ui->masculinePushButton->setEnabled(true);
         ui->femininePushButton->setEnabled(true);
         ui->neuterPushButton->setEnabled(true);
-
-        //display the number of nouns that are loaded
-        ui->numberOfNounsLabel->setText(
-                QString("Number Of Nouns: %1").arg(nouns->length())
-                );
     }
 }
 
@@ -214,17 +222,26 @@ void MainWindow::displayNewNoun()
     if( ! nouns->isEmpty() )
     {
         nounIndex = qrand() % nouns->length();
+
+        ui->memorizationStreakLabel->setText(
+                QString("Streak: %1").arg(
+                        nouns->at(nounIndex).memorizationStreak
+                        )
+                );
+
         ui->nounLabel->setText(nouns->at(nounIndex).singularForm);
     }
 }
 
-void MainWindow::giveFeedback(Noun::Gender chosenGender)
+void MainWindow::giveFeedbackAndUpdateMemorizationStreak(Noun::Gender chosenGender)
 {
     Noun currentNoun = nouns->at(nounIndex);
 
     //in case of a mistake, give feedback
     if(currentNoun.gender != chosenGender)
     {
+        currentNoun.setMemorizationStreak(0);
+
         feedbackActive = true;
 
         if(currentNoun.gender == Noun::masculine)
@@ -243,12 +260,22 @@ void MainWindow::giveFeedback(Noun::Gender chosenGender)
             ui->nounLabel->setStyleSheet("color: rgb(0, 0, 192);");
         }
 
+        ui->memorizationStreakLabel->setText("Streak: 0");
+        ui->memorizationStreakLabel->setStyleSheet("color: rgb(192, 0, 0);");
+
         feedbackAndNounSwitchTimer->start();
     }
     else
     {
+        currentNoun.setMemorizationStreak(
+                currentNoun.getMemorizationStreak() + 1
+                );
+
         displayNewNoun();
     }
+
+    nouns->replace(nouns->indexOf(currentNoun), currentNoun);
+
 }
 
 void MainWindow::stopFeedback()
@@ -259,6 +286,7 @@ void MainWindow::stopFeedback()
     ui->femininePushButton->setStyleSheet("");
     ui->neuterPushButton->setStyleSheet("");
     ui->nounLabel->setStyleSheet("");
+    ui->memorizationStreakLabel->setStyleSheet("");
 
     feedbackActive = false;
 }
@@ -267,7 +295,7 @@ void MainWindow::on_masculinePushButton_clicked()
 {
     if(!feedbackActive)
     {
-        giveFeedback(Noun::masculine);
+        giveFeedbackAndUpdateMemorizationStreak(Noun::masculine);
     }
 }
 
@@ -275,7 +303,7 @@ void MainWindow::on_femininePushButton_clicked()
 {
     if(!feedbackActive)
     {
-        giveFeedback(Noun::feminine);
+        giveFeedbackAndUpdateMemorizationStreak(Noun::feminine);
     }
 }
 
@@ -283,7 +311,7 @@ void MainWindow::on_neuterPushButton_clicked()
 {
     if(!feedbackActive)
     {
-        giveFeedback(Noun::neuter);
+        giveFeedbackAndUpdateMemorizationStreak(Noun::neuter);
     }
 }
 
