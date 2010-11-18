@@ -92,6 +92,8 @@ void EditNounsDialog::on_addPushButton_clicked()
         nouns->append(noun);
 
         updateGuiAndSortNouns();
+
+        ui->nounsListWidget->setCurrentRow(nouns->indexOf(noun));
     }
 }
 
