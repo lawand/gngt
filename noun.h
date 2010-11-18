@@ -59,10 +59,15 @@ public:
     bool operator== (Noun otherNoun);
     bool operator<  (Noun otherNoun) const;
 
+    //access
+    void setMemorizationStreak(int memorizationStreak);
+    int getMemorizationStreak();
+
 //data members
 public:
     Gender gender;
     QString singularForm;
+    int memorizationStreak;
 };
 
 #endif // Noun_H
