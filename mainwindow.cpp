@@ -275,7 +275,6 @@ void MainWindow::giveFeedbackAndUpdateMemorizationStreak(Noun::Gender chosenGend
     }
 
     nouns->replace(nouns->indexOf(currentNoun), currentNoun);
-
 }
 
 void MainWindow::stopFeedback()
