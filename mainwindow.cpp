@@ -260,18 +260,30 @@ void MainWindow::giveFeedbackAndUpdateMemorizationStreak(Noun::Gender chosenGend
             ui->nounLabel->setStyleSheet("color: rgb(0, 0, 192);");
         }
 
-        ui->memorizationStreakLabel->setText("Streak: 0");
-        ui->memorizationStreakLabel->setStyleSheet("color: rgb(192, 0, 0);");
+        if(currentNoun.memorizationStreak != 0)
+        {
+            ui->memorizationStreakLabel->setText("Streak: 0");
+            ui->memorizationStreakLabel->setStyleSheet(
+                    "color: rgb(192, 0, 0);"
+                    );
+        }
 
         feedbackAndNounSwitchTimer->start();
     }
     else
     {
+        ui->memorizationStreakLabel->setText(
+                QString("Streak: %1").arg(
+                        currentNoun.getMemorizationStreak() + 1
+                        )
+                );
+        ui->memorizationStreakLabel->setStyleSheet("color: rgb(0, 192, 0);");
+
         currentNoun.setMemorizationStreak(
                 currentNoun.getMemorizationStreak() + 1
                 );
 
-        displayNewNoun();
+        feedbackAndNounSwitchTimer->start();
     }
 
     nouns->replace(nouns->indexOf(currentNoun), currentNoun);
