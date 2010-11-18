@@ -135,7 +135,8 @@ MainWindow::MainWindow(QWidget *parent) :
                         memorizationStreak = parts.last().toInt();
                     }
 
-                    parts.removeLast();
+                    if(parts.length() > 2)
+                        parts.removeLast();
 
                     QString nounPartOfTheLine = parts.join(" ");
 
