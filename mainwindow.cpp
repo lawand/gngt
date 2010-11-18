@@ -233,7 +233,9 @@ void MainWindow::displayNewNoun()
     }
 }
 
-void MainWindow::giveFeedbackAndUpdateMemorizationStreak(Noun::Gender chosenGender)
+void MainWindow::giveFeedbackAndUpdateMemorizationStreak(
+        Noun::Gender chosenGender
+        )
 {
     Noun currentNoun = nouns->at(nounIndex);
 
