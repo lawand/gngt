@@ -208,8 +208,16 @@ MainWindow::~MainWindow()
         QTextStream out(nounsFile);
         out.setCodec(QTextCodec::codecForName("UTF-8"));
 
+        int largestLength = 0;
         foreach(Noun noun, *nouns)
-            out << noun.toString() << " " << noun.memorizationStreak << "\n";
+        {
+            if(noun.singularForm.length() > largestLength)
+                largestLength = noun.singularForm.length();
+        }
+
+        foreach(Noun noun, *nouns)
+            out << qSetFieldWidth(largestLength + 5) << left << noun.toString()
+                << qSetFieldWidth(1) << noun.memorizationStreak << "\n";
 
         nounsFile->close();
     }
