@@ -31,39 +31,42 @@
 //corresponding header file(s)
 #include "noun.h"
 
-Noun::Noun() :
-        gender(Noun::masculine)
+Noun::Noun(QString definiteArticleAndSingularForm, int memorizationStreak)
 {
+    if(Noun::isValid(definiteArticleAndSingularForm))
+    {
+        QStringList parts = definiteArticleAndSingularForm.split(
+                QRegExp("\\s+"),
+                QString::SkipEmptyParts
+                );
 
+        QString article = parts.value(0);
+        QString singularForm = parts.value(1);
+
+        article = article.toLower();
+        singularForm = singularForm.toLower();
+        singularForm[0] = singularForm[0].toUpper();
+
+        if(article[2] == 'r')
+            gender = Noun::masculine;
+        if(article[2] == 'e')
+            gender = Noun::feminine;
+        if(article[2] == 's')
+            gender = Noun::neuter;
+
+        this->singularForm = singularForm;
+    }
+    else
+    {
+        this->gender = Noun::neuter;
+        this->singularForm = "Buch";
+    }
+
+    this->memorizationStreak = memorizationStreak;
 }
 
 Noun::~Noun()
 {
-}
-
-
-Noun::Noun(QString definiteArticleAndSingularForm)
-{
-    QStringList parts = definiteArticleAndSingularForm.split(
-            QRegExp("\\s+"),
-            QString::SkipEmptyParts
-            );
-
-    QString article = parts.value(0);
-    QString singularForm = parts.value(1);
-
-    article = article.toLower();
-    singularForm = singularForm.toLower();
-    singularForm[0] = singularForm[0].toUpper();
-
-    if(article[2] == 'r')
-        gender = Noun::masculine;
-    if(article[2] == 'e')
-        gender = Noun::feminine;
-    if(article[2] == 's')
-        gender = Noun::neuter;
-
-    this->singularForm = singularForm;
 }
 
 QString Noun::toString()

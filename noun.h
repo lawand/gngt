@@ -45,11 +45,11 @@ public:
 
 //member functions
 public:
-    explicit Noun();
+    explicit Noun(QString definiteArticleAndSingularForm = "",
+                  int memorizationStreak = 0);
     ~Noun();
 
     //conversion
-    Noun(QString definiteArticleAndSingularForm);
     QString toString();
 
     //validation
