@@ -118,6 +118,8 @@ void EditNounsDialog::on_editPushButton_clicked()
             nouns->append(nounToAppend);
 
             updateGuiAndSortNouns();
+
+            ui->nounsListWidget->setCurrentRow(nouns->indexOf(nounToAppend));
         }
     }
 }
