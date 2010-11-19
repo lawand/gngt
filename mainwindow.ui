@@ -68,7 +68,7 @@
     <item>
      <widget class="QLabel" name="memorizationStreakLabel">
       <property name="text">
-       <string>Streak: 0</string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
