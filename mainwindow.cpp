@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
             );
     connect(feedbackAndNounSwitchTimer,
             SIGNAL(timeout()),
-            SLOT(displayNewNoun())
+            SLOT(updateGui())
             );
     connect(ui->actionEdit_Nouns, SIGNAL(triggered()), SLOT(editNouns()));
     connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));

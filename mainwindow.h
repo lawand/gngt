@@ -52,9 +52,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void updateGui();
-
 private slots:
+    void updateGui();
     void displayNewNoun();
     void giveFeedbackAndUpdateNouns(Noun::Gender chosenGender);
     void stopFeedback();
