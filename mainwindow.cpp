@@ -49,7 +49,6 @@ MainWindow::MainWindow(QWidget *parent) :
     feedbackAndNounSwitchTimer(new QTimer(this)),
     nouns(new QList<Noun>()),
     nounIndex(0),
-    feedbackActive(false),
     nounsFile(new QFile())
 {
     //initialization
@@ -269,8 +268,6 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
 {
     Noun currentNoun = nouns->at(nounIndex);
 
-    feedbackActive = true;
-
     //in case of a mistake, give feedback
     if(currentNoun.gender != chosenGender)
     {
@@ -341,13 +338,11 @@ void MainWindow::stopFeedback()
     ui->neuterPushButton->setStyleSheet("");
     ui->nounLabel->setStyleSheet("");
     ui->memorizationStreakLabel->setStyleSheet("");
-
-    feedbackActive = false;
 }
 
 void MainWindow::on_masculinePushButton_clicked()
 {
-    if(!feedbackActive)
+    if(!feedbackAndNounSwitchTimer->isActive())
     {
         giveFeedbackAndUpdateNouns(Noun::masculine);
     }
@@ -355,7 +350,7 @@ void MainWindow::on_masculinePushButton_clicked()
 
 void MainWindow::on_femininePushButton_clicked()
 {
-    if(!feedbackActive)
+    if(!feedbackAndNounSwitchTimer->isActive())
     {
         giveFeedbackAndUpdateNouns(Noun::feminine);
     }
@@ -363,7 +358,7 @@ void MainWindow::on_femininePushButton_clicked()
 
 void MainWindow::on_neuterPushButton_clicked()
 {
-    if(!feedbackActive)
+    if(!feedbackAndNounSwitchTimer->isActive())
     {
         giveFeedbackAndUpdateNouns(Noun::neuter);
     }

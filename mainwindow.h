@@ -71,7 +71,6 @@ private:
     QTimer *feedbackAndNounSwitchTimer;
     QList<Noun> *nouns;
     int nounIndex;
-    bool feedbackActive;
     QFile *nounsFile;
 };
 
