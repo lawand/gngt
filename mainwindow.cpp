@@ -103,6 +103,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
                     if(! QRegExp("^[0-9]$").exactMatch(parts.last()))
                     {
+
                         QMessageBox::warning(0,
                                              "Read Error",
                                              QString("Error reading the "
@@ -257,6 +258,8 @@ void MainWindow::displayNewNoun()
 
 void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
 {
+    feedbackActive = true;
+
     Noun currentNoun = nouns->at(nounIndex);
 
     //in case of a mistake, give feedback
@@ -310,6 +313,10 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
                     );
 
             nouns->removeAt(nouns->indexOf(currentNoun));
+
+            QTimer::singleShot(1500, this, SLOT(stopFeedback()));
+            QTimer::singleShot(1500, this, SLOT(updateGui()));
+            return;
         }
         else
         {
@@ -319,7 +326,6 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
 
     QTimer::singleShot(800, this, SLOT(stopFeedback()));
     QTimer::singleShot(800, this, SLOT(updateGui()));
-    feedbackActive = true;
 }
 
 void MainWindow::stopFeedback()
