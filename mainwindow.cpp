@@ -269,11 +269,11 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
 {
     Noun currentNoun = nouns->at(nounIndex);
 
+    feedbackActive = true;
+
     //in case of a mistake, give feedback
     if(currentNoun.gender != chosenGender)
     {
-        feedbackActive = true;
-
         if(currentNoun.gender == Noun::masculine)
         {
             ui->masculinePushButton->setStyleSheet("color: rgb(0, 192, 0);");
