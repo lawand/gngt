@@ -285,9 +285,9 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
             ui->memorizationStreakLabel->setStyleSheet(
                     "color: rgb(192, 0, 0);"
                     );
-        }
 
-        nouns->replace(nouns->indexOf(currentNoun), currentNoun);
+            nouns->replace(nouns->indexOf(currentNoun), currentNoun);
+        }
     }
     else
     {
