@@ -41,13 +41,12 @@ ReadNounErrorDialog::ReadNounErrorDialog(int lineNumber,
 {
     //initialization
     ui->setupUi(this);
+    this->lineNumber = lineNumber;
+    this->line = line;
     this->nouns = nouns;
 
     //fix window size
     layout()->setSizeConstraint(QLayout::SetFixedSize);
-
-    this->lineNumber = lineNumber;
-    this->line = line;
 
     ui->label->setText(QString("Cannot read the noun in line: %1 \nWhich "
                                "contains: '%2' \n\nDo you want to edit this "
