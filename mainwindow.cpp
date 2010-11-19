@@ -38,6 +38,7 @@
 #include <QStringList>
 #include "readnounerrordialog.h"
 #include "editnounsdialog.h"
+#include "readstreakerrordialog.h"
 
 //corresponding header file(s)
 #include "mainwindow.h"
@@ -87,12 +88,13 @@ MainWindow::MainWindow(QWidget *parent) :
             in.setCodec(QTextCodec::codecForName("UTF-8"));
             int lineNumber = 1;
 
-            bool ignoreAll = false;
+            bool ignoreAllNounErrors = false;
+            bool ignoreAllStreakErrors = false;
 
             while(!in.atEnd())
             {
                 QString line = in.readLine();
-                int memorizationStreak;
+                int memorizationStreak = 0;
 
                 if(!line.isEmpty())     //empty lines neither cause errors
                     //nor should be parsed and added
@@ -103,23 +105,26 @@ MainWindow::MainWindow(QWidget *parent) :
 
                     if(! QRegExp("^[0-9]$").exactMatch(parts.last()))
                     {
+                        if(ignoreAllStreakErrors == false)
+                        {
+                            ReadStreakErrorDialog readStreakErrorDialog(
+                                    lineNumber,
+                                    line,
+                                    0);
 
-                        QMessageBox::warning(0,
-                                             "Read Error",
-                                             QString("Error reading the "
-                                                     "memorization streak for "
-                                                     "the noun found at line "
-                                                     "number: %1. \n"
-                                                     "The line contains: '%2'."
-                                                     "\n\n"
-                                                     "The memorization streak "
-                                                     "for this noun is now set "
-                                                     "to 0."
-                                                     ).arg(lineNumber).arg(
-                                                             line
-                                                             )
-                                             );
-                        memorizationStreak = 0;
+                            int result = readStreakErrorDialog.exec();
+
+                            if(result == QDialog::Accepted)
+                            {
+                                memorizationStreak = readStreakErrorDialog.
+                                                     getValue();
+                            }
+                            else
+                            {
+                                if(readStreakErrorDialog.shouldIgnoreAll())
+                                    ignoreAllStreakErrors = true;
+                            }
+                        }
                     }
                     else
                     {
@@ -140,7 +145,7 @@ MainWindow::MainWindow(QWidget *parent) :
                     }
                     else
                     {
-                        if(ignoreAll == false)
+                        if(ignoreAllNounErrors == false)
                         {
                             ReadNounErrorDialog readNounErrorDialog(lineNumber,
                                                             line,
@@ -161,7 +166,7 @@ MainWindow::MainWindow(QWidget *parent) :
                             else
                             {
                                 if(readNounErrorDialog.shouldIgnoreAll())
-                                    ignoreAll = true;
+                                    ignoreAllNounErrors = true;
                             }
                         }
                     }
