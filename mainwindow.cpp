@@ -46,22 +46,13 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    feedbackAndNounSwitchTimer(new QTimer(this)),
     nouns(new QList<Noun>()),
     nounIndex(0),
-    nounsFile(new QFile())
+    nounsFile(new QFile()),
+    feedbackActive(false)
 {
     //initialization
     ui->setupUi(this);
-    feedbackAndNounSwitchTimer->setInterval(800);
-    connect(feedbackAndNounSwitchTimer,
-            SIGNAL(timeout()),
-            SLOT(stopFeedback())
-            );
-    connect(feedbackAndNounSwitchTimer,
-            SIGNAL(timeout()),
-            SLOT(updateGui())
-            );
     connect(ui->actionEdit_Nouns, SIGNAL(triggered()), SLOT(editNouns()));
     connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
     connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
@@ -326,12 +317,14 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
         }
     }
 
-    feedbackAndNounSwitchTimer->start();
+    QTimer::singleShot(800, this, SLOT(stopFeedback()));
+    QTimer::singleShot(800, this, SLOT(updateGui()));
+    feedbackActive = true;
 }
 
 void MainWindow::stopFeedback()
 {
-    feedbackAndNounSwitchTimer->stop();
+    feedbackActive = false;
 
     ui->masculinePushButton->setStyleSheet("");
     ui->femininePushButton->setStyleSheet("");
@@ -342,7 +335,7 @@ void MainWindow::stopFeedback()
 
 void MainWindow::on_masculinePushButton_clicked()
 {
-    if(!feedbackAndNounSwitchTimer->isActive())
+    if(!feedbackActive)
     {
         giveFeedbackAndUpdateNouns(Noun::masculine);
     }
@@ -350,7 +343,7 @@ void MainWindow::on_masculinePushButton_clicked()
 
 void MainWindow::on_femininePushButton_clicked()
 {
-    if(!feedbackAndNounSwitchTimer->isActive())
+    if(!feedbackActive)
     {
         giveFeedbackAndUpdateNouns(Noun::feminine);
     }
@@ -358,7 +351,7 @@ void MainWindow::on_femininePushButton_clicked()
 
 void MainWindow::on_neuterPushButton_clicked()
 {
-    if(!feedbackAndNounSwitchTimer->isActive())
+    if(!feedbackActive)
     {
         giveFeedbackAndUpdateNouns(Noun::neuter);
     }

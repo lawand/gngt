@@ -68,10 +68,10 @@ private slots:
 //data members
 private:
     Ui::MainWindow *ui;
-    QTimer *feedbackAndNounSwitchTimer;
     QList<Noun> *nouns;
     int nounIndex;
     QFile *nounsFile;
+    bool feedbackActive;
 };
 
 #endif // MAINWINDOW_H
