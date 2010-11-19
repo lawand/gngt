@@ -236,6 +236,8 @@ void MainWindow::updateGui()
         ui->masculinePushButton->setEnabled(false);
         ui->femininePushButton->setEnabled(false);
         ui->neuterPushButton->setEnabled(false);
+
+        ui->memorizationStreakLabel->setText("");
     }
     else
     {
