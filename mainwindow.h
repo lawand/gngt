@@ -35,8 +35,6 @@
 #include "noun.h"
 
 //data member(s) forward declaration(s)
-class QTimer;
-class QString;
 class QStringList;
 class QFile;
 

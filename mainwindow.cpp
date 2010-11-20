@@ -25,8 +25,6 @@
 ****************************************************************************/
 
 //data member(s)
-#include <QTimer>
-#include <QString>
 #include <QStringList>
 #include <QFile>
 
@@ -36,6 +34,8 @@
 #include <QMessageBox>
 #include <QTime>
 #include <QDesktopWidget>
+#include <QTimer>
+#include <QString>
 #include "editnounsdialog.h"
 #include "editlinesdialog.h"
 
