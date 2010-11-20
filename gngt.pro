@@ -8,21 +8,18 @@ SOURCES += \
     mainwindow.cpp \
     editnoundialog.cpp \
     editnounsdialog.cpp \
-    readnounerrordialog.cpp \
-    readstreakerrordialog.cpp
+    editlinesdialog.cpp
 HEADERS += \
     noun.h \
     mainwindow.h \
     editnoundialog.h \
     editnounsdialog.h \
-    readnounerrordialog.h \
-    readstreakerrordialog.h
+    editlinesdialog.h
 FORMS += \
     mainwindow.ui \
     editnoundialog.ui \
     editnounsdialog.ui \
-    readnounerrordialog.ui \
-    readstreakerrordialog.ui
+    editlinesdialog.ui
 
 RESOURCES += \
     main.qrc

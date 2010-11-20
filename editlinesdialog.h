@@ -24,51 +24,45 @@
 **
 ****************************************************************************/
 
-#ifndef READNOUNERRORDIALOG_H
-#define READNOUNERRORDIALOG_H
+#ifndef EDITLINESDIALOG_H
+#define EDITLINESDIALOG_H
 
 //base class(es)
 #include <QDialog>
 
-//template data member(s)
+//data member(s)
 #include <QList>
 #include "noun.h"
 
-//data member(s)
-#include <QString>
+//data member(s) forward declaration(s)
+class QStringList;
 
 namespace Ui {
-    class ReadNounErrorDialog;
+    class EditLinesDialog;
 }
 
-class ReadNounErrorDialog : public QDialog
+class EditLinesDialog : public QDialog
 {
     Q_OBJECT
 
-//member functions
 public:
-    explicit ReadNounErrorDialog(int lineNumber,
-                             QString line,
+    explicit EditLinesDialog(QStringList* lines,
                              QList<Noun>* nouns,
                              QWidget *parent = 0);
-    ~ReadNounErrorDialog();
+    ~EditLinesDialog();
 
-    //public access functions
-    bool shouldIgnoreAll();
-    QString getLine();
+    void updateGui();
 
-//data members
 private:
-    Ui::ReadNounErrorDialog *ui;
-    int lineNumber;
-    QString line;
-    bool ignoreAll;
-    QList<Noun> *nouns;
+    Ui::EditLinesDialog *ui;
+    QList<Noun>* nouns;
+    QStringList* lines;
 
 private slots:
-    void on_fixPushButton_clicked();
-    void on_ignorePushButton_clicked();
-    void on_ignoreAllPushButton_clicked();
+    void on_editPushButton_clicked();
+    void on_removePushButton_clicked();
+    void on_removeAllPushButton_clicked();
+    void on_donePushButton_clicked();
 };
 
-#endif // READNOUNERRORDIALOG_H
+#endif // EDITLINESDIALOG_H
