@@ -37,6 +37,7 @@
 //data member(s) forward declaration(s)
 class QTimer;
 class QString;
+class QStringList;
 class QFile;
 
 namespace Ui {
@@ -69,6 +70,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QList<Noun> *nouns;
+    QStringList* erroneousLines;
     int nounIndex;
     QFile *nounsFile;
     bool feedbackActive;

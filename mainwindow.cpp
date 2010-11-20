@@ -27,6 +27,7 @@
 //data member(s)
 #include <QTimer>
 #include <QString>
+#include <QStringList>
 #include <QFile>
 
 //implementation-specific data type(s)
@@ -35,10 +36,8 @@
 #include <QMessageBox>
 #include <QTime>
 #include <QDesktopWidget>
-#include <QStringList>
-#include "readnounerrordialog.h"
 #include "editnounsdialog.h"
-#include "readstreakerrordialog.h"
+#include "editlinesdialog.h"
 
 //corresponding header file(s)
 #include "mainwindow.h"
@@ -48,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     nouns(new QList<Noun>()),
+    erroneousLines(new QStringList()),
     nounIndex(0),
     nounsFile(new QFile()),
     feedbackActive(false)
@@ -86,10 +86,6 @@ MainWindow::MainWindow(QWidget *parent) :
         {
             QTextStream in(nounsFile);
             in.setCodec(QTextCodec::codecForName("UTF-8"));
-            int lineNumber = 1;
-
-            bool ignoreAllNounErrors = false;
-            bool ignoreAllStreakErrors = false;
 
             while(!in.atEnd())
             {
@@ -103,30 +99,7 @@ MainWindow::MainWindow(QWidget *parent) :
                                                    QString::SkipEmptyParts
                                                    );
 
-                    if(! QRegExp("^[0-9]$").exactMatch(parts.last()))
-                    {
-                        if(ignoreAllStreakErrors == false)
-                        {
-                            ReadStreakErrorDialog readStreakErrorDialog(
-                                    lineNumber,
-                                    line,
-                                    0);
-
-                            int result = readStreakErrorDialog.exec();
-
-                            if(result == QDialog::Accepted)
-                            {
-                                memorizationStreak = readStreakErrorDialog.
-                                                     getValue();
-                            }
-                            else
-                            {
-                                if(readStreakErrorDialog.shouldIgnoreAll())
-                                    ignoreAllStreakErrors = true;
-                            }
-                        }
-                    }
-                    else
+                    if( QRegExp("^[0-9]$").exactMatch(parts.last()) )
                     {
                         memorizationStreak = parts.last().toInt();
                     }
@@ -145,36 +118,32 @@ MainWindow::MainWindow(QWidget *parent) :
                     }
                     else
                     {
-                        if(ignoreAllNounErrors == false)
-                        {
-                            ReadNounErrorDialog readNounErrorDialog(lineNumber,
-                                                            line,
-                                                            nouns,
-                                                            0);
-
-                            int result = readNounErrorDialog.exec();
-
-                            if(result == QDialog::Accepted)
-                            {
-                                Noun noun(readNounErrorDialog.getLine(),
-                                          memorizationStreak
-                                          );
-
-                                if(nouns->indexOf(noun) == -1)
-                                    nouns->append(noun);
-                            }
-                            else
-                            {
-                                if(readNounErrorDialog.shouldIgnoreAll())
-                                    ignoreAllNounErrors = true;
-                            }
-                        }
+                        erroneousLines->append(line);
                     }
                 }
-
-                lineNumber++;
             }
             nounsFile->close();
+        }
+    }
+
+    if(! erroneousLines->isEmpty())
+    {
+        QMessageBox::StandardButton result;
+        result = QMessageBox::question(0,
+                                       "Correct Erroneous Lines?",
+                                       "Some lines contained errors and "
+                                       "weren't able to be read. Memorization "
+                                       "Streaks are reset to 0. Do you want to "
+                                       "fix the nouns? (not doing so leads to "
+                                       "deleting them)",
+                                       QMessageBox::Yes|QMessageBox::No,
+                                       QMessageBox::Yes
+                                       );
+        if(result == QMessageBox::Yes)
+        {
+            EditLinesDialog editLinesDialog(erroneousLines, nouns);
+            editLinesDialog.exec();
+            qSort(*nouns);
         }
     }
 
@@ -221,6 +190,7 @@ MainWindow::~MainWindow()
 
     delete ui;
     delete nouns;
+    delete erroneousLines;
 }
 
 void MainWindow::updateGui()
