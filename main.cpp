@@ -30,19 +30,32 @@
 
 int main(int argc, char *argv[])
 {
-    QtSingleApplication qtSingleApplication(argc, argv);
 
-    if (qtSingleApplication.isRunning())
+#ifndef Q_OS_SYMBIAN
+    QtSingleApplication application(argc, argv);
+#else
+    QApplication application(argc, argv);
+#endif
+
+#ifndef Q_OS_SYMBIAN
+    if (application.isRunning())
     {
-        return !qtSingleApplication.sendMessage("Are you running?");
+        return !application.sendMessage("Are you running?");
     }
+#endif
 
-    qtSingleApplication.setWindowIcon(QIcon(":/icons/applicationIcon.png"));
+    application.setWindowIcon(QIcon(":/icons/applicationIcon.png"));
 
     MainWindow mainWindow;
+#ifndef Q_OS_SYMBIAN
     mainWindow.show();
+#else
+    mainWindow.showMaximized();
+#endif
 
-    qtSingleApplication.setActivationWindow(&mainWindow);
+#ifndef Q_OS_SYMBIAN
+    application.setActivationWindow(&mainWindow);
+#endif
 
-    return qtSingleApplication.exec();
+    return application.exec();
 }
