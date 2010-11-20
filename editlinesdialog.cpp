@@ -68,7 +68,7 @@ void EditLinesDialog::updateGui()
 
     if(!lines->isEmpty())
     {
-        ui->linesListWidget->addItems(lines);
+        ui->linesListWidget->addItems(*lines);
 
         ui->editPushButton->setEnabled(true);
         ui->removePushButton->setEnabled(true);
