@@ -373,4 +373,6 @@ void MainWindow::editNouns()
     editNounsDialog.exec();
 
     updateGui();
+
+    writeNounsAndErroneousLines();
 }
