@@ -7,19 +7,16 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     editnoundialog.cpp \
-    editnounsdialog.cpp \
-    editlinesdialog.cpp
+    editnounsdialog.cpp
 HEADERS += \
     noun.h \
     mainwindow.h \
     editnoundialog.h \
-    editnounsdialog.h \
-    editlinesdialog.h
+    editnounsdialog.h
 FORMS += \
     mainwindow.ui \
     editnoundialog.ui \
-    editnounsdialog.ui \
-    editlinesdialog.ui
+    editnounsdialog.ui
 
 RESOURCES += \
     main.qrc

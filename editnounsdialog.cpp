@@ -34,19 +34,22 @@
 #include "editnounsdialog.h"
 #include "ui_editnounsdialog.h"
 
-EditNounsDialog::EditNounsDialog(QList<Noun>* nouns, QWidget *parent) :
+EditNounsDialog::EditNounsDialog(QStringList* lines,
+                                 QList<Noun>* nouns,
+                                 QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditNounsDialog)
 {
     //initialization
     ui->setupUi(this);
     this->nouns = nouns;
+    this->lines = lines;
 
     //fix window size
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 
     //initial update
-    updateGuiAndSortNouns();
+    updateState();
 }
 
 EditNounsDialog::~EditNounsDialog()
@@ -54,30 +57,37 @@ EditNounsDialog::~EditNounsDialog()
     delete ui;
 }
 
-void EditNounsDialog::updateGuiAndSortNouns()
+void EditNounsDialog::updateState()
 {
     ui->numberOfNounsLabel->setText(
             QString("Number Of Nouns: %2").arg(nouns->length())
             );
 
-    ui->nounsListWidget->clear();
+    ui->listWidget->clear();
 
-    if(!nouns->isEmpty())
-    {
-        qSort(*nouns);
-
-        foreach(Noun noun, *nouns)
-            ui->nounsListWidget->addItem(noun.toString());
-
-        ui->editPushButton->setEnabled(true);
-        ui->removePushButton->setEnabled(true);
-        ui->removeAllPushButton->setEnabled(true);
-    }
-    else
+    if(nouns->isEmpty() & lines->isEmpty())
     {
         ui->editPushButton->setEnabled(false);
         ui->removePushButton->setEnabled(false);
         ui->removeAllPushButton->setEnabled(false);
+    }
+    else
+    {
+        foreach(QString line, *lines)
+        {
+            QListWidgetItem *qListWidgetItem = new QListWidgetItem(line);
+            qListWidgetItem->setTextColor(Qt::red);
+            ui->listWidget->addItem(qListWidgetItem);
+        }
+
+        qSort(*nouns);
+
+        foreach(Noun noun, *nouns)
+            ui->listWidget->addItem(noun.toString());
+
+        ui->editPushButton->setEnabled(true);
+        ui->removePushButton->setEnabled(true);
+        ui->removeAllPushButton->setEnabled(true);
     }
 }
 
@@ -87,70 +97,88 @@ void EditNounsDialog::on_addPushButton_clicked()
 
     if(editNounDialog.exec() == QDialog::Accepted)
     {
-        Noun noun(editNounDialog.getText());
+        Noun nounToAppend(editNounDialog.getText());
+        nouns->append(nounToAppend);
 
-        nouns->append(noun);
+        updateState();
 
-        updateGuiAndSortNouns();
-
-        ui->nounsListWidget->setCurrentRow(nouns->indexOf(noun));
+        ui->listWidget->setCurrentRow(
+                nouns->indexOf(nounToAppend) + lines->length()
+                );
     }
 }
 
 void EditNounsDialog::on_editPushButton_clicked()
 {
-    //if no noun is selected
-    if(ui->nounsListWidget->currentRow() == -1)
+    //if nothing is selected
+    if(ui->listWidget->currentRow() == -1)
     {
         QMessageBox::information(this,
-                                 "Select A Noun",
-                                 "A noun must be selected");
+                                 "Select An Item",
+                                 "An item must be selected");
     }
     else
     {
-        EditNounDialog editNounDialog(nouns);
-        editNounDialog.setText(ui->nounsListWidget->currentItem()->text());
+        EditNounDialog editNounDialog(nouns, this);
+        editNounDialog.setText(ui->listWidget->currentItem()->text());
 
         if(editNounDialog.exec() == QDialog::Accepted)
         {
-            nouns->removeAt(ui->nounsListWidget->currentRow());
+            bool editingANoun = true;
+            Noun nounToRemove(ui->listWidget->currentItem()->text());
+            if(! nouns->removeOne(nounToRemove))
+            {
+                editingANoun = false;
+                lines->removeAt(ui->listWidget->currentRow());
+            }
 
             Noun nounToAppend(editNounDialog.getText());
             nouns->append(nounToAppend);
 
-            updateGuiAndSortNouns();
+            updateState();
 
-            ui->nounsListWidget->setCurrentRow(nouns->indexOf(nounToAppend));
+            ui->listWidget->setCurrentRow(
+                    nouns->indexOf(nounToAppend) + lines->length()
+                    );
         }
     }
 }
 
 void EditNounsDialog::on_removePushButton_clicked()
 {
-    //if no noun is selected
-    if(ui->nounsListWidget->currentRow() == -1)
+    //if nothing is selected
+    if(ui->listWidget->currentRow() == -1)
     {
         QMessageBox::information(this,
-                                 "Select A Noun",
-                                 "A noun must be selected");
+                                 "Select An Item",
+                                 "An item must be selected");
     }
     else
     {
-        int tempRow = ui->nounsListWidget->currentRow();
-        nouns->removeAt(tempRow);
+        int tempRow = ui->listWidget->currentRow();
 
-        updateGuiAndSortNouns();
+        Noun nounToRemove(ui->listWidget->currentItem()->text());
+        if(! nouns->removeOne(nounToRemove))
+            lines->removeAt(ui->listWidget->currentRow());
 
-        if(tempRow != ui->nounsListWidget->count())
-            ui->nounsListWidget->setCurrentRow(tempRow);
+        updateState();
+
+        if(tempRow != ui->listWidget->count())
+            ui->listWidget->setCurrentRow(tempRow);
         else
-            ui->nounsListWidget->setCurrentRow(tempRow - 1);
+            ui->listWidget->setCurrentRow(tempRow - 1);
     }
 }
 
 void EditNounsDialog::on_removeAllPushButton_clicked()
 {
     nouns->clear();
+    lines->clear();
 
-    updateGuiAndSortNouns();
+    updateState();
+}
+
+void EditNounsDialog::on_donePushButton_clicked()
+{
+    accept();
 }

@@ -43,20 +43,24 @@ class EditNounsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditNounsDialog(QList<Noun>* nouns, QWidget *parent = 0);
+    explicit EditNounsDialog(QStringList* lines,
+                             QList<Noun>* nouns,
+                             QWidget *parent = 0);
     ~EditNounsDialog();
 
-    void updateGuiAndSortNouns();
+    void updateState();
 
 private:
     Ui::EditNounsDialog *ui;
     QList<Noun>* nouns;
+    QStringList* lines;
 
 private slots:
     void on_addPushButton_clicked();
     void on_editPushButton_clicked();
     void on_removePushButton_clicked();
     void on_removeAllPushButton_clicked();
+    void on_donePushButton_clicked();
 };
 
 #endif // EDITNOUNSDIALOG_H

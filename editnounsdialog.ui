@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
-    <widget class="QListWidget" name="nounsListWidget"/>
+    <widget class="QListWidget" name="listWidget"/>
    </item>
    <item row="1" column="0" colspan="2">
     <widget class="QLabel" name="numberOfNounsLabel">
@@ -65,7 +65,7 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>nounsListWidget</tabstop>
+  <tabstop>listWidget</tabstop>
   <tabstop>addPushButton</tabstop>
   <tabstop>editPushButton</tabstop>
   <tabstop>removePushButton</tabstop>
@@ -73,22 +73,5 @@
   <tabstop>donePushButton</tabstop>
  </tabstops>
  <resources/>
- <connections>
-  <connection>
-   <sender>donePushButton</sender>
-   <signal>clicked()</signal>
-   <receiver>EditNounsDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>347</x>
-     <y>276</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>199</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

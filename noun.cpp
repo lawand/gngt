@@ -59,7 +59,7 @@ Noun::Noun(QString definiteArticleAndSingularForm, int memorizationStreak)
     else
     {
         this->gender = Noun::neuter;
-        this->singularForm = "Buch";
+        this->singularForm = "Error";
     }
 
     this->memorizationStreak = memorizationStreak;
@@ -92,16 +92,13 @@ bool Noun::isValid(QString definiteArticleAndSingularForm)
     if(parts.size() != 2)
         return false;
 
-    if(parts.at(1).length() > 23)
-        return false;
-
     if(! QRegExp("^der|die|das$").exactMatch(parts.at(0).toLower()))
         return false;
 
-    QRegExp anyNumberOfEnglishOrGermanLetters(
-            "^[a-zA-Z\x00C4\x00D6\x00DC\x00DF\x00E4\x00F6\x00FC]*$"
-            );
-    if(! anyNumberOfEnglishOrGermanLetters.exactMatch(parts.at(1)))
+    if(! QRegExp(
+            "^[a-zA-Z\x00C4\x00D6\x00DC\x00DF\x00E4\x00F6\x00FC]{3,23}$"
+            ).exactMatch(parts.at(1))
+        )
         return false;
 
     //at this point, accept can be called

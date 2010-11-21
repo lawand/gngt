@@ -37,7 +37,6 @@
 #include <QTimer>
 #include <QString>
 #include "editnounsdialog.h"
-#include "editlinesdialog.h"
 
 //corresponding header file(s)
 #include "mainwindow.h"
@@ -107,23 +106,21 @@ MainWindow::MainWindow(QWidget *parent) :
                     if( QRegExp("^[0-9]$").exactMatch(parts.last()) )
                     {
                         memorizationStreak = parts.last().toInt();
+                        parts.removeLast();
                     }
 
-                    if(parts.length() > 2)
-                        parts.removeLast();
+                    QString partialLine = parts.join(" ");
 
-                    QString nounPartOfTheLine = parts.join(" ");
-
-                    if( Noun::isValid(nounPartOfTheLine) )
+                    if( Noun::isValid(partialLine) )
                     {
-                        Noun noun(nounPartOfTheLine, memorizationStreak);
+                        Noun noun(partialLine, memorizationStreak);
                         if(nouns->indexOf(noun) == -1)   //if the noun doesn't
                             //already exist in the list
                             nouns->append(noun);     //add it to the list
                     }
                     else
                     {
-                        erroneousLines->append(line);
+                        erroneousLines->append(partialLine);
                     }
                 }
             }
@@ -134,22 +131,14 @@ MainWindow::MainWindow(QWidget *parent) :
     if(! erroneousLines->isEmpty())
     {
         QMessageBox::StandardButton result;
-        result = QMessageBox::question(0,
-                                       "Correct Erroneous Lines?",
-                                       "Some lines contained errors and "
-                                       "weren't able to be read. Memorization "
-                                       "Streaks are reset to 0. Do you want to "
-                                       "fix the nouns? (not doing so leads to "
-                                       "deleting them)",
-                                       QMessageBox::Yes|QMessageBox::No,
-                                       QMessageBox::Yes
+        result = QMessageBox::warning(0,
+                                      "Some Lines Couldn't Be Read",
+                                      "Some lines contained errors and "
+                                      "weren't able to be read. Memorization "
+                                      "Streaks are reset to 0. \n"
+                                      "Correct there error using the "
+                                      "'Edit Nouns' option."
                                        );
-        if(result == QMessageBox::Yes)
-        {
-            EditLinesDialog editLinesDialog(erroneousLines, nouns);
-            editLinesDialog.exec();
-            qSort(*nouns);
-        }
     }
 
     //seed the function qrand()
@@ -189,6 +178,11 @@ MainWindow::~MainWindow()
         foreach(Noun noun, *nouns)
             out << qSetFieldWidth(largestLength + 5) << left << noun.toString()
                 << qSetFieldWidth(1) << noun.memorizationStreak << "\n";
+
+        out << "\n";
+
+        foreach(QString line, *erroneousLines)
+            out << line << " " << 0 << "\n";
 
         nounsFile->close();
     }
@@ -361,7 +355,7 @@ void MainWindow::about()
 
 void MainWindow::editNouns()
 {
-    EditNounsDialog editNounsDialog(nouns, this);
+    EditNounsDialog editNounsDialog(erroneousLines, nouns, this);
 
     editNounsDialog.exec();
 
