@@ -117,13 +117,3 @@ bool Noun::operator<  (Noun otherNoun) const
 {
     return this->singularForm < otherNoun.singularForm;
 }
-
-void Noun::setMemorizationStreak(int memorizationStreak)
-{
-    this->memorizationStreak = memorizationStreak;
-}
-
-int Noun::getMemorizationStreak()
-{
-    return memorizationStreak;
-}

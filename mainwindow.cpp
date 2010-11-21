@@ -257,7 +257,7 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
 
         if(currentNoun.memorizationStreak != 0)
         {
-            currentNoun.setMemorizationStreak(0);
+            currentNoun.memorizationStreak = 0;
             ui->memorizationStreakLabel->setText("Streak: 0");
             ui->memorizationStreakLabel->setStyleSheet(
                     "color: rgb(192, 0, 0);"
@@ -270,14 +270,12 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
     {
         ui->memorizationStreakLabel->setText(
                 QString("Streak: %1").arg(
-                        currentNoun.getMemorizationStreak() + 1
+                        currentNoun.memorizationStreak + 1
                         )
                 );
         ui->memorizationStreakLabel->setStyleSheet("color: rgb(0, 192, 0);");
 
-        currentNoun.setMemorizationStreak(
-                currentNoun.getMemorizationStreak() + 1
-                );
+        currentNoun.memorizationStreak++;
 
         if(currentNoun.memorizationStreak == 10)
         {
