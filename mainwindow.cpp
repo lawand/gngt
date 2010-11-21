@@ -105,7 +105,7 @@ MainWindow::~MainWindow()
     delete erroneousLines;
 }
 
-void readNounsAndLines()
+void MainWindow::readNounsAndErroneousLines()
 {
     if(! nounsFile->exists())
     {
@@ -165,7 +165,7 @@ void readNounsAndLines()
     nounsFile->close();
 }
 
-void writeNounsAndLines()
+void MainWindow::writeNounsAndErroneousLines()
 {
     //write nouns into the nouns file
     if(! nounsFile->open(QIODevice::WriteOnly | QIODevice::Text) )
