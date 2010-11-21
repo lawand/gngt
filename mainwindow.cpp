@@ -57,7 +57,12 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionEdit_Nouns, SIGNAL(triggered()), SLOT(editNouns()));
     connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
     connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
-    nounsFile->setFileName("nouns.txt");
+#ifdef Q_OS_WIN32
+    nounsFile.setFileName("nouns.txt");
+#endif
+#ifdef Q_OS_SYMBIAN
+    nounsFile.setFileName("c:/data/Others/nouns.txt");
+#endif
 
     //center widget in screen
     adjustSize();
