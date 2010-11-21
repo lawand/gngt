@@ -172,10 +172,20 @@ void EditNounsDialog::on_removePushButton_clicked()
 
 void EditNounsDialog::on_removeAllPushButton_clicked()
 {
-    nouns->clear();
-    erroneousLines->clear();
+    if( QMessageBox::question(this,
+                              "Are You Sure?",
+                              "Are you sure you want to remove all nouns "
+                              "erroneous lines? (this operation can't be "
+                              "undo-ed)",
+                              QMessageBox::Yes|QMessageBox::No,
+                              QMessageBox::No
+                              ) == QMessageBox::Yes )
+        {
+            nouns->clear();
+            erroneousLines->clear();
 
-    updateState();
+            updateState();
+        }
 }
 
 void EditNounsDialog::on_donePushButton_clicked()
