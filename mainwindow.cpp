@@ -73,61 +73,9 @@ MainWindow::MainWindow(QWidget *parent) :
     setFixedHeight(size().height());
     setFixedWidth(size().width());
 
-    //start the process of reading nouns from the nouns file if it existed
-    if(nounsFile->exists())
-    {
-        //notify the user if the nouns file can't be opened for reading
-        if(! nounsFile->open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            QMessageBox::warning(0, "Nouns File Open Error",
-                                 QString("Cannot open the nouns file '%1' for "
-                                         "reading, try again and if the "
-                                         "problem persisted please report the "
-                                         "bug").arg(nounsFile->fileName())
-                );
-        }
-        else    //read all nouns from the nouns file
-        {
-            QTextStream in(nounsFile);
-            in.setCodec(QTextCodec::codecForName("UTF-8"));
+    readNounsAndErroneousLines();
 
-            while(!in.atEnd())
-            {
-                QString line = in.readLine();
-                int memorizationStreak = 0;
-
-                if(!line.isEmpty())     //empty lines neither cause errors
-                    //nor should be parsed and added
-                {
-                    QStringList parts = line.split(QRegExp("\\s+"),
-                                                   QString::SkipEmptyParts
-                                                   );
-
-                    if( QRegExp("^[0-9]$").exactMatch(parts.last()) )
-                    {
-                        memorizationStreak = parts.last().toInt();
-                        parts.removeLast();
-                    }
-
-                    QString partialLine = parts.join(" ");
-
-                    if( Noun::isValid(partialLine) )
-                    {
-                        Noun noun(partialLine, memorizationStreak);
-                        if(nouns->indexOf(noun) == -1)   //if the noun doesn't
-                            //already exist in the list
-                            nouns->append(noun);     //add it to the list
-                    }
-                    else
-                    {
-                        erroneousLines->append(partialLine);
-                    }
-                }
-            }
-            nounsFile->close();
-        }
-    }
-
+    //give warning about erroneous lines
     if(! erroneousLines->isEmpty())
     {
         QMessageBox::StandardButton result;
@@ -150,6 +98,75 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    writeNounsAndErroneousLines();
+
+    delete ui;
+    delete nouns;
+    delete erroneousLines;
+}
+
+void readNounsAndLines()
+{
+    if(! nounsFile->exists())
+    {
+        return;
+    }
+
+    //notify the user if the nouns file can't be opened for reading
+    if(! nounsFile->open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QMessageBox::warning(0, "Nouns File Open Error",
+                             QString("Cannot open the nouns file '%1' for "
+                                     "reading, try again and if the "
+                                     "problem persisted please report the "
+                                     "bug").arg(nounsFile->fileName())
+            );
+
+        return;
+    }
+
+    //read all nouns from the nouns file
+    QTextStream in(nounsFile);
+    in.setCodec(QTextCodec::codecForName("UTF-8"));
+    while(!in.atEnd())
+    {
+        QString line = in.readLine();
+        int memorizationStreak = 0;
+
+        if(!line.isEmpty())     //empty lines neither cause errors
+            //nor should be parsed and added
+        {
+            QStringList parts = line.split(QRegExp("\\s+"),
+                                           QString::SkipEmptyParts
+                                           );
+
+            if( QRegExp("^[0-9]$").exactMatch(parts.last()) )
+            {
+                memorizationStreak = parts.last().toInt();
+                parts.removeLast();
+            }
+
+            QString partialLine = parts.join(" ");
+
+            if( Noun::isValid(partialLine) )
+            {
+                Noun noun(partialLine, memorizationStreak);
+                if(nouns->indexOf(noun) == -1)   //if the noun doesn't
+                    //already exist in the list
+                    nouns->append(noun);     //add it to the list
+            }
+            else
+            {
+                erroneousLines->append(partialLine);
+            }
+        }
+    }
+
+    nounsFile->close();
+}
+
+void writeNounsAndLines()
+{
     //write nouns into the nouns file
     if(! nounsFile->open(QIODevice::WriteOnly | QIODevice::Text) )
     {
@@ -162,34 +179,32 @@ MainWindow::~MainWindow()
                                              nounsFile->fileName()
                                              )
                              );
+
+        return;
     }
-    else
+
+    QTextStream out(nounsFile);
+    out.setCodec(QTextCodec::codecForName("UTF-8"));
+
+    int largestLength = 0;
+    foreach(Noun noun, *nouns)
     {
-        QTextStream out(nounsFile);
-        out.setCodec(QTextCodec::codecForName("UTF-8"));
-
-        int largestLength = 0;
-        foreach(Noun noun, *nouns)
-        {
-            if(noun.singularForm.length() > largestLength)
-                largestLength = noun.singularForm.length();
-        }
-
-        foreach(Noun noun, *nouns)
-            out << qSetFieldWidth(largestLength + 5) << left << noun.toString()
-                << qSetFieldWidth(1) << noun.memorizationStreak << "\n";
-
-        out << "\n";
-
-        foreach(QString line, *erroneousLines)
-            out << line << " " << 0 << "\n";
-
-        nounsFile->close();
+        if(noun.singularForm.length() > largestLength)
+            largestLength = noun.singularForm.length();
     }
 
-    delete ui;
-    delete nouns;
-    delete erroneousLines;
+    //write nouns
+    foreach(Noun noun, *nouns)
+        out << qSetFieldWidth(largestLength + 5) << left << noun.toString()
+            << qSetFieldWidth(1) << noun.memorizationStreak << "\n";
+
+    out << "\n";
+
+    //write erroneous lines
+    foreach(QString line, *erroneousLines)
+        out << line << " " << 0 << "\n";
+
+    nounsFile->close();
 }
 
 void MainWindow::updateGui()

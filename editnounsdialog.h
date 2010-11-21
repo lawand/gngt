@@ -43,7 +43,7 @@ class EditNounsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditNounsDialog(QStringList* lines,
+    explicit EditNounsDialog(QStringList* erroneousLines,
                              QList<Noun>* nouns,
                              QWidget *parent = 0);
     ~EditNounsDialog();
@@ -53,7 +53,7 @@ public:
 private:
     Ui::EditNounsDialog *ui;
     QList<Noun>* nouns;
-    QStringList* lines;
+    QStringList* erroneousLines;
 
 private slots:
     void on_addPushButton_clicked();

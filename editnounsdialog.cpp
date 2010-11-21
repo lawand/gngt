@@ -34,7 +34,7 @@
 #include "editnounsdialog.h"
 #include "ui_editnounsdialog.h"
 
-EditNounsDialog::EditNounsDialog(QStringList* lines,
+EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
                                  QList<Noun>* nouns,
                                  QWidget *parent) :
     QDialog(parent),
@@ -43,7 +43,7 @@ EditNounsDialog::EditNounsDialog(QStringList* lines,
     //initialization
     ui->setupUi(this);
     this->nouns = nouns;
-    this->lines = lines;
+    this->erroneousLines = erroneousLines;
 
     //fix window size
     layout()->setSizeConstraint(QLayout::SetFixedSize);
@@ -65,7 +65,7 @@ void EditNounsDialog::updateState()
 
     ui->listWidget->clear();
 
-    if(nouns->isEmpty() & lines->isEmpty())
+    if(nouns->isEmpty() & erroneousLines->isEmpty())
     {
         ui->editPushButton->setEnabled(false);
         ui->removePushButton->setEnabled(false);
@@ -73,7 +73,7 @@ void EditNounsDialog::updateState()
     }
     else
     {
-        foreach(QString line, *lines)
+        foreach(QString line, *erroneousLines)
         {
             QListWidgetItem *qListWidgetItem = new QListWidgetItem(line);
             qListWidgetItem->setTextColor(Qt::red);
@@ -103,7 +103,7 @@ void EditNounsDialog::on_addPushButton_clicked()
         updateState();
 
         ui->listWidget->setCurrentRow(
-                nouns->indexOf(nounToAppend) + lines->length()
+                nouns->indexOf(nounToAppend) + erroneousLines->length()
                 );
     }
 }
@@ -129,7 +129,7 @@ void EditNounsDialog::on_editPushButton_clicked()
             if(! nouns->removeOne(nounToRemove))
             {
                 editingANoun = false;
-                lines->removeAt(ui->listWidget->currentRow());
+                erroneousLines->removeAt(ui->listWidget->currentRow());
             }
 
             Noun nounToAppend(editNounDialog.getText());
@@ -138,7 +138,7 @@ void EditNounsDialog::on_editPushButton_clicked()
             updateState();
 
             ui->listWidget->setCurrentRow(
-                    nouns->indexOf(nounToAppend) + lines->length()
+                    nouns->indexOf(nounToAppend) + erroneousLines->length()
                     );
         }
     }
@@ -159,7 +159,7 @@ void EditNounsDialog::on_removePushButton_clicked()
 
         Noun nounToRemove(ui->listWidget->currentItem()->text());
         if(! nouns->removeOne(nounToRemove))
-            lines->removeAt(ui->listWidget->currentRow());
+            erroneousLines->removeAt(ui->listWidget->currentRow());
 
         updateState();
 
@@ -173,7 +173,7 @@ void EditNounsDialog::on_removePushButton_clicked()
 void EditNounsDialog::on_removeAllPushButton_clicked()
 {
     nouns->clear();
-    lines->clear();
+    erroneousLines->clear();
 
     updateState();
 }

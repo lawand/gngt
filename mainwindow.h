@@ -51,6 +51,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void readNounsAndErroneousLines();
+    void writeNounsAndErroneousLines();
+
 private slots:
     void updateGui();
     void displayNewNoun();
