@@ -101,7 +101,7 @@ bool Noun::isValid(QString definiteArticleAndSingularForm)
         )
         return false;
 
-    //at this point, accept can be called
+    //at this point, return true
     return true;
 }
 
