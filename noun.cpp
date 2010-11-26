@@ -41,12 +41,7 @@ Noun::Noun(QString definiteArticleAndSingularForm, int memorizationStreak)
                 );
 
         QString article = parts.value(0);
-        QString singularForm = parts.value(1);
-
         article = article.toLower();
-        singularForm = singularForm.toLower();
-        singularForm[0] = singularForm[0].toUpper();
-
         if(article[2] == 'r')
             gender = Noun::masculine;
         if(article[2] == 'e')
@@ -54,7 +49,9 @@ Noun::Noun(QString definiteArticleAndSingularForm, int memorizationStreak)
         if(article[2] == 's')
             gender = Noun::neuter;
 
-        this->singularForm = singularForm;
+        singularForm = parts.value(1);
+        singularForm = singularForm.toLower();
+        singularForm[0] = singularForm[0].toUpper();
     }
     else
     {

@@ -30,32 +30,39 @@
 
 int main(int argc, char *argv[])
 {
-
+    //create and initialize QApplication or QtSingleApplication
 #ifndef Q_OS_SYMBIAN
     QtSingleApplication application(argc, argv);
 #else
     QApplication application(argc, argv);
 #endif
 
+    //manage instances
 #ifndef Q_OS_SYMBIAN
-    if (application.isRunning())
+    if(application.isRunning())
     {
         return !application.sendMessage("Are you running?");
     }
 #endif
 
-    application.setWindowIcon(QIcon(":/icons/applicationIcon.png"));
+    //set icon for all windows
+    application.setWindowIcon(QIcon(":/icons/applicationIcon.svg"));
 
+    //create an instance of MainWindow
     MainWindow mainWindow;
+
+    //show that instance
 #ifndef Q_OS_SYMBIAN
     mainWindow.show();
 #else
     mainWindow.showMaximized();
 #endif
 
+    //setActivationWindow (for QtSingleApplication)
 #ifndef Q_OS_SYMBIAN
     application.setActivationWindow(&mainWindow);
 #endif
 
+    //start the application
     return application.exec();
 }

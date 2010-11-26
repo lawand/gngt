@@ -1,5 +1,10 @@
 include(qtsingleapplication/qtsingleapplication.pri)
 
+symbian {
+    ICON = applicationIcon.svg
+}
+
+VERSION = 0.7.0
 TARGET = GNGT
 TEMPLATE = app
 SOURCES += \

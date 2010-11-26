@@ -49,10 +49,6 @@ public:
     void setText(QString text);
     QString getText();
 
-private:
-    Ui::EditNounDialog *ui;
-    QList<Noun>* nouns;
-
 private slots:
     void on_buttonBox_accepted();
 
@@ -65,6 +61,10 @@ private slots:
     void on_smallAWithDiaeresisToolButton_clicked();
     void on_smallOWithDiaeresisToolButton_clicked();
     void on_smallUWithDiaeresisToolButton_clicked();
+
+private:
+    Ui::EditNounDialog *ui;
+    QList<Noun>* nouns;
 };
 
 #endif // EDITNOUNDIALOG_H

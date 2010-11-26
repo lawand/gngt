@@ -36,6 +36,8 @@
 #include <QDesktopWidget>
 #include <QTimer>
 #include <QString>
+#include <QTextEdit>
+#include <QDir>
 #include "editnounsdialog.h"
 
 //corresponding header file(s)
@@ -57,40 +59,37 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
     connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
 
+    //set nouns file name
 #ifdef Q_OS_SYMBIAN
     nounsFile->setFileName("c:/data/Others/nouns.txt");
 #else
     nounsFile->setFileName("nouns.txt");
 #endif
 
-    //center widget in screen
+    //center widget in screen and fix window size
+#ifndef Q_OS_SYMBIAN
     adjustSize();
     move(QApplication::desktop()->availableGeometry().center() -
          this->rect().center()
          );
 
-    //fix window size
     setFixedHeight(size().height());
     setFixedWidth(size().width());
-
-    readNounsAndErroneousLines();
-
-    //give warning about erroneous lines
-    if(! erroneousLines->isEmpty())
-    {
-        QMessageBox::StandardButton result;
-        result = QMessageBox::warning(0,
-                                      "Some Lines Couldn't Be Read",
-                                      "Some lines contained errors and "
-                                      "weren't able to be read. Memorization "
-                                      "Streaks are reset to 0. \n"
-                                      "Correct there error using the "
-                                      "'Edit Nouns' option."
-                                       );
-    }
+#endif
 
     //seed the function qrand()
     qsrand(QTime(0,0,0).secsTo(QTime::currentTime()));
+
+    //disable a default action which text is "Actions", probably realted to
+    //context menus. this only appears in symbian
+#ifdef Q_OS_SYMBIAN
+    ui->masculinePushButton->setContextMenuPolicy(Qt::NoContextMenu);
+    ui->femininePushButton->setContextMenuPolicy(Qt::NoContextMenu);
+    ui->neuterPushButton->setContextMenuPolicy(Qt::NoContextMenu);
+#endif
+
+    //read nouns from nouns file
+    readNounsAndErroneousLines();
 
     //initial GUI state
     updateGui();
@@ -98,8 +97,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    //write nouns into the nouns file
     writeNounsAndErroneousLines();
 
+    //delete data members
     delete ui;
     delete nouns;
     delete erroneousLines;
@@ -107,20 +108,64 @@ MainWindow::~MainWindow()
 
 void MainWindow::readNounsAndErroneousLines()
 {
+    //load a default list of nouns if the nouns file doesn't exist
     if(! nounsFile->exists())
     {
+        nouns->append(Noun("das Auto"));
+        nouns->append(Noun("der Bahnhof"));
+        nouns->append(Noun("die Bank"));
+        nouns->append(Noun("der Baum"));
+        nouns->append(Noun("das Buch"));
+        nouns->append(Noun("die Frau"));
+        nouns->append(Noun("das Geld"));
+        nouns->append(Noun("die Gesundheit"));
+        nouns->append(Noun("der Mann"));
+        nouns->append(Noun("die Natur"));
+        nouns->append(Noun("der Sohn"));
+        nouns->append(Noun("die Sonne"));
+        nouns->append(Noun("der Tisch"));
+        nouns->append(Noun("der Vater"));
+        nouns->append(Noun("das Wasser"));
+        nouns->append(Noun("das Wort"));
+
         return;
     }
 
-    //notify the user if the nouns file can't be opened for reading
+    //if the nouns file can't be opened for reading, notify the user
     if(! nounsFile->open(QIODevice::ReadOnly | QIODevice::Text))
     {
-        QMessageBox::warning(0, "Nouns File Open Error",
-                             QString("Cannot open the nouns file '%1' for "
-                                     "reading, try again and if the "
-                                     "problem persisted please report the "
-                                     "bug").arg(nounsFile->fileName())
-            );
+        QMessageBox *qMessageBox = new QMessageBox(this);
+        qMessageBox->setWindowTitle("File Open Error");
+
+        //set the text of the QMessageBox
+#ifndef Q_OS_SYMBIAN
+        qMessageBox->setText(
+                QString("Cannot open the nouns file '%1' for reading. \n"
+                        "Try again and if the problem persists, please report "
+                        "the bug.").arg(nounsFile->fileName())
+                );
+#else
+        //must use setInformativeText as well as setText on symbian because
+        //setInformativeText allows large text to have a scrollbar
+        qMessageBox->setText("Cannot open the nouns file.");
+        qMessageBox->setInformativeText(
+                QString("Cannot open the nouns file '%1' for reading. \n\n"
+                        "Try again and if the problem persists, please report "
+                        "the bug.").arg(nounsFile->fileName())
+                );
+#endif
+
+        //set QMessageBox icon
+        qMessageBox->setIcon(QMessageBox::Warning);
+
+        //execute the QMessageBox
+#ifdef Q_OS_SYMBIAN
+        //delay displaying the QMessageBox on Symbian until after the
+        //widget is shown, because of a bug
+        QTimer::singleShot(0, qMessageBox, SLOT(exec()));
+#else
+        qMessageBox->exec();
+#endif
 
         return;
     }
@@ -133,12 +178,14 @@ void MainWindow::readNounsAndErroneousLines()
         QString line = in.readLine();
         int memorizationStreak = 0;
 
-        if(!line.isEmpty())     //empty lines neither cause errors
+        QStringList parts = line.split(QRegExp("\\s+"),
+                                       QString::SkipEmptyParts
+                                       );
+
+        if(!parts.isEmpty())     //empty or white-space-only lines
+            //neither cause errors
             //nor should be parsed and added
         {
-            QStringList parts = line.split(QRegExp("\\s+"),
-                                           QString::SkipEmptyParts
-                                           );
 
             if( QRegExp("^[0-9]$").exactMatch(parts.last()) )
             {
@@ -161,27 +208,95 @@ void MainWindow::readNounsAndErroneousLines()
             }
         }
     }
-
     nounsFile->close();
+
+    //give warning about erroneous lines
+    if(erroneousLines->isEmpty() == false)
+    {
+        QMessageBox *qMessageBox = new QMessageBox(this);
+        qMessageBox->setWindowTitle("Read Error");
+
+        //set the text of the QMessageBox
+#ifndef Q_OS_SYMBIAN
+        qMessageBox->setText(
+                "Some lines contained errors and weren't able to be read. \n"
+                "This is due to these lines not being formatted properly. \n"
+                "Correct these errors using the 'Edit Nouns' option. \n"
+                "<Memorization Streaks are reset to 0>"
+                );
+#else
+        //must use setInformativeText as well as setText on symbian because
+        //setInformativeText allows large text to have a scrollbar
+        qMessageBox->setText(
+                "Some lines contained errors and weren't able to be read."
+                );
+        qMessageBox->setInformativeText(
+                "This is due to these lines not being formatted properly. \n\n"
+                "Correct these errors using the 'Edit Nouns' option. \n\n"
+                "<Memorization Streaks are reset to 0>"
+                );
+#endif
+
+        //set QMessageBox icon
+        qMessageBox->setIcon(QMessageBox::Information);
+
+        //execute the QMessageBox
+#ifdef Q_OS_SYMBIAN
+        //delay displaying the QMessageBox on Symbian until after the
+        //widget is shown, because of a bug
+        QTimer::singleShot(0, qMessageBox, SLOT(exec()));
+#else
+        qMessageBox->exec();
+#endif
+    }
 }
 
 void MainWindow::writeNounsAndErroneousLines()
 {
-    //write nouns into the nouns file
+    //create "C:/data/Others/" if it didn't exist
+#ifdef Q_OS_SYMBIAN
+    QDir data("c:/data/");
+    if(data.exists("Others") == false)
+        data.mkdir("Others");
+#endif
+
+//if the nouns file can't be opened for writing, notify the user
     if(! nounsFile->open(QIODevice::WriteOnly | QIODevice::Text) )
     {
-        QMessageBox::warning(0,
-                             "Nouns File Write Error",
-                             QString("Can't open the nouns file '%1' for "
-                                     "writing, any modification to nouns will "
-                                     "be lost. If the problem persisted please "
-                                     "report the bug").arg(
-                                             nounsFile->fileName()
-                                             )
-                             );
+        QMessageBox qMessageBox(this);
+        qMessageBox.setWindowTitle("File Open Error");
+
+        //set the text of the QMessageBox
+#ifndef Q_OS_SYMBIAN
+        qMessageBox.setText(
+                QString("Cannot open the nouns file '%1' for writing. \n"
+                        "Any modifications to nouns will be lost. \n"
+                        "If the problem persists, please report the bug.").arg(
+                                nounsFile->fileName()
+                                )
+                );
+#else
+        //must use setInformativeText as well as setText on symbian because
+        //setInformativeText allows large text to have a scrollbar
+        qMessageBox.setText("Cannot open the nouns file.");
+        qMessageBox.setInformativeText(
+                QString("Cannot open the nouns file '%1' for writing. \n\n"
+                        "Any modifications to nouns will be lost. \n\n"
+                        "If the problem persists, please report the bug.").arg(
+                                nounsFile->fileName()
+                                )
+                );
+#endif
+        //set QMessageBox icon
+        qMessageBox.setIcon(QMessageBox::Warning);
+
+        //execute the QMessageBox
+        qMessageBox.exec();
 
         return;
     }
+
+    //write nouns into the nouns file
 
     QTextStream out(nounsFile);
     out.setCodec(QTextCodec::codecForName("UTF-8"));
@@ -352,18 +467,45 @@ void MainWindow::on_neuterPushButton_clicked()
 
 void MainWindow::about()
 {
-    QMessageBox::information(this, "About GNGT",
+    QMessageBox qMessageBox(this);
+    qMessageBox.setWindowTitle("About");
 
-                             "German Noun Gender Trainer (GNGT) v0.7 \nCreated "
-                             "by Omar Lawand Dalatieh <lawand87@gmail.com>\n\n"
+    //set the text of the QMessageBox
+#ifndef Q_OS_SYMBIAN
+    qMessageBox.setText(
+            "German Noun Gender Trainer (GNGT) v0.7 \n"
+            "Created by Omar Lawand Dalatieh <lawand87@gmail.com>\n\n"
 
-                             "For help, check out the README file.\n\n"
+            "For help, check out the README file.\n\n"
 
-                             "GNGT is licensed under the GNU LGPLv3 license "
-                             "(or, at your option, any later version).\n\n"
+            "GNGT is licensed under the GNU LGPLv3 license \n"
+            "(or, at your option, any later version).\n\n"
 
-                             "http://lawand.github.com/gngt/"
-                             );
+            "http://lawand.github.com/gngt/"
+            );
+#else
+    //must use setInformativeText as well as setText on symbian because
+    //setInformativeText allows large text to have a scrollbar
+    qMessageBox.setText("German Noun Gender Trainer (GNGT) v0.7");
+    qMessageBox.setInformativeText(
+            "Created by Omar Lawand Dalatieh "
+            "<lawand87@gmail.com>\n\n"
+
+            "For help, check out the README file.\n\n"
+
+            "GNGT is licensed under the GNU LGPLv3 license "
+            "(or, at your option, any later version).\n\n"
+
+            "http://lawand.github.com/gngt/"
+            );
+#endif
+
+    //set QMessageBox icon
+    QIcon applicationIcon(":/icons/applicationIcon.png");
+    qMessageBox.setIconPixmap(applicationIcon.pixmap(QSize(32, 32)));
+
+    //execute the QMessageBox
+    qMessageBox.exec();
 }
 
 void MainWindow::editNouns()

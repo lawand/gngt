@@ -24,6 +24,11 @@
 **
 ****************************************************************************/
 
+//data member(s)
+#include <QMenu>
+#include <QAction>
+#include <QKeyEvent>
+
 //implementation-specific data type(s)
 #include <QMessageBox>
 #include <QStringList>
@@ -45,34 +50,116 @@ EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
     this->nouns = nouns;
     this->erroneousLines = erroneousLines;
 
+    //establish connections of buttons
+    connect(ui->addPushButton, SIGNAL(clicked()), SLOT(add()));
+    connect(ui->editPushButton, SIGNAL(clicked()), SLOT(edit()));
+    connect(ui->removePushButton, SIGNAL(clicked()), SLOT(remove()));
+    connect(ui->removeAllPushButton, SIGNAL(clicked()), SLOT(removeAll()));
+    connect(ui->donePushButton, SIGNAL(clicked()), SLOT(accept()));
+
+    //establish connections of actions
+    connect(ui->actionAdd, SIGNAL(triggered()), SLOT(add()));
+    connect(ui->actionEdit, SIGNAL(triggered()), SLOT(edit()));
+    connect(ui->actionRemove, SIGNAL(triggered()), SLOT(remove()));
+    connect(ui->actionRemove_All, SIGNAL(triggered()), SLOT(removeAll()));
+    connect(ui->actionDone, SIGNAL(triggered()), SLOT(accept()));
+
+    //manage buttons and/or actions
+#ifdef Q_OS_SYMBIAN
+    //initialize softkey commands for S60
+    {
+        qMenu = new QMenu(this);
+        qMenu->addAction(ui->actionAdd);
+        qMenu->addAction(ui->actionEdit);
+        qMenu->addAction(ui->actionRemove);
+        qMenu->addAction(ui->actionRemove_All);
+
+        ui->actionOptions->setMenu(qMenu);
+        ui->actionOptions->setSoftKeyRole(QAction::PositiveSoftKey);
+        addAction(ui->actionOptions);
+
+        ui->actionDone->setSoftKeyRole(QAction::NegativeSoftKey);
+        addAction(ui->actionDone);
+    }
+
+    //if a touch screen is available, activate buttons, else actions
+    if(qApp->navigationMode() == Qt::NavigationModeNone)
+    {
+        setQPushButtonsVisible(true);
+        setQActionsVisible(false);
+
+        ui->actionDone->setVisible(true);
+        ui->donePushButton->setVisible(false);
+    }
+    else
+    {
+        setQPushButtonsVisible(false);
+        setQActionsVisible(true);
+    }
+
+    showMaximized();
+#else
+    setQPushButtonsVisible(true);
+    setQActionsVisible(false);
+#endif
+
     //fix window size
+#ifndef Q_OS_SYMBIAN
     layout()->setSizeConstraint(QLayout::SetFixedSize);
+#endif
 
     //initial update
     updateState();
+
+    //disable a default action which text is "Actions", probably realted to
+    //context menus. this only appears in symbian
+#ifdef Q_OS_SYMBIAN
+    ui->listWidget->setContextMenuPolicy(Qt::NoContextMenu);
+#endif
 }
 
 EditNounsDialog::~EditNounsDialog()
 {
+    //delete data members
     delete ui;
 }
 
 void EditNounsDialog::updateState()
 {
+    //update numberOfNounsLabel
     ui->numberOfNounsLabel->setText(
             QString("Number Of Nouns: %2").arg(nouns->length())
             );
 
+    //clear listWidget because items will be added later (if they existed)
     ui->listWidget->clear();
 
     if(nouns->isEmpty() & erroneousLines->isEmpty())
     {
+        //disable buttons and/or actions
+#ifdef Q_OS_SYMBIAN
+        //if a touch screen is available, disable buttons, else actions
+        if(qApp->navigationMode() == Qt::NavigationModeNone)
+        {
+            ui->editPushButton->setEnabled(false);
+            ui->removePushButton->setEnabled(false);
+            ui->removeAllPushButton->setEnabled(false);
+        }
+        else
+        {
+            ui->actionEdit->setVisible(false);
+            ui->actionRemove->setVisible(false);
+            ui->actionRemove_All->setVisible(false);
+        }
+#else
         ui->editPushButton->setEnabled(false);
         ui->removePushButton->setEnabled(false);
         ui->removeAllPushButton->setEnabled(false);
+#endif
     }
     else
     {
+        //add lines to listWidget
         foreach(QString line, *erroneousLines)
         {
             QListWidgetItem *qListWidgetItem = new QListWidgetItem(line);
@@ -80,18 +167,52 @@ void EditNounsDialog::updateState()
             ui->listWidget->addItem(qListWidgetItem);
         }
 
+        //sort nouns
         qSort(*nouns);
 
+        //add nouns to listWidget
         foreach(Noun noun, *nouns)
             ui->listWidget->addItem(noun.toString());
 
+        //enable buttons and/or actions
+#ifdef Q_OS_SYMBIAN
+        //if a touch screen is available, enable buttons, else actions
+        if(qApp->navigationMode() == Qt::NavigationModeNone)
+        {
+            ui->editPushButton->setEnabled(true);
+            ui->removePushButton->setEnabled(true);
+            ui->removeAllPushButton->setEnabled(true);
+        }
+        else
+        {
+            ui->actionEdit->setVisible(true);
+            ui->actionRemove->setVisible(true);
+            ui->actionRemove_All->setVisible(true);
+        }
+#else
         ui->editPushButton->setEnabled(true);
         ui->removePushButton->setEnabled(true);
         ui->removeAllPushButton->setEnabled(true);
+#endif
     }
 }
 
-void EditNounsDialog::on_addPushButton_clicked()
+void EditNounsDialog::setQPushButtonsVisible(bool visible)
+{
+    ui->addPushButton->setVisible(visible);
+    ui->editPushButton->setVisible(visible);
+    ui->removePushButton->setVisible(visible);
+    ui->removeAllPushButton->setVisible(visible);
+    ui->donePushButton->setVisible(visible);
+}
+
+void EditNounsDialog::setQActionsVisible(bool visible)
+{
+    ui->actionOptions->setVisible(visible);
+    ui->actionDone->setVisible(visible);
+}
+
+void EditNounsDialog::add()
 {
     EditNounDialog editNounDialog(nouns, this);
 
@@ -108,7 +229,7 @@ void EditNounsDialog::on_addPushButton_clicked()
     }
 }
 
-void EditNounsDialog::on_editPushButton_clicked()
+void EditNounsDialog::edit()
 {
     //if nothing is selected
     if(ui->listWidget->currentRow() == -1)
@@ -144,7 +265,7 @@ void EditNounsDialog::on_editPushButton_clicked()
     }
 }
 
-void EditNounsDialog::on_removePushButton_clicked()
+void EditNounsDialog::remove()
 {
     //if nothing is selected
     if(ui->listWidget->currentRow() == -1)
@@ -170,13 +291,13 @@ void EditNounsDialog::on_removePushButton_clicked()
     }
 }
 
-void EditNounsDialog::on_removeAllPushButton_clicked()
+void EditNounsDialog::removeAll()
 {
     if( QMessageBox::question(this,
                               "Are You Sure?",
                               "Are you sure you want to remove all nouns "
-                              "erroneous lines? (this operation can't be "
-                              "undo-ed)",
+                              "and erroneous lines? (this operation can't "
+                              "be undo-ed)",
                               QMessageBox::Yes|QMessageBox::No,
                               QMessageBox::No
                               ) == QMessageBox::Yes )
@@ -188,7 +309,32 @@ void EditNounsDialog::on_removeAllPushButton_clicked()
         }
 }
 
-void EditNounsDialog::on_donePushButton_clicked()
+void EditNounsDialog::keyPressEvent(QKeyEvent *e)
 {
-    accept();
+    switch (e->key())
+    {
+        //symbian keypad/keyboard shortcuts
+#ifdef Q_OS_SYMBIAN
+    case Qt::Key_1:
+        add();
+        break;
+
+    case Qt::Key_2:
+        edit();
+        break;
+
+    case Qt::Key_3:
+    case Qt::Key_Backspace:
+        remove();
+        break;
+
+    case Qt::Key_4:
+        removeAll();
+        break;
+#endif
+
+    default:
+        QWidget::keyPressEvent(e);
+        break;
+    }
 }

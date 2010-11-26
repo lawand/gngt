@@ -28,6 +28,7 @@
 #include <QMessageBox>
 #include <QChar>
 #include <QPushButton>
+#include <QDesktopWidget>
 #include "noun.h"
 
 //corresponding header file(s)
@@ -44,11 +45,32 @@ EditNounDialog::EditNounDialog(QList<Noun>* nouns, QWidget *parent) :
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
 
     //fix window size
+#ifndef Q_OS_SYMBIAN
     layout()->setSizeConstraint(QLayout::SetFixedSize);
+#endif
+
+    //make button fonts smaller to fit the screen
+#ifdef Q_OS_SYMBIAN
+    //do it only if the screen isn't large enough
+    if(QApplication::desktop()->screenGeometry().width() <= 240)
+    {
+        QFont smallerFont = this->font();
+        smallerFont.setPointSize(this->font().pointSize() - 3);
+        ui->capitalAWithDiaeresisToolButton->setFont(smallerFont);
+        ui->capitalOWithDiaeresisToolButton->setFont(smallerFont);
+        ui->capitalUWithDiaeresisToolButton->setFont(smallerFont);
+        ui->smallSharpSToolButton->setFont(smallerFont);
+        ui->smallAWithDiaeresisToolButton->setFont(smallerFont);
+        ui->smallOWithDiaeresisToolButton->setFont(smallerFont);
+        ui->smallUWithDiaeresisToolButton->setFont(smallerFont);
+    }
+#endif
+
 }
 
 EditNounDialog::~EditNounDialog()
 {
+    //delete data members
     delete ui;
 }
 
@@ -73,8 +95,8 @@ void EditNounDialog::on_buttonBox_accepted()
                                  "preceded by it's corresponding definite "
                                  "article (i.e. 'das Buch' (without the "
                                  "quotes)). \n"
-                                 "Note that the maximum number of characters "
-                                 "of the singular form is 23."
+                                 "Note that the number of singular form's "
+                                 "characters should be between 3 and 23."
                                  );
 
         return;

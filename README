@@ -15,7 +15,7 @@ You can modify the nouns later in the same way.
 It's not recommended to add compound nouns because the GUI won't fit long 
 nouns, and memorizing the gender of the last part of a compound noun is 
 sufficient. The program allows a maximum of 23 characters for the singular 
-form of any noun.
+form of any noun (and a minimum of 3 characters).
 
 After adding some nouns, you can start using the program which would test you 
 by giving you some random noun (i.e. Buch) and you should supply the correct 
@@ -23,7 +23,7 @@ corresponding definite article (which is in this case 'das'). If you made a
 mistake, you'll get a corrective feedback. And either ways, you'll get another 
 random noun afterwards, and so on.
 
-Each noun has a memorization streak, this is, the number of sequential times 
+Each noun has a memorization streak, that is, the number of sequential times 
 that it's gender was chosen correctly by the user. A single mistake resets the 
 streak back to 0. When a streak reaches 10, the corresponding noun is 
 considered memorized, and it is deleted from the nouns file.

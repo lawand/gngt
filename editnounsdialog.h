@@ -34,6 +34,13 @@
 #include <QList>
 #include "noun.h"
 
+//data member(s) forward declaration(s)
+#ifdef Q_OS_SYMBIAN
+class QMenu;
+class QAction;
+class QKeyEvent;
+#endif
+
 namespace Ui {
     class EditNounsDialog;
 }
@@ -49,18 +56,26 @@ public:
     ~EditNounsDialog();
 
     void updateState();
+    void setQPushButtonsVisible(bool visible);
+    void setQActionsVisible(bool visible);
+
+private slots:
+    void add();
+    void edit();
+    void remove();
+    void removeAll();
 
 private:
     Ui::EditNounsDialog *ui;
     QList<Noun>* nouns;
     QStringList* erroneousLines;
+#ifdef Q_OS_SYMBIAN
+    QMenu* qMenu;
+    QAction *actionOptions;
+#endif
 
-private slots:
-    void on_addPushButton_clicked();
-    void on_editPushButton_clicked();
-    void on_removePushButton_clicked();
-    void on_removeAllPushButton_clicked();
-    void on_donePushButton_clicked();
+protected:
+    virtual void keyPressEvent(QKeyEvent *e);
 };
 
 #endif // EDITNOUNSDIALOG_H

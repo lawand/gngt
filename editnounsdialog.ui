@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>324</width>
-    <height>332</height>
+    <width>222</width>
+    <height>228</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,11 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" colspan="2">
-    <widget class="QListWidget" name="listWidget"/>
+    <widget class="QListWidget" name="listWidget">
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item row="1" column="0" colspan="2">
     <widget class="QLabel" name="numberOfNounsLabel">
@@ -27,17 +31,10 @@
      </property>
     </widget>
    </item>
-   <item row="7" column="1">
-    <widget class="QPushButton" name="removeAllPushButton">
+   <item row="3" column="0">
+    <widget class="QPushButton" name="addPushButton">
      <property name="text">
-      <string>Remove Al&amp;l</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="0" colspan="2">
-    <widget class="QPushButton" name="donePushButton">
-     <property name="text">
-      <string>&amp;Done</string>
+      <string>&amp;Add</string>
      </property>
     </widget>
    </item>
@@ -55,14 +52,51 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0">
-    <widget class="QPushButton" name="addPushButton">
+   <item row="7" column="1">
+    <widget class="QPushButton" name="removeAllPushButton">
      <property name="text">
-      <string>&amp;Add</string>
+      <string>Remove Al&amp;l</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0" colspan="2">
+    <widget class="QPushButton" name="donePushButton">
+     <property name="text">
+      <string>&amp;Done</string>
      </property>
     </widget>
    </item>
   </layout>
+  <action name="actionAdd">
+   <property name="text">
+    <string>Add (1)</string>
+   </property>
+  </action>
+  <action name="actionEdit">
+   <property name="text">
+    <string>Edit (2)</string>
+   </property>
+  </action>
+  <action name="actionRemove">
+   <property name="text">
+    <string>Remove (3/C)</string>
+   </property>
+  </action>
+  <action name="actionRemove_All">
+   <property name="text">
+    <string>Remove All (4)</string>
+   </property>
+  </action>
+  <action name="actionDone">
+   <property name="text">
+    <string>Done</string>
+   </property>
+  </action>
+  <action name="actionOptions">
+   <property name="text">
+    <string>Options</string>
+   </property>
+  </action>
  </widget>
  <tabstops>
   <tabstop>listWidget</tabstop>
