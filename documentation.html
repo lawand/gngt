@@ -10,7 +10,21 @@
 
 <div id="Content">
 
-    <p>Documentation goes here.</p>
+	<h1>Introduction</h1>
+    <p>German Noun Gender Trainer (GNGT) is a small application which helps German learners memorize genders of German nouns through memorizing their corresponding definite articles (der, die or das).</p>
+    
+    <h1>Usage</h1>
+    <p>Before you can start using the program, you should add some nouns and set their genders. You can do so by selecting the "edit nouns" option from the file menu. You can modify the nouns later in the same way.</p>
+	<p>It's not recommended to add compound nouns because the GUI won't fit long nouns, and memorizing the gender of the last part of a compound noun is sufficient. The program allows a maximum of 23 characters for the singular form of any noun (and a minimum of 3 characters).</p>
+	<p>After adding some nouns, you can start using the program which would test you by giving you some random noun (i.e. Buch) and you should supply the correct corresponding definite article (which is in this case 'das'). If you made a mistake, you'll get a corrective feedback. And either ways, you'll get another random noun afterwards, and so on.</p>
+	<p>Each noun has a memorization streak, that is, the number of sequential times that it's gender was chosen correctly by the user. A single mistake resets the streak back to 0. When a streak reaches 10, the corresponding noun is considered memorized, and it is deleted from the nouns file.</p>
+	
+	<h1>Advanced Usage</h1>
+	<p>All nouns are stored in a text file named 'nouns.txt' which character encoding is UTF-8. You can edit the file manually but it's recommended for you to edit the nouns using the GUI because the default character encoding on some operating systems isn't UTF-8, which means that you have to specify this character encoding when saving the file instead of just saving it using default options.</p>
+	<p>The nouns file (noun.txt) should be placed in the same directory in which GNGT is.</p>
+	<p>The nouns in the nouns file should be each in a different line composed of the singular form of the noun preceded by it's corresponding definite article and followed by the memorization streak (i.e. 'das Buch 3' (without the quotes)). Note that erroneous lines will be reported by the program at startup and you'll be prompted to fix or ignore each of them.</p>
+	<p>When the program exits, all nouns but those that were ignored get written to the nouns file (after getting sorted). This means that ignoring nouns at startup leads to deleting them.</p>
+	<p>Duplicates get ignored when reading nouns at startup.</p>
 	
 </div>
 
