@@ -53,7 +53,7 @@ EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
 
     //set text of nounsFileFileNameLabel to mention path and fileName of
     //the nouns file
-    ui->nounsFileLabel->setText(nounsFileFileName);
+    ui->nounsFileLabel->setText(nounsFileFileName + " :");
 
     //establish connections of buttons
     connect(ui->addPushButton, SIGNAL(clicked()), SLOT(add()));

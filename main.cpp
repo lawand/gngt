@@ -24,7 +24,12 @@
 **
 ****************************************************************************/
 
+#ifndef Q_OS_SYMBIAN
 #include <QtSingleApplication>
+#else
+#include <QApplication>
+#endif
+
 #include <QIcon>
 #include "mainwindow.h"
 
