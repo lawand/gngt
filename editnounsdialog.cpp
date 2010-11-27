@@ -41,6 +41,7 @@
 
 EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
                                  QList<Noun>* nouns,
+                                 QString nounsFileFileName,
                                  QWidget *parent) :
     QDialog(parent),
     ui(new Ui::EditNounsDialog)
@@ -49,6 +50,10 @@ EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
     ui->setupUi(this);
     this->nouns = nouns;
     this->erroneousLines = erroneousLines;
+
+    //set text of nounsFileFileNameLabel to mention path and fileName of
+    //the nouns file
+    ui->nounsFileLabel->setText(nounsFileFileName);
 
     //establish connections of buttons
     connect(ui->addPushButton, SIGNAL(clicked()), SLOT(add()));
@@ -293,43 +298,53 @@ void EditNounsDialog::remove()
 
 void EditNounsDialog::removeAll()
 {
-    if( QMessageBox::question(this,
-                              "Are You Sure?",
-                              "Are you sure you want to remove all nouns "
-                              "and erroneous lines? (this operation can't "
-                              "be undo-ed)",
-                              QMessageBox::Yes|QMessageBox::No,
-                              QMessageBox::No
-                              ) == QMessageBox::Yes )
-        {
-            nouns->clear();
-            erroneousLines->clear();
+    if(!nouns->isEmpty() || !erroneousLines->isEmpty())
+    {
+        if( QMessageBox::question(this,
+                                  "Are You Sure?",
+                                  "Are you sure you want to remove all nouns "
+                                  "and erroneous lines? (this operation can't "
+                                  "be undo-ed)",
+                                  QMessageBox::Yes|QMessageBox::No,
+                                  QMessageBox::No
+                                  ) == QMessageBox::Yes )
+            {
+                nouns->clear();
+                erroneousLines->clear();
 
-            updateState();
-        }
+                updateState();
+            }
+    }
 }
 
 void EditNounsDialog::keyPressEvent(QKeyEvent *e)
 {
     switch (e->key())
     {
-        //symbian keypad/keyboard shortcuts
 #ifdef Q_OS_SYMBIAN
     case Qt::Key_1:
         add();
         break;
 
     case Qt::Key_2:
-        edit();
+        if(!nouns->isEmpty() || !erroneousLines->isEmpty())
+            edit();
         break;
 
     case Qt::Key_3:
     case Qt::Key_Backspace:
-        remove();
+        if(!nouns->isEmpty() || !erroneousLines->isEmpty())
+            remove();
         break;
 
     case Qt::Key_4:
-        removeAll();
+        if(!nouns->isEmpty() || !erroneousLines->isEmpty())
+            removeAll();
+        break;
+#else
+    case Qt::Key_Delete:
+        if(!nouns->isEmpty() || !erroneousLines->isEmpty())
+            remove();
         break;
 #endif
 

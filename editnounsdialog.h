@@ -52,6 +52,7 @@ class EditNounsDialog : public QDialog
 public:
     explicit EditNounsDialog(QStringList* erroneousLines,
                              QList<Noun>* nouns,
+                             QString nounsFileFileName,
                              QWidget *parent = 0);
     ~EditNounsDialog();
 
