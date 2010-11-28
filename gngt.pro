@@ -2,6 +2,7 @@ include(qtsingleapplication/qtsingleapplication.pri)
 
 symbian {
     ICON = applicationIcon.svg
+    TARGET.UID3 = 0x200386BB
 }
 
 VERSION = 0.8.0
