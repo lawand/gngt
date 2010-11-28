@@ -414,7 +414,7 @@ void MainWindow::about()
 
     //set the text of the QMessageBox
     qMessageBox.setText(
-            "German Noun Gender Trainer (GNGT) v0.7 \n"
+            "German Noun Gender Trainer (GNGT) v0.8 \n"
             "Copyright 2010 Omar Lawand Dalatieh. \n\n"
 
             "Licensed under the GNU LGPLv3 license. \n\n"
