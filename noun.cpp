@@ -93,7 +93,7 @@ bool Noun::isValid(QString definiteArticleAndSingularForm)
         return false;
 
     if(! QRegExp(
-            "^[a-zA-Z\x00C4\x00D6\x00DC\x00DF\x00E4\x00F6\x00FC]{3,23}$"
+            "^[a-zA-Z\x00C4\x00D6\x00DC\x00DF\x00E4\x00F6\x00FC]{1,23}$"
             ).exactMatch(parts.at(1))
         )
         return false;
