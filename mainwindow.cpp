@@ -217,14 +217,6 @@ void MainWindow::writeNounsAndErroneousLines()
         data.mkdir("Others");
 #endif
 
-    if(nouns->isEmpty() && erroneousLines->isEmpty())
-    {
-        if(nounsFile->exists())
-            nounsFile->remove();
-
-        return;
-    }
-
 //if the nouns file can't be opened for writing, notify the user
     if(! nounsFile->open(QIODevice::WriteOnly | QIODevice::Text) )
     {
@@ -427,7 +419,7 @@ void MainWindow::about()
 
             "Licensed under the GNU LGPLv3 license. \n\n"
 
-            "http://lawand.github.com/gngt/"
+            "lawand.github.com/gngt"
             );
 
     //set QMessageBox icon

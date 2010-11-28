@@ -29,6 +29,7 @@
 #include <QChar>
 #include <QPushButton>
 #include <QDesktopWidget>
+#include <QTimer>
 #include "noun.h"
 
 //corresponding header file(s)
@@ -49,9 +50,9 @@ EditNounDialog::EditNounDialog(QList<Noun>* nouns, QWidget *parent) :
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 #endif
 
-    //make button fonts smaller to fit the screen
+    //manage width of dialog
 #ifdef Q_OS_SYMBIAN
-    //do it only if the screen isn't large enough
+    //smaller on small screens
     if(QApplication::desktop()->screenGeometry().width() <= 240)
     {
         QFont smallerFont = this->font();
@@ -63,6 +64,12 @@ EditNounDialog::EditNounDialog(QList<Noun>* nouns, QWidget *parent) :
         ui->smallAWithDiaeresisToolButton->setFont(smallerFont);
         ui->smallOWithDiaeresisToolButton->setFont(smallerFont);
         ui->smallUWithDiaeresisToolButton->setFont(smallerFont);
+    }
+
+    //larger on large screens
+    if(qApp->navigationMode() == Qt::NavigationModeNone)
+    {
+        QTimer::singleShot(500, this, SLOT(setupWidth()));
     }
 #endif
 
@@ -91,11 +98,8 @@ void EditNounDialog::on_buttonBox_accepted()
     {
         QMessageBox::information(this, "Noun Format Error",
                                  "Incorrect format. The correct format is "
-                                 "composed of the singular form of the noun "
-                                 "preceded by it's corresponding definite "
-                                 "article (i.e. 'das Buch' (without the "
-                                 "quotes)). \n"
-                                 "Note that the number of singular form's "
+                                 "like this: 'das Buch' \n"
+                                 "Note that the number of the singular form's "
                                  "characters should be between 3 and 23."
                                  );
 
@@ -160,3 +164,12 @@ void EditNounDialog::on_smallUWithDiaeresisToolButton_clicked()
 {
     ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xFC));
 }
+
+#ifdef Q_OS_SYMBIAN
+void EditNounDialog::setupWidth()
+{
+    QRect geometry = this->geometry();
+    geometry.setWidth(360);
+    setGeometry(geometry);
+}
+#endif

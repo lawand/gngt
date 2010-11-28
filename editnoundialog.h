@@ -62,6 +62,10 @@ private slots:
     void on_smallOWithDiaeresisToolButton_clicked();
     void on_smallUWithDiaeresisToolButton_clicked();
 
+#ifdef Q_OS_SYMBIAN
+    void setupWidth();
+#endif
+
 private:
     Ui::EditNounDialog *ui;
     QList<Noun>* nouns;
