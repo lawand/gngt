@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>160</width>
+    <height>187</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>GNGT</string>
   </property>
@@ -78,7 +86,7 @@
      <height>20</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFile">
+   <widget class="QMenu" name="menuActions">
     <property name="title">
      <string>&amp;Actions</string>
     </property>
@@ -91,7 +99,7 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
-   <addaction name="menuFile"/>
+   <addaction name="menuActions"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionEdit_Nouns">

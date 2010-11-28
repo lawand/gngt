@@ -423,7 +423,7 @@ void MainWindow::about()
             );
 
     //set QMessageBox icon
-    QIcon applicationIcon(":/icons/applicationIcon.png");
+    QIcon applicationIcon(":/icons/applicationIcon.svg");
     qMessageBox.setIconPixmap(applicationIcon.pixmap(QSize(32, 32)));
 
     //execute the QMessageBox
