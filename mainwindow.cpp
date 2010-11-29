@@ -413,14 +413,30 @@ void MainWindow::about()
     qMessageBox.setWindowTitle("About");
 
     //set the text of the QMessageBox
+#ifndef Q_OS_SYMBIAN
     qMessageBox.setText(
-            "German Noun Gender Trainer (GNGT) v0.8 \n"
-            "Copyright 2010 Omar Lawand Dalatieh. \n\n"
+            "<b>German Noun Gender Trainer (GNGT) v0.8</b> <br>"
+            "Copyright 2010 Omar Lawand Dalatieh. <br><br>"
 
-            "Licensed under the GNU LGPLv3 license. \n\n"
+            "Licensed under the GNU LGPLv3 license. <br><br>"
 
-            "lawand.github.com/gngt"
+            "<a href=\"http://lawand.github.com/gngt/\">"
+            "http://lawand.github.com/gngt/"
+            "</a>"
             );
+#else
+    qMessageBox.setText(
+            "German Noun Gender Trainer (GNGT) v0.8"
+            );
+
+    qMessageBox.setInformativeText(
+            "Copyright 2010 Omar Lawand Dalatieh. <br><br>"
+
+            "Licensed under the GNU LGPLv3 license. <br><br>"
+
+            "http://lawand.github.com/gngt/"
+            );
+#endif
 
     //set QMessageBox icon
     QIcon applicationIcon(":/icons/applicationIcon.svg");
