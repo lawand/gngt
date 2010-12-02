@@ -35,8 +35,6 @@
 #include <QTime>
 #include <QDesktopWidget>
 #include <QTimer>
-#include <QString>
-#include <QTextEdit>
 #include <QDir>
 #include "editnounsdialog.h"
 

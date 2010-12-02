@@ -26,7 +26,6 @@
 
 //implementation-specific data type(s)
 #include <QStringList>
-#include <QRegExp>
 
 //corresponding header file(s)
 #include "noun.h"

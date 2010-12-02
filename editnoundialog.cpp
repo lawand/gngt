@@ -26,11 +26,9 @@
 
 //implementation-specific data type(s)
 #include <QMessageBox>
-#include <QChar>
 #include <QPushButton>
 #include <QDesktopWidget>
 #include <QTimer>
-#include "noun.h"
 
 //corresponding header file(s)
 #include "editnoundialog.h"
