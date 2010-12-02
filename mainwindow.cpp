@@ -119,11 +119,36 @@ void MainWindow::readNounsAndErroneousLines()
         qMessageBox->setWindowTitle("File Open Error");
 
         //set the text of the QMessageBox
+#ifndef Q_OS_SYMBIAN
         qMessageBox->setText(
-                QString("Cannot open the nouns file '%1' for reading.").arg(
-                        nounsFile->fileName()
-                        )
+                QString(
+                        "Cannot open the nouns file '%1' for reading."
+                        ).arg(nounsFile->fileName())
                 );
+#else
+        if(QApplication::desktop()->screenGeometry().width() <= 240)
+            //on devices with 240x320 screen resolution
+        {
+            qMessageBox->setText(
+                    "Cannot open the nouns file."
+                    );
+
+            qMessageBox->setInformativeText(
+                    QString(
+                            "Cannot open the nouns file '%1' for reading."
+                            ).arg(nounsFile->fileName())
+                    );
+        }
+        else
+            //on other Symbian devices
+        {
+            qMessageBox->setText(
+                    QString(
+                            "Cannot open the nouns file '%1' for reading."
+                            ).arg(nounsFile->fileName())
+                    );
+        }
+#endif
 
         //set QMessageBox icon
         qMessageBox->setIcon(QMessageBox::Warning);
@@ -222,11 +247,36 @@ void MainWindow::writeNounsAndErroneousLines()
         qMessageBox.setWindowTitle("File Open Error");
 
         //set the text of the QMessageBox
+#ifndef Q_OS_SYMBIAN
         qMessageBox.setText(
-                QString("Cannot open the nouns file '%1' for writing.").arg(
-                                nounsFile->fileName()
-                                )
+                QString(
+                        "Cannot open the nouns file '%1' for writing."
+                        ).arg(nounsFile->fileName())
                 );
+#else
+        if(QApplication::desktop()->screenGeometry().width() <= 240)
+            //on devices with 240x320 screen resolution
+        {
+            qMessageBox.setText(
+                    "Cannot open the nouns file."
+                    );
+
+            qMessageBox.setInformativeText(
+                    QString(
+                            "Cannot open the nouns file '%1' for writing."
+                            ).arg(nounsFile->fileName())
+                    );
+        }
+        else
+            //on other Symbian devices
+        {
+            qMessageBox->setText(
+                    QString(
+                            "Cannot open the nouns file '%1' for writing."
+                            ).arg(nounsFile->fileName())
+                    );
+        }
+#endif
 
         //set QMessageBox icon
         qMessageBox.setIcon(QMessageBox::Warning);
@@ -423,17 +473,35 @@ void MainWindow::about()
             "</a>"
             );
 #else
-    qMessageBox.setText(
-            "German Noun Gender Trainer (GNGT) v0.8"
-            );
+    if(QApplication::desktop()->screenGeometry().width() <= 240)
+        //on devices with 240x320 screen resolution
+    {
+        qMessageBox.setText(
+                "German Noun Gender Trainer (GNGT) v0.8"
+                );
 
-    qMessageBox.setInformativeText(
-            "Copyright 2010 Omar Lawand Dalatieh. <br><br>"
+        qMessageBox.setInformativeText(
+                "Copyright 2010 Omar Lawand Dalatieh. <br><br>"
 
-            "Licensed under the GNU LGPLv3 license. <br><br>"
+                "Licensed under the GNU LGPLv3 license. <br><br>"
 
-            "http://lawand.github.com/gngt/"
-            );
+                "http://lawand.github.com/gngt/"
+                );
+    }
+    else
+        //on other Symbian devices
+    {
+        qMessageBox.setText(
+                "<b>German Noun Gender Trainer (GNGT) v0.8</b> <br>"
+                "Copyright 2010 Omar Lawand Dalatieh. <br><br>"
+
+                "Licensed under the GNU LGPLv3 license. <br><br>"
+
+                "<a href=\"http://lawand.github.com/gngt/\">"
+                "http://lawand.github.com/gngt/"
+                "</a>"
+                );
+    }
 #endif
 
     //set QMessageBox icon
