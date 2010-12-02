@@ -67,6 +67,7 @@ EditNounDialog::EditNounDialog(QList<Noun>* nouns, QWidget *parent) :
     //larger on large screens
     if(qApp->navigationMode() == Qt::NavigationModeNone)
     {
+        //delay this so that the dialog can first get correct geometry values
         QTimer::singleShot(500, this, SLOT(setupWidth()));
     }
 #endif
