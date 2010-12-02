@@ -492,14 +492,12 @@ void MainWindow::about()
         //on other Symbian devices
     {
         qMessageBox.setText(
-                "<b>German Noun Gender Trainer (GNGT) v0.8</b> <br>"
-                "Copyright 2010 Omar Lawand Dalatieh. <br><br>"
+                "German Noun Gender Trainer (GNGT) v0.8 \n"
+                "Copyright 2010 Omar Lawand Dalatieh. \n\n"
 
-                "Licensed under the GNU LGPLv3 license. <br><br>"
+                "Licensed under the GNU LGPLv3 license. \n\n"
 
-                "<a href=\"http://lawand.github.com/gngt/\">"
-                "http://lawand.github.com/gngt/"
-                "</a>"
+                "lawand.github.com/gngt"
                 );
     }
 #endif
