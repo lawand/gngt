@@ -240,7 +240,7 @@ void MainWindow::writeNounsAndErroneousLines()
         data.mkdir("Others");
 #endif
 
-//if the nouns file can't be opened for writing, notify the user
+    //if the nouns file can't be opened for writing, notify the user
     if(! nounsFile->open(QIODevice::WriteOnly | QIODevice::Text) )
     {
         QMessageBox qMessageBox(this);
