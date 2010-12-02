@@ -270,7 +270,7 @@ void MainWindow::writeNounsAndErroneousLines()
         else
             //on other Symbian devices
         {
-            qMessageBo.setText(
+            qMessageBox.setText(
                     QString(
                             "Cannot open the nouns file '%1' for writing."
                             ).arg(nounsFile->fileName())
