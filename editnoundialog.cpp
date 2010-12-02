@@ -97,8 +97,8 @@ void EditNounDialog::on_buttonBox_accepted()
         QMessageBox::information(this, "Noun Format Error",
                                  "Incorrect format. The correct format is "
                                  "like this: 'das Buch' \n"
-                                 "Note that the number of the singular form's "
-                                 "characters should be between 3 and 23."
+                                 "Note that the singular form can contain at "
+                                 "most 23 characters."
                                  );
 
         return;
