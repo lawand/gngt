@@ -361,18 +361,18 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
     {
         if(currentNoun.gender == Noun::masculine)
         {
-            ui->masculinePushButton->setStyleSheet("color: rgb(0, 192, 0);");
-            ui->nounLabel->setStyleSheet("color: rgb(0, 192, 0);");
+            ui->masculinePushButton->setStyleSheet("color: green;");
+            ui->nounLabel->setStyleSheet("color: green;");
         }
         if(currentNoun.gender == Noun::feminine)
         {
-            ui->femininePushButton->setStyleSheet("color: rgb(192, 0, 0);");
-            ui->nounLabel->setStyleSheet("color: rgb(192, 0, 0);");
+            ui->femininePushButton->setStyleSheet("color: red;");
+            ui->nounLabel->setStyleSheet("color: red;");
         }
         if(currentNoun.gender == Noun::neuter)
         {
-            ui->neuterPushButton->setStyleSheet("color: rgb(0, 0, 192);");
-            ui->nounLabel->setStyleSheet("color: rgb(0, 0, 192);");
+            ui->neuterPushButton->setStyleSheet("color: blue;");
+            ui->nounLabel->setStyleSheet("color: blue;");
         }
 
         if(currentNoun.memorizationStreak != 0)
@@ -380,7 +380,7 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
             currentNoun.memorizationStreak = 0;
             ui->memorizationStreakLabel->setText("Streak: 0");
             ui->memorizationStreakLabel->setStyleSheet(
-                    "color: rgb(192, 0, 0);"
+                    "color: red;"
                     );
 
             nouns->replace(nouns->indexOf(currentNoun), currentNoun);
@@ -393,7 +393,7 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
                         currentNoun.memorizationStreak + 1
                         )
                 );
-        ui->memorizationStreakLabel->setStyleSheet("color: rgb(0, 192, 0);");
+        ui->memorizationStreakLabel->setStyleSheet("color: green;");
 
         currentNoun.memorizationStreak++;
 
