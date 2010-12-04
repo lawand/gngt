@@ -188,8 +188,10 @@ void MainWindow::readNounsAndErroneousLines()
             else
             {
                 int memorizationStreak = lineParts.last().toInt();
-                lineParts.removeLast();
-                QString partialLine = lineParts.join(" ");
+
+                QStringList partialLineParts = lineParts;
+                partialLineParts.removeLast();
+                QString partialLine = partialLineParts.join(" ");
 
                 if( !Noun::isValid(partialLine) )
                 {
