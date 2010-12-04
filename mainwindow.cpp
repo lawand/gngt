@@ -58,8 +58,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
 
     //set nouns file name
-#ifdef Q_OS_SYMBIAN
+#if defined(Q_OS_SYMBIAN)
     nounsFile->setFileName("c:/data/Others/nouns.txt");
+#elif defined(Q_OS_LINUX)
+    nounsFile->setFileName(QDir::home().absolutePath() + "/.gngt/nouns.txt");
 #else
     nounsFile->setFileName("nouns.txt");
 #endif
@@ -238,6 +240,13 @@ void MainWindow::writeNounsAndErroneousLines()
     QDir data("c:/data/");
     if(data.exists("Others") == false)
         data.mkdir("Others");
+#endif
+
+#ifdef Q_OS_LINUX
+    //create "~/.gngt/" if it didn't exist
+    QDir home(QDir::home().absolutePath());
+    if(home.exists(".gngt") == false)
+        home.mkdir(".gngt");
 #endif
 
     //if the nouns file can't be opened for writing, notify the user
