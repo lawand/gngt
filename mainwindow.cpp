@@ -488,7 +488,7 @@ void MainWindow::about()
         //on devices with 240x320 screen resolution
     {
         qMessageBox.setText(
-                "German Noun Gender Trainer (GNGT) v0.8"
+                "German Noun Gender Trainer (GNGT) v0.9"
                 );
 
         qMessageBox.setInformativeText(
@@ -503,7 +503,7 @@ void MainWindow::about()
         //on other Symbian devices
     {
         qMessageBox.setText(
-                "German Noun Gender Trainer (GNGT) v0.8 \n"
+                "German Noun Gender Trainer (GNGT) v0.9 \n"
                 "Copyright 2010 Omar Lawand Dalatieh. \n\n"
 
                 "Licensed under the GNU LGPLv3 license. \n\n"
