@@ -181,29 +181,29 @@ void MainWindow::readNounsAndErroneousLines()
             //neither cause errors
             //nor should be parsed and added
         {
+            int memorizationStreak;
             if( !QRegExp("^[0-9]$").exactMatch(lineParts.last()) )
+            {
+                memorizationStreak = 0;
+            }
+            else
+            {
+                memorizationStreak = lineParts.last().toInt();
+                lineParts.removeLast();
+            }
+
+            QString partialLine = lineParts.join(" ");
+
+            if( !Noun::isValid(partialLine) )
             {
                 erroneousLines->append(line);
             }
             else
             {
-                int memorizationStreak = lineParts.last().toInt();
-
-                QStringList partialLineParts = lineParts;
-                partialLineParts.removeLast();
-                QString partialLine = partialLineParts.join(" ");
-
-                if( !Noun::isValid(partialLine) )
-                {
-                    erroneousLines->append(line);
-                }
-                else
-                {
-                    Noun noun(partialLine, memorizationStreak);
-                    if(nouns->indexOf(noun) == -1)   //if the noun doesn't
-                        //already exist in the list
-                        nouns->append(noun);     //add it to the list
-                }
+                Noun noun(partialLine, memorizationStreak);
+                if(nouns->indexOf(noun) == -1)   //if the noun doesn't
+                    //already exist in the list
+                    nouns->append(noun);     //add it to the list
             }
         }
     }
