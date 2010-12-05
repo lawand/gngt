@@ -5,7 +5,7 @@ symbian {
     TARGET.UID3 = 0xA89FD2CA
 }
 
-VERSION = 0.8.0
+VERSION = 0.9.0
 TARGET = GNGT
 TEMPLATE = app
 SOURCES += \
