@@ -121,6 +121,39 @@ EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
 #ifdef Q_OS_SYMBIAN
     ui->listWidget->setContextMenuPolicy(Qt::NoContextMenu);
 #endif
+
+    //chenge the layout in Maemo to make it horizontal
+#ifdef Q_WS_MAEMO_5
+    //the done push button is not needed in maemo
+    delete ui->donePushButton;
+
+    layout()->removeWidget(ui->addPushButton);
+    layout()->removeWidget(ui->editPushButton);
+    layout()->removeWidget(ui->removePushButton);
+    layout()->removeWidget(ui->removeAllPushButton);
+
+    QVBoxLayout *newRightLayout = new QVBoxLayout();
+    newRightLayout->addWidget(ui->addPushButton);
+    newRightLayout->addWidget(ui->editPushButton);
+    newRightLayout->addWidget(ui->removePushButton);
+    newRightLayout->addWidget(ui->removeAllPushButton);
+
+    layout()->removeWidget(ui->nounsFileLabel);
+    layout()->removeWidget(ui->listWidget);
+    layout()->removeWidget(ui->numberOfNounsLabel);
+
+    QVBoxLayout *newLeftLayout = new QVBoxLayout();
+    newLeftLayout->addWidget(ui->nounsFileLabel);
+    newLeftLayout->addWidget(ui->listWidget);
+    newLeftLayout->addWidget(ui->numberOfNounsLabel);
+
+    QHBoxLayout *newMainLayout = new QHBoxLayout();
+    newMainLayout->addLayout(newLeftLayout);
+    newMainLayout->addLayout(newRightLayout);
+
+    delete this->layout();
+    this->setLayout(newMainLayout);
+#endif
 }
 
 EditNounsDialog::~EditNounsDialog()
