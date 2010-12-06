@@ -57,6 +57,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
     connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
 
+    //enable auto-rotation on maemo linux
+#ifdef Q_WS_MAEMO_5
+    setAttribute(Qt::WA_Maemo5AutoOrientation, true);
+#endif
+
     //set nouns file name
 #if defined(Q_OS_SYMBIAN)
     nounsFile->setFileName("c:/data/Others/nouns.txt");
