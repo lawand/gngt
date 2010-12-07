@@ -157,6 +157,8 @@ EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
 
         delete this->layout();
         this->setLayout(newMainLayout);
+
+        ui->addPushButton->setFocus();
     }
 #endif
 }
