@@ -31,14 +31,20 @@
 int main(int argc, char *argv[])
 {
     //create and initialize QApplication or QtSingleApplication
-#ifndef Q_OS_SYMBIAN
-    QtSingleApplication application(argc, argv);
-#else
+#ifdef Q_OS_SYMBIAN
     QApplication application(argc, argv);
+#elif defined(Q_WS_MAEMO_5)
+    QApplication application(argc, argv);
+#else
+    QtSingleApplication application(argc, argv);
 #endif
 
     //manage instances
-#ifndef Q_OS_SYMBIAN
+#ifdef Q_OS_SYMBIAN
+    //do nothing
+#elif defined(Q_WS_MAEMO_5)
+    //do nothing
+#else
     if(application.isRunning())
     {
         return !application.sendMessage("Are you running?");
@@ -59,7 +65,11 @@ int main(int argc, char *argv[])
 #endif
 
     //setActivationWindow (for QtSingleApplication)
-#ifndef Q_OS_SYMBIAN
+#ifdef Q_OS_SYMBIAN
+    //do nothing
+#elif defined(Q_WS_MAEMO_5)
+    //do nothing
+#else
     application.setActivationWindow(&mainWindow);
 #endif
 
