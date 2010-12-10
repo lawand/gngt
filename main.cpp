@@ -24,12 +24,8 @@
 **
 ****************************************************************************/
 
-#ifndef Q_OS_SYMBIAN
 #include <QtSingleApplication>
-#else
 #include <QApplication>
-#endif
-
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
