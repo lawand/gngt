@@ -128,38 +128,42 @@ EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
 #endif
 
 #ifdef Q_OS_SYMBIAN
-    //change the layout to make it horizontal
-    QRect screenGeometry = QApplication::desktop()->screenGeometry();
-    if (screenGeometry.width() > screenGeometry.height())
+    //if a touch screen is available,
+    if(qApp->navigationMode() == Qt::NavigationModeNone)
     {
-        layout()->removeWidget(ui->addPushButton);
-        layout()->removeWidget(ui->editPushButton);
-        layout()->removeWidget(ui->removePushButton);
-        layout()->removeWidget(ui->removeAllPushButton);
+        //change the layout to make it horizontal
+        QRect screenGeometry = QApplication::desktop()->screenGeometry();
+        if (screenGeometry.width() > screenGeometry.height())
+        {
+            layout()->removeWidget(ui->addPushButton);
+            layout()->removeWidget(ui->editPushButton);
+            layout()->removeWidget(ui->removePushButton);
+            layout()->removeWidget(ui->removeAllPushButton);
 
-        QVBoxLayout *newRightLayout = new QVBoxLayout();
-        newRightLayout->addWidget(ui->addPushButton);
-        newRightLayout->addWidget(ui->editPushButton);
-        newRightLayout->addWidget(ui->removePushButton);
-        newRightLayout->addWidget(ui->removeAllPushButton);
+            QVBoxLayout *newRightLayout = new QVBoxLayout();
+            newRightLayout->addWidget(ui->addPushButton);
+            newRightLayout->addWidget(ui->editPushButton);
+            newRightLayout->addWidget(ui->removePushButton);
+            newRightLayout->addWidget(ui->removeAllPushButton);
 
-        layout()->removeWidget(ui->nounsFileLabel);
-        layout()->removeWidget(ui->listWidget);
-        layout()->removeWidget(ui->numberOfNounsLabel);
+            layout()->removeWidget(ui->nounsFileLabel);
+            layout()->removeWidget(ui->listWidget);
+            layout()->removeWidget(ui->numberOfNounsLabel);
 
-        QVBoxLayout *newLeftLayout = new QVBoxLayout();
-        newLeftLayout->addWidget(ui->nounsFileLabel);
-        newLeftLayout->addWidget(ui->listWidget);
-        newLeftLayout->addWidget(ui->numberOfNounsLabel);
+            QVBoxLayout *newLeftLayout = new QVBoxLayout();
+            newLeftLayout->addWidget(ui->nounsFileLabel);
+            newLeftLayout->addWidget(ui->listWidget);
+            newLeftLayout->addWidget(ui->numberOfNounsLabel);
 
-        QHBoxLayout *newMainLayout = new QHBoxLayout();
-        newMainLayout->addLayout(newLeftLayout);
-        newMainLayout->addLayout(newRightLayout);
+            QHBoxLayout *newMainLayout = new QHBoxLayout();
+            newMainLayout->addLayout(newLeftLayout);
+            newMainLayout->addLayout(newRightLayout);
 
-        delete this->layout();
-        this->setLayout(newMainLayout);
+            delete this->layout();
+            this->setLayout(newMainLayout);
 
-        ui->addPushButton->setFocus();
+            ui->addPushButton->setFocus();
+        }
     }
 #endif
 
