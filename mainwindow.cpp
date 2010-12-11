@@ -109,6 +109,20 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionExit->setVisible(false);
 #endif
 
+#ifdef Q_OS_SYMBIAN
+    //show only action in menu (no sub-menus)
+    ui->menuActions->removeAction(ui->actionEdit_Nouns);
+    ui->menuActions->removeAction(ui->actionExit);
+    ui->menuHelp->removeAction(ui->actionAbout);
+
+    delete ui->menuActions;
+    delete ui->menuHelp;
+
+    ui->menuBar->addAction(ui->actionEdit_Nouns);
+    ui->menuBar->addAction(ui->actionAbout);
+    ui->menuBar->addAction(ui->actionExit);
+#endif
+
     //initial GUI state
     updateGui();
 }
