@@ -102,6 +102,11 @@ MainWindow::MainWindow(QWidget *parent) :
     //read nouns from nouns file
     readNounsAndErroneousLines();
 
+    //hide the exit action on maemo
+#ifdef Q_WS_MAEMO_5
+    ui->actionExit->setVisible(false);
+#endif
+
     //initial GUI state
     updateGui();
 }
