@@ -74,7 +74,11 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
     //center widget in screen and fix window size
-#ifndef Q_OS_SYMBIAN
+#ifdef Q_OS_SYMBIAN
+    //do nothing
+#elif defined(Q_WS_MAEMO_5)
+    //do nothing
+#else
     adjustSize();
     move(QApplication::desktop()->availableGeometry().center() -
          this->rect().center()

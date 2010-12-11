@@ -110,7 +110,11 @@ EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
 #endif
 
     //fix window size
-#ifndef Q_OS_SYMBIAN
+#ifdef Q_OS_SYMBIAN
+    //do nothing
+#elif defined(Q_WS_MAEMO_5)
+    layout()->setSizeConstraint(QLayout::SetFixedSize);
+#else
     layout()->setSizeConstraint(QLayout::SetFixedSize);
 #endif
 
