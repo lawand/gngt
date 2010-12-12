@@ -567,6 +567,8 @@ void MainWindow::editNouns()
                                     nounsFile->fileName(),
                                     this);
 
+    editNounsDialog.setCurrentNoun(nouns->at(nounIndex));
+
     editNounsDialog.exec();
 
     updateGui();

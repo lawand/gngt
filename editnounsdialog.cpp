@@ -301,6 +301,17 @@ void EditNounsDialog::setQActionsVisible(bool visible)
     ui->actionDone->setVisible(visible);
 }
 
+void EditNounsDialog::setCurrentNoun(Noun noun)
+{
+    if(!nouns->isEmpty())
+    {
+        ui->listWidget->setCurrentRow(
+                nouns->indexOf(noun) +
+                erroneousLines->length()
+                );
+    }
+}
+
 void EditNounsDialog::add()
 {
     EditNounDialog editNounDialog(nouns, this);

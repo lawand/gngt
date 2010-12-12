@@ -59,6 +59,7 @@ public:
     void updateState();
     void setQPushButtonsVisible(bool visible);
     void setQActionsVisible(bool visible);
+    void setCurrentNoun(Noun noun);
 
 private slots:
     void add();
