@@ -345,13 +345,13 @@ void MainWindow::writeNounsAndErroneousLines()
     int largestLength = 0;
     foreach(Noun noun, *nouns)
     {
-        if(noun.singularForm.length() > largestLength)
-            largestLength = noun.singularForm.length();
+        if(noun.toString().length() > largestLength)
+            largestLength = noun.toString().length();
     }
 
     //write nouns
     foreach(Noun noun, *nouns)
-        out << qSetFieldWidth(largestLength + 5) << left << noun.toString()
+        out << qSetFieldWidth(largestLength + 1) << left << noun.toString()
             << qSetFieldWidth(1) << noun.memorizationStreak << "\n";
 
     out << "\n";
@@ -367,7 +367,8 @@ void MainWindow::updateGui()
 {
     if(nouns->isEmpty())
     {
-        ui->nounLabel->setText("Add new nouns");
+        ui->singularFormLabel->setText("Add new nouns");
+        ui->pluralFormLabel->setText("");
         ui->memorizationStreakLabel->setText("");
 
         ui->masculinePushButton->setEnabled(false);
@@ -390,7 +391,19 @@ void MainWindow::displayNewNoun()
     {
         nounIndex = qrand() % nouns->length();
 
-        ui->nounLabel->setText(nouns->at(nounIndex).singularForm);
+        ui->singularFormLabel->setText(nouns->at(nounIndex).singularForm);
+        if(nouns->at(nounIndex).pluralForm.isEmpty())
+        {
+            ui->pluralFormLabel->setText("");
+        }
+        else
+        {
+            ui->pluralFormLabel->setText(
+                    "(" +
+                    nouns->at(nounIndex).pluralForm +
+                    ")"
+                    );
+        }
 
         ui->memorizationStreakLabel->setText(
                 QString("Streak: %1").arg(
@@ -412,17 +425,17 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
         if(currentNoun.gender == Noun::masculine)
         {
             ui->masculinePushButton->setStyleSheet("color: green;");
-            ui->nounLabel->setStyleSheet("color: green;");
+            ui->singularFormLabel->setStyleSheet("color: green;");
         }
         if(currentNoun.gender == Noun::feminine)
         {
             ui->femininePushButton->setStyleSheet("color: red;");
-            ui->nounLabel->setStyleSheet("color: red;");
+            ui->singularFormLabel->setStyleSheet("color: red;");
         }
         if(currentNoun.gender == Noun::neuter)
         {
             ui->neuterPushButton->setStyleSheet("color: blue;");
-            ui->nounLabel->setStyleSheet("color: blue;");
+            ui->singularFormLabel->setStyleSheet("color: blue;");
         }
 
         if(currentNoun.memorizationStreak != 0)
@@ -477,7 +490,7 @@ void MainWindow::stopFeedback()
     ui->masculinePushButton->setStyleSheet("");
     ui->femininePushButton->setStyleSheet("");
     ui->neuterPushButton->setStyleSheet("");
-    ui->nounLabel->setStyleSheet("");
+    ui->singularFormLabel->setStyleSheet("");
     ui->memorizationStreakLabel->setStyleSheet("");
 }
 
@@ -567,7 +580,10 @@ void MainWindow::editNouns()
                                     nounsFile->fileName(),
                                     this);
 
-    editNounsDialog.setCurrentNoun(nouns->at(nounIndex));
+    if(!nouns->isEmpty())
+    {
+        editNounsDialog.setCurrentNoun(nouns->at(nounIndex));
+    }
 
     editNounsDialog.exec();
 

@@ -86,23 +86,25 @@ EditNounDialog::~EditNounDialog()
 
 void EditNounDialog::setText(QString text)
 {
-    ui->definiteArticleAndSingularFormLineEdit->setText(text);
+    ui->definiteArticleAndBothFormsLineEdit->setText(text);
 }
 
 QString EditNounDialog::getText()
 {
-    return ui->definiteArticleAndSingularFormLineEdit->text();
+    return ui->definiteArticleAndBothFormsLineEdit->text();
 }
 
 void EditNounDialog::on_buttonBox_accepted()
 {
     //handle the case of an invalid noun string
-    if(! Noun::isValid(ui->definiteArticleAndSingularFormLineEdit->text()))
+    if(! Noun::isValid(ui->definiteArticleAndBothFormsLineEdit->text()))
     {
         QMessageBox::information(this, "Noun Format Error",
-                                 "Incorrect format. The correct format is "
-                                 "like this: 'das Buch' \n"
-                                 "Note that the singular form can contain at "
+                                 "Incorrect format. \n"
+                                 "The correct format is "
+                                 "like this: 'das Auto Autos'. \n"
+                                 "The plural form is optional. \n"
+                                 "Both forms can each contain at "
                                  "most 23 characters."
                                  );
 
@@ -110,7 +112,7 @@ void EditNounDialog::on_buttonBox_accepted()
     }
 
     //handle the case of a duplicate noun
-    Noun noun(ui->definiteArticleAndSingularFormLineEdit->text());
+    Noun noun(ui->definiteArticleAndBothFormsLineEdit->text());
     if(nouns->indexOf(noun) != -1)
     {
         QMessageBox::information(this,
@@ -124,48 +126,48 @@ void EditNounDialog::on_buttonBox_accepted()
     accept();
 }
 
-void EditNounDialog::on_definiteArticleAndSingularFormLineEdit_textChanged(
+void EditNounDialog::on_definiteArticleAndBothFormsLineEdit_textChanged(
         QString
         )
 {
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(
-            ! ui->definiteArticleAndSingularFormLineEdit->text().isEmpty()
+            ! ui->definiteArticleAndBothFormsLineEdit->text().isEmpty()
             );
 }
 
 void EditNounDialog::on_capitalAWithDiaeresisToolButton_clicked()
 {
-    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xC4));
+    ui->definiteArticleAndBothFormsLineEdit->insert(QChar(0xC4));
 }
 
 void EditNounDialog::on_capitalOWithDiaeresisToolButton_clicked()
 {
-    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xD6));
+    ui->definiteArticleAndBothFormsLineEdit->insert(QChar(0xD6));
 }
 
 void EditNounDialog::on_capitalUWithDiaeresisToolButton_clicked()
 {
-    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xDC));
+    ui->definiteArticleAndBothFormsLineEdit->insert(QChar(0xDC));
 }
 
 void EditNounDialog::on_smallSharpSToolButton_clicked()
 {
-    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xDF));
+    ui->definiteArticleAndBothFormsLineEdit->insert(QChar(0xDF));
 }
 
 void EditNounDialog::on_smallAWithDiaeresisToolButton_clicked()
 {
-    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xE4));
+    ui->definiteArticleAndBothFormsLineEdit->insert(QChar(0xE4));
 }
 
 void EditNounDialog::on_smallOWithDiaeresisToolButton_clicked()
 {
-    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xF6));
+    ui->definiteArticleAndBothFormsLineEdit->insert(QChar(0xF6));
 }
 
 void EditNounDialog::on_smallUWithDiaeresisToolButton_clicked()
 {
-    ui->definiteArticleAndSingularFormLineEdit->insert(QChar(0xFC));
+    ui->definiteArticleAndBothFormsLineEdit->insert(QChar(0xFC));
 }
 
 #ifdef Q_OS_SYMBIAN

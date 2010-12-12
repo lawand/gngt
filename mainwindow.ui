@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>160</width>
-    <height>187</height>
+    <width>209</width>
+    <height>189</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLabel" name="nounLabel">
+     <widget class="QLabel" name="singularFormLabel">
       <property name="font">
        <font>
         <weight>75</weight>
@@ -25,6 +25,16 @@
       </property>
       <property name="text">
        <string>Unkameradschaftlichkeit</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="pluralFormLabel">
+      <property name="text">
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -82,8 +92,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>160</width>
-     <height>20</height>
+     <width>209</width>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuActions">

@@ -30,11 +30,11 @@
 //corresponding header file(s)
 #include "noun.h"
 
-Noun::Noun(QString definiteArticleAndSingularForm, int memorizationStreak)
+Noun::Noun(QString definiteArticleAndBothForms, int memorizationStreak)
 {
-    if(Noun::isValid(definiteArticleAndSingularForm))
+    if(Noun::isValid(definiteArticleAndBothForms))
     {
-        QStringList parts = definiteArticleAndSingularForm.split(
+        QStringList parts = definiteArticleAndBothForms.split(
                 QRegExp("\\s+"),
                 QString::SkipEmptyParts
                 );
@@ -51,6 +51,18 @@ Noun::Noun(QString definiteArticleAndSingularForm, int memorizationStreak)
         singularForm = parts.value(1);
         singularForm = singularForm.toLower();
         singularForm[0] = singularForm[0].toUpper();
+
+        //if there was a plural form
+        if(parts.length() > 2)
+        {
+            pluralForm = parts.value(2);
+            pluralForm = pluralForm.toLower();
+            pluralForm[0] = pluralForm[0].toUpper();
+        }
+        else
+        {
+            pluralForm = "";
+        }
     }
     else
     {
@@ -75,17 +87,28 @@ QString Noun::toString()
     if(gender == Noun::neuter)
         defeniteArticle = "das";
 
-    return QString("%1 %2").arg(defeniteArticle).arg(singularForm);
+    if(pluralForm.isEmpty())
+    {
+        return QString("%1 %2").arg(
+                defeniteArticle
+                ).arg(singularForm);
+    }
+    else
+    {
+        return QString("%1 %2 %3").arg(
+                defeniteArticle
+                ).arg(singularForm).arg(pluralForm);
+    }
 }
 
-bool Noun::isValid(QString definiteArticleAndSingularForm)
+bool Noun::isValid(QString definiteArticleAndBothForms)
 {
-    QStringList parts = definiteArticleAndSingularForm.split(
+    QStringList parts = definiteArticleAndBothForms.split(
             QRegExp("\\s+"),
             QString::SkipEmptyParts
             );
 
-    if(parts.size() != 2)
+    if((parts.size() != 2) && (parts.size() != 3))
         return false;
 
     if(! QRegExp("^der|die|das$").exactMatch(parts.at(0).toLower()))
@@ -97,16 +120,32 @@ bool Noun::isValid(QString definiteArticleAndSingularForm)
         )
         return false;
 
+    if(parts.size() == 3)
+    {
+        if(! QRegExp(
+                "^[a-zA-Z\x00C4\x00D6\x00DC\x00DF\x00E4\x00F6\x00FC]{1,23}$"
+                ).exactMatch(parts.at(2))
+            )
+            return false;
+    }
+
     //at this point, return true
     return true;
 }
 
 bool Noun::operator== (Noun otherNoun)
 {
-    return QString::compare(singularForm,
+    return (
+            QString::compare(singularForm,
                             otherNoun.singularForm,
                             Qt::CaseInsensitive
-                            ) == 0;
+                            ) == 0
+            &&
+            QString::compare(pluralForm,
+                            otherNoun.pluralForm,
+                            Qt::CaseInsensitive
+                            ) == 0
+            );
 }
 
 bool Noun::operator<  (Noun otherNoun) const

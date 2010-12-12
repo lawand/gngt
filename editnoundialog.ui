@@ -68,7 +68,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QLineEdit" name="definiteArticleAndSingularFormLineEdit"/>
+    <widget class="QLineEdit" name="definiteArticleAndBothFormsLineEdit"/>
    </item>
    <item>
     <widget class="QDialogButtonBox" name="buttonBox">
@@ -83,7 +83,7 @@
   </layout>
  </widget>
  <tabstops>
-  <tabstop>definiteArticleAndSingularFormLineEdit</tabstop>
+  <tabstop>definiteArticleAndBothFormsLineEdit</tabstop>
   <tabstop>capitalAWithDiaeresisToolButton</tabstop>
   <tabstop>capitalOWithDiaeresisToolButton</tabstop>
   <tabstop>capitalUWithDiaeresisToolButton</tabstop>

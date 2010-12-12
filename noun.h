@@ -45,7 +45,7 @@ public:
 
 //member functions
 public:
-    explicit Noun(QString definiteArticleAndSingularForm = "",
+    explicit Noun(QString definiteArticleAndBothForms = "",
                   int memorizationStreak = 0);
     ~Noun();
 
@@ -53,7 +53,7 @@ public:
     QString toString();
 
     //validation
-    static bool isValid(QString definiteArticleAndSingularForm);
+    static bool isValid(QString definiteArticleAndBothForms);
 
     //operators
     bool operator== (Noun otherNoun);
@@ -63,6 +63,7 @@ public:
 public:
     Gender gender;
     QString singularForm;
+    QString pluralForm;
     int memorizationStreak;
 };
 
