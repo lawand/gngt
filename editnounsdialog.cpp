@@ -26,15 +26,12 @@
 
 //data member(s)
 #include <QMenu>
-#include <QAction>
 #include <QKeyEvent>
 
 //implementation-specific data type(s)
 #include <QMessageBox>
-#include <QStringList>
 #include <QDesktopWidget>
 #include "editnoundialog.h"
-#include "noun.h"
 
 //corresponding header file(s)
 #include "editnounsdialog.h"

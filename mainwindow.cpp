@@ -24,10 +24,6 @@
 **
 ****************************************************************************/
 
-//data member(s)
-#include <QStringList>
-#include <QFile>
-
 //implementation-specific data type(s)
 #include <QTextStream>
 #include <QTextCodec>
