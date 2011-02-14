@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 
-<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny" width="100%" height="100%" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.2" baseProfile="tiny" width="100%" height="100%" viewBox="0 0 256 256">
 
-  <rect x="2" y="2" width="60" height="60" fill="white" stroke="black" stroke-width="2"/>
+  <rect x="8" y="8" width="240" height="240" fill="white" stroke="black" stroke-width="8"/>
   
-  <text x="5" y="20" font-family="Verdana" font-size="18" fill="black">
+  <text x="20" y="80" font-family="Verdana" font-size="72" fill="black">
     der
   </text>
   
-  <text x="15" y="38" font-family="Verdana" font-size="18" fill="black">
+  <text x="60" y="152" font-family="Verdana" font-size="72" fill="black">
     die
   </text>
   
-  <text x="25" y="56" font-family="Verdana" font-size="18" fill="black">
+  <text x="100" y="224" font-family="Verdana" font-size="72" fill="black">
     das
   </text>
   
