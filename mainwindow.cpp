@@ -52,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionEdit_Nouns, SIGNAL(triggered()), SLOT(editNouns()));
     connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
     connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
+    connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
     //enable auto-rotation on maemo linux
 #ifdef Q_WS_MAEMO_5
@@ -110,12 +111,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuActions->removeAction(ui->actionEdit_Nouns);
     ui->menuActions->removeAction(ui->actionExit);
     ui->menuHelp->removeAction(ui->actionAbout);
+    ui->menuHelp->removeAction(ui->actionAbout_Qt);
 
     delete ui->menuActions;
     delete ui->menuHelp;
 
     ui->menuBar->addAction(ui->actionEdit_Nouns);
     ui->menuBar->addAction(ui->actionAbout);
+    ui->menuBar->addAction(ui->actionAbout_Qt);
     ui->menuBar->addAction(ui->actionExit);
 #endif
 
