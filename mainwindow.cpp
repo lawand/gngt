@@ -135,6 +135,7 @@ MainWindow::~MainWindow()
     delete ui;
     delete nouns;
     delete erroneousLines;
+    delete nounsFile;
 }
 
 void MainWindow::readNounsAndErroneousLines()
