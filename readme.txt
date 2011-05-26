@@ -7,6 +7,9 @@ http://coinonedge.com/gngt/
 Changelog
 ---------
 
+v1.0.2 (2011-05-27)
+A bug-fix release, no new features.
+
 v1.0 (2010-12-12)
 Added ability to store plural forms of nouns, added support for Maemo Linux.
 

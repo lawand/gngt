@@ -2,7 +2,7 @@
 <<MODE>>0<</MODE>>
 <<CTRL>>
 Package: gngt
-Version: 0.9
+Version: 1.0.2
 Section: science
 Maintainer: Omar Lawand Dalatieh <lawand87@gmail.com>
 Homepage: http://lawand.github.com/gngt/
@@ -38,7 +38,7 @@ gngt* -> gngt -> /usr/bin
 
 <</CHANGELOG>>
 <<COPYRIGHT>>
-Copyright 2010 Omar Lawand Dalatieh
+Copyright 2010, 2011 Omar Lawand Dalatieh
 
 GNGT is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -49,7 +49,7 @@ For more information:
 <<MENU>>
 1
 Name=GNGT
-Version=1.0
+Version=1.0.2
 Exec=gngt
 Comment=Helps German learners memorize genders of German nouns.
 Icon=gngt.xpm
