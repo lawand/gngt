@@ -59,7 +59,8 @@ private slots:
     void on_femininePushButton_clicked();
     void on_neuterPushButton_clicked();
 
-    void about();
+    void readme();
+    void copying();
     void editNouns();
 
 //data members

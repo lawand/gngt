@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>209</width>
-    <height>189</height>
+    <height>211</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -107,8 +107,9 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
-    <addaction name="actionAbout"/>
     <addaction name="actionAbout_Qt"/>
+    <addaction name="actionReadme"/>
+    <addaction name="actionCopying"/>
    </widget>
    <addaction name="menuActions"/>
    <addaction name="menuHelp"/>
@@ -123,14 +124,19 @@
     <string>&amp;Exit</string>
    </property>
   </action>
-  <action name="actionAbout">
-   <property name="text">
-    <string>&amp;About</string>
-   </property>
-  </action>
   <action name="actionAbout_Qt">
    <property name="text">
     <string>About &amp;Qt</string>
+   </property>
+  </action>
+  <action name="actionReadme">
+   <property name="text">
+    <string>&amp;Readme</string>
+   </property>
+  </action>
+  <action name="actionCopying">
+   <property name="text">
+    <string>&amp;Copying</string>
    </property>
   </action>
  </widget>

@@ -46,7 +46,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     connect(ui->actionEdit_Nouns, SIGNAL(triggered()), SLOT(editNouns()));
     connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
-    connect(ui->actionAbout, SIGNAL(triggered()), SLOT(about()));
+    connect(ui->actionReadme, SIGNAL(triggered()), SLOT(readme()));
+    connect(ui->actionCopying, SIGNAL(triggered()), SLOT(copying()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
     //enable auto-rotation on maemo linux
@@ -513,59 +514,48 @@ void MainWindow::on_neuterPushButton_clicked()
     }
 }
 
-void MainWindow::about()
+void MainWindow::readme()
 {
-    QMessageBox qMessageBox(this);
-    qMessageBox.setWindowTitle("About");
+    QMessageBox messageBox(this);
 
-    //set the text of the QMessageBox
-#ifndef Q_OS_SYMBIAN
-    qMessageBox.setText(
-            "<b>German Noun Gender Trainer (GNGT) v1.0</b> <br>"
-            "Copyright 2010 Omar Lawand Dalatieh. <br><br>"
+    messageBox.setWindowTitle("Readme");
 
-            "Licensed under the GNU LGPLv3 license. <br><br>"
+    messageBox.setText(
+        "Readme.txt:"
+        );
 
-            "<a href=\"http://lawand.github.com/gngt/\">"
-            "http://lawand.github.com/gngt/"
-            "</a>"
-            );
-#else
-    if(QApplication::desktop()->screenGeometry().width() <= 240)
-        //on devices with 240x320 screen resolution
-    {
-        qMessageBox.setText(
-                "German Noun Gender Trainer (GNGT) v1.0"
-                );
+    QFile readmeFile(":/help/readme.txt");
+    readmeFile.open(QFile::ReadOnly);
+    QString readmeString = readmeFile.readAll();
 
-        qMessageBox.setInformativeText(
-                "Copyright 2010 Omar Lawand Dalatieh. <br><br>"
+    messageBox.setDetailedText(readmeString);
 
-                "Licensed under the GNU LGPLv3 license. <br><br>"
-
-                "http://lawand.github.com/gngt/"
-                );
-    }
-    else
-        //on other Symbian devices
-    {
-        qMessageBox.setText(
-                "German Noun Gender Trainer (GNGT) v1.0 \n"
-                "Copyright 2010 Omar Lawand Dalatieh. \n\n"
-
-                "Licensed under the GNU LGPLv3 license. \n\n"
-
-                "lawand.github.com/gngt"
-                );
-    }
-#endif
-
-    //set QMessageBox icon
     QIcon applicationIcon(":/icons/applicationIcon.svg");
-    qMessageBox.setIconPixmap(applicationIcon.pixmap(QSize(32, 32)));
+    messageBox.setIconPixmap(applicationIcon.pixmap(QSize(32, 32)));
 
-    //execute the QMessageBox
-    qMessageBox.exec();
+    messageBox.exec();
+}
+
+void MainWindow::copying()
+{
+    QMessageBox messageBox(this);
+
+    messageBox.setWindowTitle("Copying");
+
+    messageBox.setText(
+        "Copying.txt:"
+        );
+
+    QFile copyingFile(":/help/copying.txt");
+    copyingFile.open(QFile::ReadOnly);
+    QString copyingString = copyingFile.readAll();
+
+    messageBox.setDetailedText(copyingString);
+
+    QIcon applicationIcon(":/icons/applicationIcon.svg");
+    messageBox.setIconPixmap(applicationIcon.pixmap(QSize(32, 32)));
+
+    messageBox.exec();
 }
 
 void MainWindow::editNouns()

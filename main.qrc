@@ -2,4 +2,8 @@
     <qresource prefix="/icons">
         <file>applicationIcon.svg</file>
     </qresource>
+    <qresource prefix="/help">
+        <file>copying.txt</file>
+        <file>readme.txt</file>
+    </qresource>
 </RCC>
