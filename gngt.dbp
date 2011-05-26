@@ -2,7 +2,7 @@
 <<MODE>>0<</MODE>>
 <<CTRL>>
 Package: gngt
-Version: 1.0.2
+Version: 1.0.3
 Section: science
 Maintainer: Omar Lawand Dalatieh <lawand87@gmail.com>
 Homepage: http://lawand.github.com/gngt/
@@ -49,7 +49,7 @@ For more information:
 <<MENU>>
 1
 Name=GNGT
-Version=1.0.2
+Version=1.0.3
 Exec=gngt
 Comment=Helps German learners memorize genders of German nouns.
 Icon=gngt.xpm

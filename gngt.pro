@@ -4,7 +4,7 @@ symbian {
     ICON = applicationIcon.svg
 }
 
-VERSION = 1.0.2
+VERSION = 1.0.3
 TARGET = GNGT
 TEMPLATE = app
 SOURCES += \
