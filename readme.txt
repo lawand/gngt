@@ -213,7 +213,7 @@ The file "gngt.dbp" is used for creating Ubuntu Linux .deb packages.
 Symbian Note:
 
 Distributing a custom build requires renaming the application (so that it can
-be installed along with GNGT), and (as it is with all Symbian applications)
+be installed alongside with GNGT), and (as it is with all Symbian applications)
 specifying a UID.
 
 Legal Notes
