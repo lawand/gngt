@@ -106,14 +106,16 @@ MainWindow::MainWindow(QWidget *parent) :
     //show only action in menu (no sub-menus)
     ui->menuActions->removeAction(ui->actionEdit_Nouns);
     ui->menuActions->removeAction(ui->actionExit);
-    ui->menuHelp->removeAction(ui->actionAbout);
+    ui->menuHelp->removeAction(ui->actionReadme);
+    ui->menuHelp->removeAction(ui->actionCopying);
     ui->menuHelp->removeAction(ui->actionAbout_Qt);
 
     delete ui->menuActions;
     delete ui->menuHelp;
 
     ui->menuBar->addAction(ui->actionEdit_Nouns);
-    ui->menuBar->addAction(ui->actionAbout);
+    ui->menuBar->addAction(ui->actionReadme);
+    ui->menuBar->addAction(ui->actionCopying);
     ui->menuBar->addAction(ui->actionAbout_Qt);
     ui->menuBar->addAction(ui->actionExit);
 #endif
