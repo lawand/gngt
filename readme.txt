@@ -198,9 +198,12 @@ Development
 
 GNGT was written in Qt 4.
 
-GNGT version numbers follow this scheme Major.Minor.Patch (for instance 0.8.2).
-Releases always have an even patch number (2, 4, 6 etc.). Odd numbers are given
-to code edits that take place between two releases.
+GNGT version numbers follow this scheme: Major.Minor.Patch (e.g 0.8.2).
+Released versions (which are git-tagged) always have an even patch number
+(e.g. 1.7.2). Odd patch numbers are given to code edits that take place between
+two releases (e.g. 1.7.3 is between 1.7.2 the next released version which could
+be 1.7.4 and could be 1.8.0 and 2.0.0 depending on the severity of the changes
+made to the code).
 This is true starting with 1.0.2
 
 GNGT was tested to be built with Qt 4.7.0 for Windows, Ubuntu Linux and Maemo
