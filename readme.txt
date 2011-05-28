@@ -7,6 +7,7 @@ corresponding definite articles (der, die or das).
 
 http://coinonedge.com/gngt/
 
+
 Changelog
 ---------
 
@@ -40,6 +41,7 @@ exit.
 
 v0.3 (2010-11-10)
 A bug-fix release, no new features.
+
 
 Installation
 ------------
@@ -84,6 +86,7 @@ Note for Nokia E-Series users: you need to change certain settings to be able
 to install the program, in case an error message appeared during installation.
 This setting can be changed in the device as follows: Open the application
 manager, then select: Settings > Software installation > All.
+
 
 Usage
 -----
@@ -175,6 +178,7 @@ that should be pressed to access the function.
 Note: If some text in the program interface wasn't readable, try changing the
 device theme (default themes are usually well-designed regarding this aspect)
 
+
 Advanced Usage
 --------------
 
@@ -192,6 +196,7 @@ that erroneous lines will be reported by the program at startup, and you can
 fix them using the program interface.
 
 Duplicates get removed when reading nouns at startup.
+
 
 Development
 -----------
@@ -219,6 +224,7 @@ Distributing a custom build requires renaming the application (so that it can
 be installed alongside with GNGT), and (as it is with all Symbian applications)
 specifying a UID.
 
+
 Legal Notes
 -----------
 
@@ -236,6 +242,7 @@ You should have received a copy of the GNU General Public License along with
 GNGT. If not, see <http://www.gnu.org/licenses/>.
 
 All trademarks are property of their respective owners.
+
 
 Credits
 -------
