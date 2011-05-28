@@ -1,3 +1,6 @@
+GNGT 1.0.3
+----------
+
 German Noun Gender Trainer (GNGT) is a small application which helps German
 learners memorize genders of German nouns through memorizing their
 corresponding definite articles (der, die or das).
@@ -6,6 +9,9 @@ http://coinonedge.com/gngt/
 
 Changelog
 ---------
+
+v1.0.3 (in development)
+No new features yet.
 
 v1.0.2 (2011-05-27)
 A bug-fix release, no new features.
@@ -222,6 +228,9 @@ either version 3 of the License, or (at your option) any later version.
 GNGT is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+GNGT. If not, see <http://www.gnu.org/licenses/>.
 
 All trademarks are property of their respective owners.
 
