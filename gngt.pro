@@ -1,7 +1,7 @@
 include(qtsingleapplication/qtsingleapplication.pri)
 
 symbian {
-    ICON = applicationIcon.svg
+    ICON = gngt.svg
 }
 
 VERSION = 1.0.3

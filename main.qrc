@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>applicationIcon.svg</file>
+        <file>gngt.svg</file>
     </qresource>
     <qresource prefix="/help">
         <file>copying.txt</file>

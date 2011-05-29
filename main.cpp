@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
 #endif
 
     //set icon for all windows
-    application.setWindowIcon(QIcon(":/icons/applicationIcon.svg"));
+    application.setWindowIcon(QIcon(":/icons/gngt.svg"));
 
     //create an instance of MainWindow
     MainWindow mainWindow;

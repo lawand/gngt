@@ -218,7 +218,16 @@ Linux, and tested to be built with Qt 4.6.3 for Symbian.
 It's also tested to be ran with Qt 4.7.0 for Windows, Ubuntu Linux and Maemo
 Linux, and tested to be ran with Qt 4.7.1 for Symbian.
 
-The file "gngt.dbp" is used for creating Ubuntu Linux .deb packages.
+Packaging GNGT for Ubuntu Linux:
+
+There are many methods of creating .deb package files for Ubuntu Linux. This is
+the method I am using:
+    Build GNGT for Linux.
+    Rename the executable from "GNGT" into "gngt".
+    Create a 48x48 PNG icon and a 32x32 xpm icon out of the svg icon found in
+    the repository (possibly using GIMP).
+    Use Debreate (http://debreate.sourceforge.net/) to create a .deb package
+    (you'll need gngt.dbp). (The version I tested is 0.7.0 alpha6)
 
 Symbian Note:
 

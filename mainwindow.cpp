@@ -532,7 +532,7 @@ void MainWindow::readme()
 
     messageBox.setDetailedText(readmeString);
 
-    QIcon applicationIcon(":/icons/applicationIcon.svg");
+    QIcon applicationIcon(":/icons/gngt.svg");
     messageBox.setIconPixmap(applicationIcon.pixmap(QSize(32, 32)));
 
     messageBox.exec();
@@ -554,7 +554,7 @@ void MainWindow::copying()
 
     messageBox.setDetailedText(copyingString);
 
-    QIcon applicationIcon(":/icons/applicationIcon.svg");
+    QIcon applicationIcon(":/icons/gngt.svg");
     messageBox.setIconPixmap(applicationIcon.pixmap(QSize(32, 32)));
 
     messageBox.exec();
