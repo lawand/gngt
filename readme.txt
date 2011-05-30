@@ -1,9 +1,9 @@
 GNGT 1.0.3
 ----------
 
-German Noun Gender Trainer (GNGT) is a small application which helps German
-learners memorize genders of German nouns through memorizing their
-corresponding definite articles (der, die or das).
+German Noun Gender Trainer (GNGT) is a small application that helps German
+learners memorize genders of German nouns by memorizing their corresponding
+definite articles (der, die or das).
 
 Copyright 2010, 2011 Omar Lawand Dalatieh <lawand87@gmail.com>.
 
