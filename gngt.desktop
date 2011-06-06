@@ -1,0 +1,12 @@
+
+[Desktop Entry]
+Name=GNGT
+Version=1.0
+Exec=gngt
+Comment=German Noun Gender Trainer is a tool for German learners.
+Type=Application
+Icon=gngt
+Terminal=false
+StartupNotify=true
+Encoding=UTF-8
+Categories=Education;

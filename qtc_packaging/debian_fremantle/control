@@ -1,0 +1,17 @@
+Source: gngt
+Section: user/education
+Priority: optional
+Maintainer: Omar Lawand Dalatieh <lawand87@gmail.com>
+Build-Depends: debhelper (>= 5), libqt4-dev
+Standards-Version: 3.7.3
+Homepage: http://coinonedge.com/gngt/
+
+Package: gngt
+Architecture: armel
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: German Noun Gender Trainer is a tool for German learners.
+ German Noun Gender Trainer (GNGT) is a small application that helps German learners memorize genders of German nouns by memorizing their corresponding definite articles (der, die or das).
+XB-Maemo-Display-Name: GNGT
+XB-Maemo-Icon-26: iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAOxAAADsQBlSsOGwAABHVJREFUaIHtml0ou28Yx7/3WvJj3g9MI5OmtCWGzUuZkrwWRyTa2ZwoK+UlO0bK2wElSgqRE4ojObEDO8GJHSy1HAiRx2tRNrt+B/+/57+H+dmr/fXzqbXnfq5793N9n+u+n/t6rgZ8c9i/3xRWL/yHiV+PiL6XBsb+ufeiMPsRMH+PAJVKFUo//ObviUAgvLy8hGxsjwKysrLAGINGo4FCoYBCocDt7S1vJyKIRCJotVoMDg4iPj4e0dHRsNlsAIDFxUUwxiCXyzE6Oord3d2QCXDz6T8A0Pj4OBEROZ1Oam9vJ/c+c3NzNDIywrfPzs5ILBZTTU0NEREtLCwQAHI6nRQq8GbvEhhFIhFdXV3x7Z2dHYGAsrIy4jiOnp6e+E99fT1JJBKBgFDyKkAMD+Tn5yMpKYlvl5SUICYmhm8fHh7i6OhI8BuTyQSTyRSM2eATHgXs7+/j+voaiYmJAACLxYKHhwferlQqERkZidzc3K/x8g94XMQulwtLS0v88fLyssCu1+sxMTEBh8MhOH9+fh4iNz/GowCO47C3t4fU1FS0tLSgv78fSqWStxsMBlRUVKCyshJSqRQKhQJtbW2wWq1f5vgrfDZK3zOZYz87cbgJigCVSoWCggIAwObmJhhjWF9fD8bQn/LtI+BxHwiE+vr6L3278ysCNzc3SEtLQ1paGpqbmwU2T1OIiFBaWor4+Hikp6fDbrcH5rUbPgt4fHyEVqtFSkoKOjo6cHBwIMhU30JEqKurg9PpRE9PD6qqqpCTk8NnroHi8xTS6XSw2+18jt/X1wfGGKRSqcf+5eXlsFqtOD095c+dn5+jsLBQkJ74i88C7HY71Gq14Jx7ovcWm82G6+tr/Pr1653t4uICycnJvrogwK9F/FrS8AaHwwG5XP4unwKAhIQEfy7vEa/z8IGBAUGu//LyQgAoPz+fiIg2NjYIAK2trRER0czMDAGg5+dnwThnZ2dBeR/weREbjUZkZmaiqKgIw8PDyM7Ohkwm+7C/wWBAY2MjpFIp2tvbMT09DY1GA71e79+t/gCf1HMcRzKZjGQyGTU1NZFSqfwwAq/odDpKTk6mqKgoam1tpa2traBE4CcbDTc/ArwhlGXJnwiEm6AL+Kwsube3h87OTkxOTsJkMoExhq6uLt6+uroKxhjGxsYwMzOD3t5er64b0DP57fP5T2XJp6cnQX+dTkdisZjfmQsKCkij0Xi9DwRdwGdlSXeen59pfn6eAND29jYRETU0NFBSUhK5XC6vBAR9Cn1WlpyamkJtbS2Wl5dhNptxf38PADg+PgYArK+v4/LyEgaDARkZGV4njkGNAMdxfNtsNgsioFar6e7ujm8bjUYCQLOzs+/Gcrlc1N3dTWaz+esi8FlZMjY2FhEREXx7ZWXF/S4KFjxjDHl5eV5V/IIWAY7jSK/X84neyckJKZVK3u5wOKi6upri4uKouLiYLBYLHwGn00m9vb2k1WpJIpFQZWUlDQ0NebwOfpK5/wk/AsLNt/+zR7gdCJjfH0LbIx94oXAAAAAASUVORK5CYII=
+
+

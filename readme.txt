@@ -229,6 +229,13 @@ the method I am using:
     Use Debreate (http://debreate.sourceforge.net/) to create a .deb package
     (you'll need gngt.dbp). (The version I tested is 0.7.0 alpha6)
 
+Packaging GNGT for Maemo Linux:
+
+Simply open gngt.pro with Qt Creator and select the Maemo target and build and
+create a package for GNGT.
+
+This was tested with Qt SDK 1.1.1 and Maemo5 PR1.3.
+
 Symbian Note:
 
 Distributing a custom build requires renaming the application (so that it can

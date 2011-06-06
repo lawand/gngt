@@ -1,11 +1,7 @@
 include(qtsingleapplication/qtsingleapplication.pri)
 
-symbian {
-    ICON = gngt.svg
-}
-
 VERSION = 1.0.3
-TARGET = GNGT
+TARGET = gngt
 TEMPLATE = app
 SOURCES += \
     noun.cpp \
@@ -27,3 +23,29 @@ RESOURCES += \
     main.qrc
 
 RC_FILE = main.rc
+
+#symbian
+    symbian {
+        ICON = gngt.svg
+    }
+
+#meamo 5
+    maemo5 {
+        target.path = /opt/gngt/bin
+
+        QMAKE_EXTRA_TARGETS += provide_icon
+        icon.files = gngt.png
+        icon.path = /usr/share/icons
+        icon.depends = provide_icon
+
+        desktopfile.path = /usr/share/applications/hildon
+        desktopfile.files = gngt.desktop
+
+        INSTALLS += desktopfile icon target
+    }
+    OTHER_FILES += \
+        qtc_packaging/debian_fremantle/rules \
+        qtc_packaging/debian_fremantle/copyright \
+        qtc_packaging/debian_fremantle/control \
+        qtc_packaging/debian_fremantle/compat
+
