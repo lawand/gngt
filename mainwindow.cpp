@@ -27,6 +27,7 @@
 #include <QDesktopWidget>
 #include <QTimer>
 #include <QDir>
+#include <QTextBrowser>
 #include "editnounsdialog.h"
 
 //corresponding header file(s)
@@ -518,46 +519,38 @@ void MainWindow::on_neuterPushButton_clicked()
 
 void MainWindow::readme()
 {
-    QMessageBox messageBox(this);
+    QDialog dialog(this);
 
-    messageBox.setWindowTitle("Readme");
-
-    messageBox.setText(
-        "Readme.txt:"
-        );
+    dialog.setWindowTitle("Readme");
 
     QFile readmeFile(":/help/readme.txt");
     readmeFile.open(QFile::ReadOnly);
     QString readmeString = readmeFile.readAll();
 
-    messageBox.setDetailedText(readmeString);
+    QTextBrowser textBrowser;
+    textBrowser.setText(readmeString);
+    dialog.setLayout(new QVBoxLayout());
+    dialog.layout()->addWidget(&textBrowser);
 
-    QIcon applicationIcon(":/icons/gngt.svg");
-    messageBox.setIconPixmap(applicationIcon.pixmap(QSize(32, 32)));
-
-    messageBox.exec();
+    dialog.exec();
 }
 
 void MainWindow::copying()
 {
-    QMessageBox messageBox(this);
+    QDialog dialog(this);
 
-    messageBox.setWindowTitle("Copying");
-
-    messageBox.setText(
-        "Copying.txt:"
-        );
+    dialog.setWindowTitle("Copying");
 
     QFile copyingFile(":/help/copying.txt");
     copyingFile.open(QFile::ReadOnly);
     QString copyingString = copyingFile.readAll();
 
-    messageBox.setDetailedText(copyingString);
+    QTextBrowser textBrowser;
+    textBrowser.setText(copyingString);
+    dialog.setLayout(new QVBoxLayout());
+    dialog.layout()->addWidget(&textBrowser);
 
-    QIcon applicationIcon(":/icons/gngt.svg");
-    messageBox.setIconPixmap(applicationIcon.pixmap(QSize(32, 32)));
-
-    messageBox.exec();
+    dialog.exec();
 }
 
 void MainWindow::editNouns()
