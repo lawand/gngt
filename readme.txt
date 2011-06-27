@@ -199,6 +199,9 @@ fix them using the program interface.
 
 Duplicates get removed when reading nouns at startup.
 
+The noun list gets saved to the nouns file every time the program is closed,
+and also every time the "Edit Nouns" dialog is closed.
+
 
 Development
 -----------
