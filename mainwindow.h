@@ -61,6 +61,7 @@ private slots:
 
     void readme();
     void copying();
+    void qtsingleapplicationCopying();
     void editNouns();
 
 //data members

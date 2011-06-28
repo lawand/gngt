@@ -92,7 +92,7 @@ QtLocalPeer::QtLocalPeer(QObject* parent, const QString &appId)
         pProcessIdToSessionId(GetCurrentProcessId(), &sessionId);
         socketName += QLatin1Char('-') + QString::number(sessionId, 16);
     }
-#elif !defined(Q_OS_SYMBIAN)
+#else
     socketName += QLatin1Char('-') + QString::number(::getuid(), 16);
 #endif
 

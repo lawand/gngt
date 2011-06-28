@@ -1,3 +1,4 @@
+include(../common.pri)
 INCLUDEPATH += $$PWD
 DEPENDPATH += $$PWD
 QT *= network

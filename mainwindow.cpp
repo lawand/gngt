@@ -49,6 +49,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionExit, SIGNAL(triggered()), SLOT(close()));
     connect(ui->actionReadme, SIGNAL(triggered()), SLOT(readme()));
     connect(ui->actionCopying, SIGNAL(triggered()), SLOT(copying()));
+    connect(ui->actionQtSingleApplication_Copying, SIGNAL(triggered()),
+            SLOT(qtsingleapplicationCopying()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
 
     //enable auto-rotation on maemo linux
@@ -109,6 +111,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuActions->removeAction(ui->actionExit);
     ui->menuHelp->removeAction(ui->actionReadme);
     ui->menuHelp->removeAction(ui->actionCopying);
+    ui->menuHelp->removeAction(ui->actionQtSingleApplication_Copying);
     ui->menuHelp->removeAction(ui->actionAbout_Qt);
 
     delete ui->menuActions;
@@ -117,6 +120,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuBar->addAction(ui->actionEdit_Nouns);
     ui->menuBar->addAction(ui->actionReadme);
     ui->menuBar->addAction(ui->actionCopying);
+    ui->menuBar->addAction(ui->actionQtSingleApplication_Copying);
     ui->menuBar->addAction(ui->actionAbout_Qt);
     ui->menuBar->addAction(ui->actionExit);
 #endif
@@ -547,6 +551,27 @@ void MainWindow::copying()
 
     QTextBrowser textBrowser;
     textBrowser.setText(copyingString);
+    dialog.setLayout(new QVBoxLayout());
+    dialog.layout()->addWidget(&textBrowser);
+
+    dialog.exec();
+}
+
+void MainWindow::qtsingleapplicationCopying()
+{
+    QDialog dialog(this);
+
+    dialog.setWindowTitle("QtSingleApplication/Copying");
+
+    QFile qtsingleapplicationCopyingFile(
+                ":/help/qtsingleapplication/COPYING.txt"
+                );
+    qtsingleapplicationCopyingFile.open(QFile::ReadOnly);
+    QString qtsingleapplicationCopyingString =
+            qtsingleapplicationCopyingFile.readAll();
+
+    QTextBrowser textBrowser;
+    textBrowser.setText(qtsingleapplicationCopyingString);
     dialog.setLayout(new QVBoxLayout());
     dialog.layout()->addWidget(&textBrowser);
 

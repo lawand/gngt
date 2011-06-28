@@ -110,6 +110,7 @@
     <addaction name="actionAbout_Qt"/>
     <addaction name="actionReadme"/>
     <addaction name="actionCopying"/>
+    <addaction name="actionQtSingleApplication_Copying"/>
    </widget>
    <addaction name="menuActions"/>
    <addaction name="menuHelp"/>
@@ -137,6 +138,11 @@
   <action name="actionCopying">
    <property name="text">
     <string>&amp;Copying</string>
+   </property>
+  </action>
+  <action name="actionQtSingleApplication_Copying">
+   <property name="text">
+    <string>Qt&amp;SingleApplication/Copying</string>
    </property>
   </action>
  </widget>

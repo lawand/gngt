@@ -1,4 +1,9 @@
-include(qtsingleapplication/qtsingleapplication.pri)
+symbian: {
+    HEADERS += qtsingleapplication/src/QtSingleApplication
+}
+!symbian: {
+    include(qtsingleapplication/src/qtsingleapplication.pri)
+}
 
 VERSION = 1.0.3
 TARGET = gngt
