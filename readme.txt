@@ -226,7 +226,6 @@ Packaging GNGT for Ubuntu Linux:
 There are many methods of creating .deb package files for Ubuntu Linux. This is
 the method I am using:
     Build GNGT for Linux.
-    Rename the executable from "GNGT" into "gngt".
     Create a 48x48 PNG icon and a 32x32 xpm icon out of the svg icon found in
     the repository (possibly using GIMP).
     Use Debreate (http://debreate.sourceforge.net/) to create a .deb package

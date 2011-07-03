@@ -6,7 +6,13 @@ symbian: {
 }
 
 VERSION = 1.0.3
-TARGET = gngt
+
+linux {
+    TARGET = gngt
+} else {
+    TARGET = GNGT
+}
+
 TEMPLATE = app
 SOURCES += \
     noun.cpp \
