@@ -9,7 +9,14 @@ VERSION = 1.0.3
 
 linux {
     TARGET = gngt
-} else {
+}
+maemo5 {
+    TARGET = gngt
+}
+symbian {
+    TARGET = GNGT
+}
+windows {
     TARGET = GNGT
 }
 
