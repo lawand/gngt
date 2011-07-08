@@ -28,6 +28,7 @@
 #include <QTimer>
 #include <QDir>
 #include <QTextBrowser>
+#include <QDialogButtonBox>
 #include "editnounsdialog.h"
 
 //corresponding header file(s)
@@ -533,8 +534,15 @@ void MainWindow::readme()
 
     QTextBrowser textBrowser;
     textBrowser.setText(readmeString);
+
+    QDialogButtonBox buttonBox;
+    buttonBox.setStandardButtons(QDialogButtonBox::Ok);
+    buttonBox.setCenterButtons(true);
+    connect(&buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
+
     dialog.setLayout(new QVBoxLayout());
     dialog.layout()->addWidget(&textBrowser);
+    dialog.layout()->addWidget(&buttonBox);
 
     dialog.exec();
 }
@@ -551,8 +559,15 @@ void MainWindow::copying()
 
     QTextBrowser textBrowser;
     textBrowser.setText(copyingString);
+
+    QDialogButtonBox buttonBox;
+    buttonBox.setStandardButtons(QDialogButtonBox::Ok);
+    buttonBox.setCenterButtons(true);
+    connect(&buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
+
     dialog.setLayout(new QVBoxLayout());
     dialog.layout()->addWidget(&textBrowser);
+    dialog.layout()->addWidget(&buttonBox);
 
     dialog.exec();
 }
@@ -572,8 +587,15 @@ void MainWindow::qtsingleapplicationCopying()
 
     QTextBrowser textBrowser;
     textBrowser.setText(qtsingleapplicationCopyingString);
+
+    QDialogButtonBox buttonBox;
+    buttonBox.setStandardButtons(QDialogButtonBox::Ok);
+    buttonBox.setCenterButtons(true);
+    connect(&buttonBox, SIGNAL(accepted()), &dialog, SLOT(accept()));
+
     dialog.setLayout(new QVBoxLayout());
     dialog.layout()->addWidget(&textBrowser);
+    dialog.layout()->addWidget(&buttonBox);
 
     dialog.exec();
 }
