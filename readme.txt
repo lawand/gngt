@@ -71,9 +71,6 @@ Maemo binary was tested with Maemo5 PR1.3
 
 Symbian:
 
-To install GNGT on your Symbian powered smart phone, you need to install Qt
-First. The tested version of Qt is 4.7.3.
-
 Devices compatible with GNGT are those compatible with Qt. In other words,
 most Nokia smart phones released after 2006 and some smart phones of other
 brands. More specifically, Symbian powered smart phones that run S60 versions
@@ -214,7 +211,7 @@ Released versions (which are git-tagged) always have an even patch number
 two releases (e.g. 1.7.3 is between 1.7.2 the next released version which could
 be 1.7.4 and could be 1.8.0 and 2.0.0 depending on the severity of the changes
 made to the code).
-This is true starting with 1.0.2
+This is true starting with 1.0.2.
 
 GNGT was tested to be built with Qt 4.7.0 for Windows, Ubuntu Linux and Maemo
 Linux, and tested to be built with Qt 4.6.3 for Symbian.
@@ -243,6 +240,9 @@ Symbian Note:
 Distributing a custom build requires renaming the application (so that it can
 be installed alongside with GNGT), and (as it is with all Symbian applications)
 specifying a UID.
+
+GNGT for Symbian was tested Qt SDK 1.1.1 and with Qt 4.6.3 for Symbian^1 and
+using the Nokia smart installer on S60v3 FP1, S60v3 FP2, Symbian^1, Symbian^3.
 
 
 Legal Notes
