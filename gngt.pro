@@ -57,7 +57,7 @@ RC_FILE = main.rc
         icon.depends = provide_icon
 
         desktopfile.path = /usr/share/applications/hildon
-        desktopfile.files = gngt.desktop
+        desktopfile.files = qtc_packaging/debian_fremantle/gngt.desktop
 
         INSTALLS += desktopfile icon target
     }
