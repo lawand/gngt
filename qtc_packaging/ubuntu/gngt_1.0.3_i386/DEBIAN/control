@@ -1,0 +1,14 @@
+Package: gngt
+Version: 1.0.3
+Installed-Size: 192
+Section: science
+Maintainer: Omar Lawand Dalatieh <lawand87@gmail.com>
+Homepage: http://lawand.github.com/gngt/
+Priority: optional
+Architecture: i386
+Depends: libqt4-svg (>=4.7.0), libqt4-network (>=4.7.0), libqtgui4 (>=4.7.0)
+Description: Helps German learners memorize genders of German nouns.
+ German Noun Gender Trainer (GNGT) is a small application which helps German learners memorize genders of German nouns through memorizing their corresponding definite articles (der, die or das).
+
+
+

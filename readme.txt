@@ -222,11 +222,14 @@ Packaging GNGT for Ubuntu Linux:
 
 There are many methods of creating .deb package files for Ubuntu Linux. This is
 the method I am using:
-    Build GNGT for Linux.
-    Create a 48x48 PNG icon and a 32x32 xpm icon out of the svg icon found in
-    the repository (possibly using GIMP).
-    Use Debreate (http://debreate.sourceforge.net/) to create a .deb package
-    (you'll need gngt.dbp). (The version I tested is 0.7.0 alpha6)
+    Get a machine running Linux.
+    Build GNGT for Linux, the result is a binary file named "gngt".
+    Put the binary in qtc_packaging/ubuntu/gngt_1.0.3_i386/usr/bin.
+    Open the terminal and change the current directory to qtc_packaging/ubuntu.
+    Execute this command: "dpkg-deb -b gngt_1.0.3_i386/".
+    The resulting file is "gngt_1.0.3_i386.deb" which can be used to install GNGT.
+
+The distribution tested is Ubuntu 11.04.
 
 Packaging GNGT for Maemo Linux:
 
