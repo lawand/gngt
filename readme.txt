@@ -226,7 +226,7 @@ the method I am using:
     Build GNGT for Linux, the result is a binary file named "gngt".
     Put the binary in qtc_packaging/ubuntu/gngt_1.0.3_i386/usr/bin.
     Open the terminal and change the current directory to qtc_packaging/ubuntu.
-    Execute this command: "dpkg-deb -b gngt_1.0.3_i386/".
+    Execute this command: "fakeroot dpkg-deb -b gngt_1.0.3_i386/".
     The resulting file is "gngt_1.0.3_i386.deb" which can be used to install GNGT.
 
 The distribution tested is Ubuntu 11.04.
