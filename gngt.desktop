@@ -1,4 +1,3 @@
-
 [Desktop Entry]
 Name=GNGT
 Version=1.0
@@ -10,3 +9,4 @@ Terminal=false
 StartupNotify=true
 Encoding=UTF-8
 Categories=Education;
+

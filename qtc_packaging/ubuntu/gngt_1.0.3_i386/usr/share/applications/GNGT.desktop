@@ -2,7 +2,7 @@
 Name=GNGT
 Version=1.0
 Exec=gngt
-Comment=Helps German learners memorize genders of German nouns.
+Comment=German Noun Gender Trainer is a tool for German learners.
 Icon=gngt.xpm
 Type=Application
 Terminal=false
