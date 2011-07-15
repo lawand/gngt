@@ -274,7 +274,5 @@ GNGT was programmed using Qt, Qt SDK and Nokia Qt SDK.
 
 GNGT uses UPX (http://upx.sourceforge.net/) for executable compression.
 
-Debreate (http://debreate.sourceforge.net/) is used for Ubuntu packaging.
-
 Program icon was designed using the Inkscape SVG graphics editor.
 
