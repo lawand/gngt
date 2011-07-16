@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Edit Noun</string>
+   <string notr="true">Edit Noun</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
