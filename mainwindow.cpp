@@ -154,13 +154,15 @@ void MainWindow::readNounsAndErroneousLines()
     if(! nounsFile->open(QIODevice::ReadOnly | QIODevice::Text))
     {
         QMessageBox *qMessageBox = new QMessageBox(this);
-        qMessageBox->setWindowTitle("File Open Error");
+        qMessageBox->setWindowTitle(
+                    tr("File Open Error")
+                    );
 
         //set the text of the QMessageBox
 #ifndef Q_OS_SYMBIAN
         qMessageBox->setText(
                 QString(
-                        "Cannot open the nouns file '%1' for reading."
+                        tr("Cannot open the nouns file '%1' for reading.")
                         ).arg(nounsFile->fileName())
                 );
 #else
@@ -168,12 +170,12 @@ void MainWindow::readNounsAndErroneousLines()
             //on devices with 240x320 screen resolution
         {
             qMessageBox->setText(
-                    "Cannot open the nouns file."
+                    tr("Cannot open the nouns file.")
                     );
 
             qMessageBox->setInformativeText(
                     QString(
-                            "Cannot open the nouns file '%1' for reading."
+                            tr("Cannot open the nouns file '%1' for reading.")
                             ).arg(nounsFile->fileName())
                     );
         }
@@ -182,7 +184,7 @@ void MainWindow::readNounsAndErroneousLines()
         {
             qMessageBox->setText(
                     QString(
-                            "Cannot open the nouns file '%1' for reading."
+                            tr("Cannot open the nouns file '%1' for reading.")
                             ).arg(nounsFile->fileName())
                     );
         }
@@ -209,9 +211,10 @@ void MainWindow::readNounsAndErroneousLines()
     while(!in.atEnd())
     {
         QString line = in.readLine();
-        QStringList lineParts = line.split(QRegExp("\\s+"),
-                                       QString::SkipEmptyParts
-                                       );
+        QStringList lineParts = line.split(
+                    QRegExp("\\s+"),
+                    QString::SkipEmptyParts
+                    );
 
         if(!lineParts.isEmpty())     //empty or white-space-only lines
             //neither cause errors
@@ -249,12 +252,14 @@ void MainWindow::readNounsAndErroneousLines()
     if(erroneousLines->isEmpty() == false)
     {
         QMessageBox *qMessageBox = new QMessageBox(this);
-        qMessageBox->setWindowTitle("Read Error");
+        qMessageBox->setWindowTitle(
+                    tr("Read Error")
+                    );
 
         //set the text of the QMessageBox
         qMessageBox->setText(
-                "Some lines contained errors and weren't able to be read. \n"
-                "Correct these errors using the 'Edit Nouns' option."
+                tr("Some lines contained errors and weren't able to be read. \n"
+                "Correct these errors using the 'Edit Nouns' option.")
                 );
 
         //set QMessageBox icon
@@ -298,13 +303,15 @@ void MainWindow::writeNounsAndErroneousLines()
     if(! nounsFile->open(QIODevice::WriteOnly | QIODevice::Text) )
     {
         QMessageBox qMessageBox(this);
-        qMessageBox.setWindowTitle("File Open Error");
+        qMessageBox.setWindowTitle(
+                    tr("File Open Error")
+                    );
 
         //set the text of the QMessageBox
 #ifndef Q_OS_SYMBIAN
         qMessageBox.setText(
                 QString(
-                        "Cannot open the nouns file '%1' for writing."
+                        tr("Cannot open the nouns file '%1' for writing.")
                         ).arg(nounsFile->fileName())
                 );
 #else
@@ -312,12 +319,12 @@ void MainWindow::writeNounsAndErroneousLines()
             //on devices with 240x320 screen resolution
         {
             qMessageBox.setText(
-                    "Cannot open the nouns file."
+                    tr("Cannot open the nouns file.")
                     );
 
             qMessageBox.setInformativeText(
                     QString(
-                            "Cannot open the nouns file '%1' for writing."
+                            tr("Cannot open the nouns file '%1' for writing.")
                             ).arg(nounsFile->fileName())
                     );
         }
@@ -326,7 +333,7 @@ void MainWindow::writeNounsAndErroneousLines()
         {
             qMessageBox.setText(
                     QString(
-                            "Cannot open the nouns file '%1' for writing."
+                            tr("Cannot open the nouns file '%1' for writing.")
                             ).arg(nounsFile->fileName())
                     );
         }
@@ -371,7 +378,9 @@ void MainWindow::updateGui()
 {
     if(nouns->isEmpty())
     {
-        ui->singularFormLabel->setText("Add new nouns");
+        ui->singularFormLabel->setText(
+                    tr("Add new nouns")
+                    );
         ui->pluralFormLabel->setText("");
         ui->memorizationStreakLabel->setText("");
 
@@ -410,7 +419,7 @@ void MainWindow::displayNewNoun()
         }
 
         ui->memorizationStreakLabel->setText(
-                QString("Streak: %1").arg(
+                QString(tr("Streak: %1")).arg(
                         nouns->at(nounIndex).memorizationStreak
                         )
                 );
@@ -445,7 +454,9 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
         if(currentNoun.memorizationStreak != 0)
         {
             currentNoun.memorizationStreak = 0;
-            ui->memorizationStreakLabel->setText("Streak: 0");
+            ui->memorizationStreakLabel->setText(
+                        tr("Streak: 0")
+                        );
             ui->memorizationStreakLabel->setStyleSheet(
                     "color: red;"
                     );
@@ -456,7 +467,7 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
     else
     {
         ui->memorizationStreakLabel->setText(
-                QString("Streak: %1").arg(
+                QString(tr("Streak: %1")).arg(
                         currentNoun.memorizationStreak + 1
                         )
                 );
@@ -467,7 +478,7 @@ void MainWindow::giveFeedbackAndUpdateNouns(Noun::Gender chosenGender)
         if(currentNoun.memorizationStreak == 10)
         {
             ui->memorizationStreakLabel->setText(
-                    "Noun memorized! \n" +
+                    tr("Noun memorized! \n") +
                     ui->memorizationStreakLabel->text()
                     );
 
@@ -602,10 +613,12 @@ void MainWindow::qtsingleapplicationCopying()
 
 void MainWindow::editNouns()
 {
-    EditNounsDialog editNounsDialog(erroneousLines,
-                                    nouns,
-                                    nounsFile->fileName(),
-                                    this);
+    EditNounsDialog editNounsDialog(
+                erroneousLines,
+                nouns,
+                nounsFile->fileName(),
+                this
+                );
 
     if(!nouns->isEmpty())
     {

@@ -45,10 +45,12 @@ class EditNounsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditNounsDialog(QStringList* erroneousLines,
-                             QList<Noun>* nouns,
-                             QString nounsFileFileName,
-                             QWidget *parent = 0);
+    explicit EditNounsDialog(
+        QStringList* erroneousLines,
+        QList<Noun>* nouns,
+        QString nounsFileFileName,
+        QWidget *parent = 0
+        );
     ~EditNounsDialog();
 
     void updateState();

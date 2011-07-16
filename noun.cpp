@@ -62,7 +62,7 @@ Noun::Noun(QString definiteArticleAndBothForms, int memorizationStreak)
     else
     {
         this->gender = Noun::neuter;
-        this->singularForm = "Error";
+        this->singularForm = QObject::tr("Error");
     }
 
     this->memorizationStreak = memorizationStreak;

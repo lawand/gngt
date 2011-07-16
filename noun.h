@@ -40,8 +40,10 @@ public:
 
 //member functions
 public:
-    explicit Noun(QString definiteArticleAndBothForms = "",
-                  int memorizationStreak = 0);
+    explicit Noun(
+        QString definiteArticleAndBothForms = "",
+        int memorizationStreak = 0
+        );
     ~Noun();
 
     //conversion

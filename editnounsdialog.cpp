@@ -32,10 +32,12 @@
 #include "editnounsdialog.h"
 #include "ui_editnounsdialog.h"
 
-EditNounsDialog::EditNounsDialog(QStringList* erroneousLines,
-                                 QList<Noun>* nouns,
-                                 QString nounsFileFileName,
-                                 QWidget *parent) :
+EditNounsDialog::EditNounsDialog(
+    QStringList* erroneousLines,
+    QList<Noun>* nouns,
+    QString nounsFileFileName,
+    QWidget *parent
+    ) :
     QDialog(parent),
     ui(new Ui::EditNounsDialog)
 {
@@ -209,7 +211,7 @@ void EditNounsDialog::updateState()
 {
     //update numberOfNounsLabel
     ui->numberOfNounsLabel->setText(
-            QString("Number Of Nouns: %2").arg(nouns->length())
+            QString(tr("Number Of Nouns: %2")).arg(nouns->length())
             );
 
     //clear listWidget because items will be added later (if they existed)
@@ -326,9 +328,11 @@ void EditNounsDialog::edit()
     //if nothing is selected
     if(ui->listWidget->currentRow() == -1)
     {
-        QMessageBox::information(this,
-                                 "Select An Item",
-                                 "An item must be selected");
+        QMessageBox::information(
+                    this,
+                    tr("Select An Item"),
+                    tr("An item must be selected")
+                    );
     }
     else
     {
@@ -362,9 +366,11 @@ void EditNounsDialog::remove()
     //if nothing is selected
     if(ui->listWidget->currentRow() == -1)
     {
-        QMessageBox::information(this,
-                                 "Select An Item",
-                                 "An item must be selected");
+        QMessageBox::information(
+                    this,
+                    tr("Select An Item"),
+                    tr("An item must be selected")
+                    );
     }
     else
     {
@@ -387,14 +393,15 @@ void EditNounsDialog::removeAll()
 {
     if(!nouns->isEmpty() || !erroneousLines->isEmpty())
     {
-        if( QMessageBox::question(this,
-                                  "Are You Sure?",
-                                  "Are you sure you want to remove all nouns "
-                                  "and erroneous lines? (this operation can't "
-                                  "be undo-ed)",
-                                  QMessageBox::Yes|QMessageBox::No,
-                                  QMessageBox::No
-                                  ) == QMessageBox::Yes )
+        if( QMessageBox::question(
+                    this,
+                    tr("Are You Sure?"),
+                    tr("Are you sure you want to remove all nouns "
+                    "and erroneous lines? (this operation can't "
+                    "be undo-ed)"),
+                    QMessageBox::Yes|QMessageBox::No,
+                    QMessageBox::No
+                    ) == QMessageBox::Yes )
             {
                 nouns->clear();
                 erroneousLines->clear();

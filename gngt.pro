@@ -20,6 +20,8 @@ windows {
     TARGET = GNGT
 }
 
+CODECFORTR = UTF-8
+
 TEMPLATE = app
 SOURCES += \
     noun.cpp \

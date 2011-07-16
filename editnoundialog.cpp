@@ -94,14 +94,18 @@ void EditNounDialog::on_buttonBox_accepted()
     //handle the case of an invalid noun string
     if(! Noun::isValid(ui->definiteArticleAndBothFormsLineEdit->text()))
     {
-        QMessageBox::information(this, "Noun Format Error",
-                                 "Incorrect format. \n"
-                                 "The correct format is "
-                                 "like this: 'das Auto Autos'. \n"
-                                 "The plural form is optional. \n"
-                                 "Both forms can each contain at "
-                                 "most 23 characters."
-                                 );
+        QMessageBox::information(
+                    this,
+                    tr("Noun Format Error"),
+                    tr(
+                        "Incorrect format. \n"
+                        "The correct format is "
+                        "like this: 'das Auto Autos'. \n"
+                        "The plural form is optional. \n"
+                        "Both forms can each contain at "
+                        "most 23 characters."
+                        )
+                    );
 
         return;
     }
@@ -110,9 +114,11 @@ void EditNounDialog::on_buttonBox_accepted()
     Noun noun(ui->definiteArticleAndBothFormsLineEdit->text());
     if(nouns->indexOf(noun) != -1)
     {
-        QMessageBox::information(this,
-                                 "Duplicate Noun",
-                                 "This noun already exists");
+        QMessageBox::information(
+                    this,
+                    tr("Duplicate Noun"),
+                    tr("This noun already exists")
+                    );
 
         return;
     }

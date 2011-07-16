@@ -41,7 +41,9 @@ int main(int argc, char *argv[])
 #else
     if(application.isRunning())
     {
-        return !application.sendMessage("Are you running?");
+        return !application.sendMessage(
+                    QObject::tr("Are you running?")
+                    );
     }
 #endif
 
