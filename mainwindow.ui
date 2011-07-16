@@ -24,7 +24,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Unkameradschaftlichkeit</string>
+       <string notr="true">Unkameradschaftlichkeit</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -44,21 +44,21 @@
     <item>
      <widget class="QPushButton" name="masculinePushButton">
       <property name="text">
-       <string>de&amp;r</string>
+       <string notr="true">de&amp;r</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="femininePushButton">
       <property name="text">
-       <string>di&amp;e</string>
+       <string notr="true">di&amp;e</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QPushButton" name="neuterPushButton">
       <property name="text">
-       <string>da&amp;s</string>
+       <string notr="true">da&amp;s</string>
       </property>
      </widget>
     </item>
@@ -132,17 +132,17 @@
   </action>
   <action name="actionReadme">
    <property name="text">
-    <string>&amp;Readme</string>
+    <string notr="true">&amp;Readme</string>
    </property>
   </action>
   <action name="actionCopying">
    <property name="text">
-    <string>&amp;Copying</string>
+    <string notr="true">&amp;Copying</string>
    </property>
   </action>
   <action name="actionQtSingleApplication_Copying">
    <property name="text">
-    <string>Qt&amp;SingleApplication/Copying</string>
+    <string notr="true">Qt&amp;SingleApplication/Copying</string>
    </property>
   </action>
  </widget>

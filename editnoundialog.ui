@@ -19,49 +19,49 @@
      <item>
       <widget class="QToolButton" name="capitalAWithDiaeresisToolButton">
        <property name="text">
-        <string>Ä</string>
+        <string notr="true">Ä</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="capitalOWithDiaeresisToolButton">
        <property name="text">
-        <string>Ö</string>
+        <string notr="true">Ö</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="capitalUWithDiaeresisToolButton">
        <property name="text">
-        <string>Ü</string>
+        <string notr="true">Ü</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="smallSharpSToolButton">
        <property name="text">
-        <string>ß</string>
+        <string notr="true">ß</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="smallAWithDiaeresisToolButton">
        <property name="text">
-        <string>ä</string>
+        <string notr="true">ä</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="smallOWithDiaeresisToolButton">
        <property name="text">
-        <string>ö</string>
+        <string notr="true">ö</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="smallUWithDiaeresisToolButton">
        <property name="text">
-        <string>ü</string>
+        <string notr="true">ü</string>
        </property>
       </widget>
      </item>
