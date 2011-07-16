@@ -24,6 +24,7 @@
 #include <QPushButton>
 #include <QDesktopWidget>
 #include <QTimer>
+#include <QTextCodec>
 
 //corresponding header file(s)
 #include "editnoundialog.h"
@@ -71,6 +72,8 @@ EditNounDialog::EditNounDialog(QList<Noun>* nouns, QWidget *parent) :
     }
 #endif
 
+    //translation-related function call
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 }
 
 EditNounDialog::~EditNounDialog()

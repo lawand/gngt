@@ -200,6 +200,26 @@ The noun list gets saved to the nouns file every time the program is closed,
 and also every time the "Edit Nouns" dialog is closed.
 
 
+Translating GNGT
+----------------
+
+You can contribute to GNGT by translating it to your native language.
+
+Here is how you can do it:
+    Get the source code of GNGT.
+    Add this line to gngt.pro: "TRANSLATIONS += gngt_XX.ts" where XX is the
+ISO 639-1 two-letter code for the language you want to translate GNGT to. For
+more info about this, search the Internet for "ISO 639-1".
+    Execute lupdate to generate gngt_XX.ts like this: "lupdate gngt.pro".
+    Open gngt_XX.ts with Qt Linguist and add the translation then save the file.
+    Contact the maintainer(s) of GNGT and give them the gngt_XX.ts file.
+    Know that you might be required to update the translation in the future
+when new translatable phrases are added to GNGT.
+
+If you didn't understand any of the previous steps, you can contact the
+maintainer(s) of GNGT for help.
+
+
 Development
 -----------
 

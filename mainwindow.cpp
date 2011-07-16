@@ -128,6 +128,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //initial GUI state
     updateGui();
+
+    //translation-related function call
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 }
 
 MainWindow::~MainWindow()

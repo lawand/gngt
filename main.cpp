@@ -20,10 +20,14 @@
 ****************************************************************************/
 
 #include <QtSingleApplication>
+#include <QTextCodec>
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
+    //translation-related function call
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
+
     //create and initialize QApplication or QtSingleApplication
 #ifdef Q_OS_SYMBIAN
     QApplication application(argc, argv);

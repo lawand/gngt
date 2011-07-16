@@ -21,6 +21,7 @@
 
 //implementation-specific data type(s)
 #include <QStringList>
+#include <QTextCodec>
 
 //corresponding header file(s)
 #include "noun.h"
@@ -66,6 +67,9 @@ Noun::Noun(QString definiteArticleAndBothForms, int memorizationStreak)
     }
 
     this->memorizationStreak = memorizationStreak;
+
+    //translation-related function call
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 }
 
 Noun::~Noun()

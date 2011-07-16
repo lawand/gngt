@@ -26,6 +26,7 @@
 //implementation-specific data type(s)
 #include <QMessageBox>
 #include <QDesktopWidget>
+#include <QTextCodec>
 #include "editnoundialog.h"
 
 //corresponding header file(s)
@@ -199,6 +200,9 @@ EditNounsDialog::EditNounsDialog(
         ui->addPushButton->setFocus();
     }
 #endif
+
+    //translation-related function call
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 }
 
 EditNounsDialog::~EditNounsDialog()
