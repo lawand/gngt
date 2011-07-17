@@ -127,7 +127,7 @@
   </action>
   <action name="actionAbout_Qt">
    <property name="text">
-    <string>About &amp;Qt</string>
+    <string notr="true">About &amp;Qt</string>
    </property>
   </action>
   <action name="actionReadme">
