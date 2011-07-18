@@ -101,33 +101,6 @@ MainWindow::MainWindow(QString language, QWidget *parent) :
     //read nouns from nouns file
     readNounsAndErroneousLines();
 
-    //hide the exit action on maemo and symbian
-#ifdef Q_WS_MAEMO_5
-    ui->actionExit->setVisible(false);
-#elif defined(Q_OS_SYMBIAN)
-    ui->actionExit->setVisible(false);
-#endif
-
-#ifdef Q_OS_SYMBIAN
-    //show only action in menu (no sub-menus)
-    ui->menuActions->removeAction(ui->actionEdit_Nouns);
-    ui->menuActions->removeAction(ui->actionExit);
-    ui->menuHelp->removeAction(ui->actionReadme);
-    ui->menuHelp->removeAction(ui->actionCopying);
-    ui->menuHelp->removeAction(ui->actionQtSingleApplication_Copying);
-    ui->menuHelp->removeAction(ui->actionAbout_Qt);
-
-    delete ui->menuActions;
-    delete ui->menuHelp;
-
-    ui->menuBar->addAction(ui->actionEdit_Nouns);
-    ui->menuBar->addAction(ui->actionReadme);
-    ui->menuBar->addAction(ui->actionCopying);
-    ui->menuBar->addAction(ui->actionQtSingleApplication_Copying);
-    ui->menuBar->addAction(ui->actionAbout_Qt);
-    ui->menuBar->addAction(ui->actionExit);
-#endif
-
     //initial GUI state
     updateGui();
 
@@ -174,17 +147,6 @@ void MainWindow::setupLanguageActions()
     {
         actionCzech->setEnabled(false);
     }
-
-#ifdef Q_OS_SYMBIAN
-    //show only action in menu (no sub-menus)
-    ui->menuLanguage->removeAction(actionEnglish);
-    ui->menuLanguage->removeAction(actionCzech);
-
-    delete ui->menuLanguage;
-
-    ui->menuBar->addAction(actionEnglish);
-    ui->menuBar->addAction(actionCzech);
-#endif
 }
 
 void MainWindow::setLanguageEnglish()
