@@ -264,8 +264,9 @@ Distributing a custom build requires renaming the application (so that it can
 be installed alongside with GNGT), and (as it is with all Symbian applications)
 specifying a UID.
 
-GNGT for Symbian was tested Qt SDK 1.1.1 and with Qt 4.6.3 for Symbian^1 and
-using the Nokia smart installer on S60v3 FP1, S60v3 FP2, Symbian^1, Symbian^3.
+GNGT for Symbian was tested Qt SDK 1.1.1 and 1.1.2 and with Qt 4.6.3 for
+Symbian^1 and using the Nokia smart installer on S60v3 FP1, S60v3 FP2,
+Symbian^1, Symbian^3.
 
 
 Legal Notes
