@@ -153,53 +153,53 @@ Oba tvary mohou obsahovat nejvíc 23 znaků.</translation>
         <translation>&amp;Ukončit</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="160"/>
+        <location filename="mainwindow.cpp" line="133"/>
         <source>&amp;English</source>
         <translation>&amp;Anglický</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="165"/>
+        <location filename="mainwindow.cpp" line="138"/>
         <source>&amp;Czech</source>
         <translation>Č&amp;eský</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="195"/>
-        <location filename="mainwindow.cpp" line="208"/>
+        <location filename="mainwindow.cpp" line="157"/>
+        <location filename="mainwindow.cpp" line="170"/>
         <source>Restart Required</source>
         <translation>Znovuspuštění vyžadováno</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="198"/>
-        <location filename="mainwindow.cpp" line="211"/>
+        <location filename="mainwindow.cpp" line="160"/>
+        <location filename="mainwindow.cpp" line="173"/>
         <source>The language will change the next time you start GNGT.</source>
         <translation>Jazyk se změní, až GNGT spustíte příště.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="229"/>
-        <location filename="mainwindow.cpp" line="378"/>
+        <location filename="mainwindow.cpp" line="191"/>
+        <location filename="mainwindow.cpp" line="340"/>
         <source>File Open Error</source>
         <translation>Chyba při otevírání souboru</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="236"/>
-        <location filename="mainwindow.cpp" line="249"/>
-        <location filename="mainwindow.cpp" line="258"/>
+        <location filename="mainwindow.cpp" line="198"/>
+        <location filename="mainwindow.cpp" line="211"/>
+        <location filename="mainwindow.cpp" line="220"/>
         <source>Cannot open the nouns file &apos;%1&apos; for reading.</source>
         <translation>Nelze otevřít soubor s podstatnými jmény &apos;%1&apos; pro čtení.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="244"/>
-        <location filename="mainwindow.cpp" line="393"/>
+        <location filename="mainwindow.cpp" line="206"/>
+        <location filename="mainwindow.cpp" line="355"/>
         <source>Cannot open the nouns file.</source>
         <translation>Nelze otevřít soubor s podstatnými jmény.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="327"/>
+        <location filename="mainwindow.cpp" line="289"/>
         <source>Read Error</source>
         <translation>Chyba při čtení</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="332"/>
+        <location filename="mainwindow.cpp" line="294"/>
         <source>Some lines contained errors and weren&apos;t able to be read. 
 Correct these errors using the &apos;Edit Nouns&apos; option.</source>
         <oldsource>Some lines contained errors and weren&apos;t able to be read.
@@ -208,30 +208,30 @@ Correct these errors using the &apos;Edit Nouns&apos; option.</oldsource>
 Opravte tyto chyby pomocí volby &quot;Upravit podstatná jména&quot;.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="385"/>
-        <location filename="mainwindow.cpp" line="398"/>
-        <location filename="mainwindow.cpp" line="407"/>
+        <location filename="mainwindow.cpp" line="347"/>
+        <location filename="mainwindow.cpp" line="360"/>
+        <location filename="mainwindow.cpp" line="369"/>
         <source>Cannot open the nouns file &apos;%1&apos; for writing.</source>
         <translation>Nelze otevřít soubor s podstatnými jmény &apos;%1&apos; pro zápis.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="453"/>
+        <location filename="mainwindow.cpp" line="415"/>
         <source>Add new nouns</source>
         <translation>Přidat nová podstatná jména</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="493"/>
-        <location filename="mainwindow.cpp" line="541"/>
+        <location filename="mainwindow.cpp" line="455"/>
+        <location filename="mainwindow.cpp" line="503"/>
         <source>Streak: %1</source>
         <translation>Proužek: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="529"/>
+        <location filename="mainwindow.cpp" line="491"/>
         <source>Streak: 0</source>
         <translation>Proužek: 0</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="552"/>
+        <location filename="mainwindow.cpp" line="514"/>
         <source>Noun memorized! 
 </source>
         <oldsource>Noun memorized!
