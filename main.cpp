@@ -21,6 +21,9 @@
 
 #include <QtSingleApplication>
 #include <QTextCodec>
+#include <QLocale>
+#include <QSettings>
+#include <QTranslator>
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
@@ -36,6 +39,34 @@ int main(int argc, char *argv[])
 #else
     QtSingleApplication application(argc, argv);
 #endif
+
+    //for QSettings
+    application.setOrganizationName("lawand");
+    application.setApplicationName("gngt");
+
+    //set application language
+        //default language is the system locale
+            QString defaultLanguage = QLocale::system().name();
+            defaultLanguage.chop(3);
+
+        //determine language, either from settings or as the system locale
+            QSettings settings;
+            QString language = settings.value(
+                        "config/language", defaultLanguage
+                        ).toString();
+
+        //load the language
+            QTranslator gngtTranslator;
+            gngtTranslator.load(
+                        QString(":/languages/gngt_%1").arg(language)
+                                );
+            application.installTranslator(&gngtTranslator);
+
+            QTranslator qtTranslator;
+            qtTranslator.load(
+                        QString(":/languages/qt_%1").arg(language)
+                        );
+            application.installTranslator(&qtTranslator);
 
     //manage instances
 #ifdef Q_OS_SYMBIAN
@@ -55,7 +86,7 @@ int main(int argc, char *argv[])
     application.setWindowIcon(QIcon(":/icons/gngt.svg"));
 
     //create an instance of MainWindow
-    MainWindow mainWindow;
+    MainWindow mainWindow(language);
 
     //show that instance
 #ifndef Q_OS_SYMBIAN

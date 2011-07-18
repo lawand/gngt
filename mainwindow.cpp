@@ -29,13 +29,14 @@
 #include <QDir>
 #include <QTextBrowser>
 #include <QDialogButtonBox>
+#include <QSettings>
 #include "editnounsdialog.h"
 
 //corresponding header file(s)
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QString language, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     nouns(new QList<Noun>()),
@@ -53,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionQtSingleApplication_Copying, SIGNAL(triggered()),
             SLOT(qtsingleapplicationCopying()));
     connect(ui->actionAbout_Qt, SIGNAL(triggered()), qApp, SLOT(aboutQt()));
+    this->language = language;
 
     //enable auto-rotation on maemo linux
 #ifdef Q_WS_MAEMO_5
@@ -129,6 +131,9 @@ MainWindow::MainWindow(QWidget *parent) :
     //initial GUI state
     updateGui();
 
+    //add language actions into the language menu and set them up
+    setupLanguageActions();
+
     //translation-related function call
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf8"));
 }
@@ -138,11 +143,74 @@ MainWindow::~MainWindow()
     //write nouns into the nouns file
     writeNounsAndErroneousLines();
 
+    //write preferred language into settings
+    QSettings settings;
+    settings.setValue("config/language", language);
+
     //delete data members
     delete ui;
     delete nouns;
     delete erroneousLines;
     delete nounsFile;
+}
+
+void MainWindow::setupLanguageActions()
+{
+    QAction* actionEnglish = new QAction(this);
+    actionEnglish->setText(tr("&English"));
+    ui->menuLanguage->addAction(actionEnglish);
+    connect(actionEnglish, SIGNAL(triggered()), SLOT(setLanguageEnglish()));
+
+    QAction* actionCzech = new QAction(this);
+    actionCzech->setText(tr("&Czech"));
+    ui->menuLanguage->addAction(actionCzech);
+    connect(actionCzech, SIGNAL(triggered()), SLOT(setLanguageCzech()));
+
+    if(language == "en")
+    {
+        actionEnglish->setEnabled(false);
+    }
+    if(language == "cs")
+    {
+        actionCzech->setEnabled(false);
+    }
+
+#ifdef Q_OS_SYMBIAN
+    //show only action in menu (no sub-menus)
+    ui->menuLanguage->removeAction(actionEnglish);
+    ui->menuLanguage->removeAction(actionCzech);
+
+    delete ui->menuLanguage;
+
+    ui->menuBar->addAction(actionEnglish);
+    ui->menuBar->addAction(actionCzech);
+#endif
+}
+
+void MainWindow::setLanguageEnglish()
+{
+    language = "en";
+
+    QMessageBox qMessageBox;
+    qMessageBox.setWindowTitle(tr("Restart Required"));
+    qMessageBox.setIcon(QMessageBox::Information);
+    qMessageBox.setText(
+                tr("The language will change the next time you start GNGT.")
+                );
+    qMessageBox.exec();
+}
+
+void MainWindow::setLanguageCzech()
+{
+    language = "cs";
+
+    QMessageBox qMessageBox;
+    qMessageBox.setWindowTitle(tr("Restart Required"));
+    qMessageBox.setIcon(QMessageBox::Information);
+    qMessageBox.setText(
+                tr("The language will change the next time you start GNGT.")
+                );
+    qMessageBox.exec();
 }
 
 void MainWindow::readNounsAndErroneousLines()

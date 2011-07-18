@@ -296,3 +296,5 @@ GNGT uses UPX (http://upx.sourceforge.net/) for executable compression.
 
 Program icon was designed using the Inkscape SVG graphics editor.
 
+Czech translation by Pavel Fric <pavelfric@seznam.cz>.
+

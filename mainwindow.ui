@@ -112,7 +112,13 @@
     <addaction name="actionCopying"/>
     <addaction name="actionQtSingleApplication_Copying"/>
    </widget>
+   <widget class="QMenu" name="menuLanguage">
+    <property name="title">
+     <string>&amp;Language</string>
+    </property>
+   </widget>
    <addaction name="menuActions"/>
+   <addaction name="menuLanguage"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionEdit_Nouns">

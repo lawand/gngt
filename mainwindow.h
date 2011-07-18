@@ -43,10 +43,14 @@ class MainWindow : public QMainWindow
 
 //member functions
 public:
-    explicit MainWindow(QWidget *parent = 0);
+    explicit MainWindow(QString language, QWidget *parent = 0);
     ~MainWindow();
 
 private slots:
+    void setupLanguageActions();
+    void setLanguageEnglish();
+    void setLanguageCzech();
+
     void readNounsAndErroneousLines();
     void writeNounsAndErroneousLines();
 
@@ -72,6 +76,7 @@ private:
     int nounIndex;
     QFile *nounsFile;
     bool feedbackActive;
+    QString language;
 };
 
 #endif // MAINWINDOW_H

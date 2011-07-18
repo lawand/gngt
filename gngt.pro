@@ -20,6 +20,7 @@ windows {
     TARGET = GNGT
 }
 
+TRANSLATIONS += gngt_cs.ts
 CODECFORTR = UTF-8
 
 TEMPLATE = app
