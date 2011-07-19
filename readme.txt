@@ -14,7 +14,8 @@ Changelog
 ---------
 
 v1.1
-No new features yet.
+Added Czech translation, updated the source code for easier building and
+packaging.
 
 v1.0.2 (2011-05-27)
 A bug-fix release, no new features.
