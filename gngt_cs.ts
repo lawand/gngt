@@ -217,18 +217,18 @@ Opravte tyto chyby pomocí volby &quot;Upravit podstatná jména&quot;.</transla
     <message>
         <location filename="mainwindow.cpp" line="415"/>
         <source>Add new nouns</source>
-        <translation>Přidat nová podstatná jména</translation>
+        <translation>Přidat nová jména</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="455"/>
         <location filename="mainwindow.cpp" line="503"/>
         <source>Streak: %1</source>
-        <translation>Proužek: %1</translation>
+        <translation>Řada: %1</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="491"/>
         <source>Streak: 0</source>
-        <translation>Proužek: 0</translation>
+        <translation>Řada: 0</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="514"/>
@@ -236,7 +236,7 @@ Opravte tyto chyby pomocí volby &quot;Upravit podstatná jména&quot;.</transla
 </source>
         <oldsource>Noun memorized!
 </oldsource>
-        <translation>Podstatné jméno zapamatováno!
+        <translation>Zapamatováno!
 </translation>
     </message>
 </context>
