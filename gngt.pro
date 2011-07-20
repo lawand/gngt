@@ -5,7 +5,7 @@ symbian: {
     include(qtsingleapplication/src/qtsingleapplication.pri)
 }
 
-VERSION = 1.1.1
+VERSION = 1.1.2
 
 linux {
     TARGET = gngt

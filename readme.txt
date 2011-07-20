@@ -1,4 +1,4 @@
-GNGT 1.1.1
+GNGT 1.1.2
 ----------
 
 German Noun Gender Trainer (GNGT) is a small application that helps German
@@ -13,8 +13,8 @@ http://coinonedge.com/gngt/
 Changelog
 ---------
 
-v1.1.1
-*under development*
+v1.1.2
+Updated Czech translation.
 
 v1.1
 Added Czech translation, updated the source code for easier building and
@@ -248,10 +248,10 @@ There are many methods of creating .deb package files for Ubuntu Linux. This is
 the method I am using:
     Get a machine running Linux.
     Build GNGT for Linux, the result is a binary file named "gngt".
-    Put the binary in qtc_packaging/ubuntu/gngt_1.1.1_i386/usr/bin.
+    Put the binary in qtc_packaging/ubuntu/gngt_1.1.2_i386/usr/bin.
     Open the terminal and change the current directory to qtc_packaging/ubuntu.
-    Execute this command: "fakeroot dpkg-deb -b gngt_1.1.1_i386/".
-    The resulting file is "gngt_1.1.1_i386.deb" which can be used to install GNGT.
+    Execute this command: "fakeroot dpkg-deb -b gngt_1.1.2_i386/".
+    The resulting file is "gngt_1.1.2_i386.deb" which can be used to install GNGT.
 
 The distribution tested is Ubuntu 11.04.
 
