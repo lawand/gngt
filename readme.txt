@@ -216,7 +216,7 @@ ISO 639-1 two-letter code for the language you want to translate GNGT to. For
 more info about this, search the Internet for "ISO 639-1".
     Execute lupdate to generate gngt_XX.ts like this: "lupdate gngt.pro".
     Open gngt_XX.ts with Qt Linguist and add the translation then save the file.
-    Contact the maintainer(s) of GNGT and give them the gngt_XX.ts file.
+    Contact the maintainer(s) of GNGT and send them the gngt_XX.ts file.
     Know that you might be required to update the translation in the future
 when new translatable phrases are added to GNGT.
 
@@ -251,7 +251,8 @@ the method I am using:
     Put the binary in qtc_packaging/ubuntu/gngt_1.1.2_i386/usr/bin.
     Open the terminal and change the current directory to qtc_packaging/ubuntu.
     Execute this command: "fakeroot dpkg-deb -b gngt_1.1.2_i386/".
-    The resulting file is "gngt_1.1.2_i386.deb" which can be used to install GNGT.
+    The resulting file is "gngt_1.1.2_i386.deb" which can be used to install
+    GNGT.
 
 The distribution tested is Ubuntu 11.04.
 
