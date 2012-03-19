@@ -13,10 +13,10 @@ http://coinonedge.com/gngt/
 Changelog
 ---------
 
-v1.1.2
+v1.1.2 (2011-07-20)
 Updated Czech translation.
 
-v1.1
+v1.1 (2011-07-19)
 Added Czech translation, updated the source code for easier building and
 packaging.
 
